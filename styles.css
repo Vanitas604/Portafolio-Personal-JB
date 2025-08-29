@@ -213,7 +213,7 @@ nav ul li a:hover {
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr); /* ahora 2 columnas en pantallas grandes */
     gap: 30px;
 }
 
@@ -410,6 +410,6 @@ footer {
     }
     
     .projects-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* en móvil se ve solo una columna */
     }
 }
