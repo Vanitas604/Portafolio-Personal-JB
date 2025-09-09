@@ -168,7 +168,9 @@ nav ul li a:hover {
 }
 
 .about-text {
-    flex: 0 0 55%;
+    flex: 0 0 100%;   /* ocupa todo el ancho */
+    max-width: 950px; /* ancho máximo para que no se vea demasiado largo */
+    margin: 0 auto;   /* lo centra dentro del contenedor */
 }
 
 .about-text p {
@@ -203,6 +205,36 @@ nav ul li a:hover {
     border-radius: 20px;
     font-size: 0.9rem;
 }
+
+/* ====== Sección Lenguajes de Programación ====== */
+.habilidad-titulo {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin: 2rem auto 1.5rem auto;
+  color: #e63946;
+  text-transform: uppercase;
+  text-align: center;
+  margin-left: 100px; /* mismo desplazamiento que el grid */
+}
+
+.skills-grid {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: nowrap;
+  margin-left: 110px;
+  transform: translateX(-10px); /* mueve todo 50px a la izquierda */
+}
+
+/* Tarjetas estilo neon */
+.skill-card {
+    width: 150px;               /* Mismo ancho para todas */
+    background: #ece0e0;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+}
+
 
 /* Projects Section */
 .projects {
