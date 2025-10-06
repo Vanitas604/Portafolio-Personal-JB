@@ -31,7 +31,7 @@
     <section id="inicio" class="hero">
         <div class="container">
             <div class="hero-content">
-                <h1>Hola, soy <span class="highlight">Jennifer Yamileth Baires Acosta</span></h1>
+                <h1>Hola, soy <span class="highlighpt">Jennifer Yamileth Baires Acosta</span></h1>
                 <p><h3>Áreas de Interés:</h3> Scrum Master | Desarrolladora Web | Diseñadora UX/UI</p>
                 <div class="hero-buttons">
                     <a href="#proyectos" class="btn">Ver Mis Proyectos</a>
@@ -326,25 +326,6 @@
                         </a>
                     </div>
                 </div>
-                <div class="contact-form">
-                    <form id="contactForm">
-                        <div class="form-group">
-                            <label for="name">Nombre</label>
-                            <input type="text" id="name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="subject">Asunto</label>
-                            <input type="text" id="subject" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Mensaje</label>
-                            <textarea id="message" class="form-control" required></textarea>
-                        </div>
-                        <button type="submit" class="btn">Enviar Mensaje</button>
                     </form>
                 </div>
             </div>
@@ -384,15 +365,6 @@
             });
         });
         
-        // Formulario de contacto
-        const contactForm = document.getElementById('contactForm');
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                alert('¡Gracias por tu mensaje! Te contactaré pronto.');
-                contactForm.reset();
-            });
-        }
         
         // Slider de testimonios
         const testimonialButtons = document.querySelectorAll('.testimonial-nav button');
