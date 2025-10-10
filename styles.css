@@ -168,9 +168,10 @@ nav ul li a:hover::after {
 }
 
 .highlight {
-    color: var(--primary-color);
-    position: relative;
-    display: inline-block;
+  color: #000; /* negro sólido */
+  background: none; /* elimina el degradado */
+  -webkit-background-clip: initial;
+  -webkit-text-fill-color: initial;
 }
 
 .highlight::after {
@@ -1220,4 +1221,19 @@ footer p {
 .scroll-reveal.revealed {
     opacity: 1;
     transform: translateY(0);
+}
+
+.language-selector {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+}
+
+.language-selector select {
+    background-color: #f8f8f8;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 5px 8px;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
 }
