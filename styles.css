@@ -449,3 +449,79 @@ footer {
         grid-template-columns: 1fr; /* en móvil se ve solo una columna */
     }
 }
+/* === ANIMACIONES SUAVES EN EL PORTAFOLIO === */
+
+/* Animación de aparición al hacer scroll */
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.fade-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Suaviza las transiciones globales */
+* {
+  transition: all 0.3s ease;
+}
+
+/* Animación inicial al cargar */
+body.page-loaded {
+  animation: fadeInBody 1s ease forwards;
+}
+
+@keyframes fadeInBody {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Efecto flotante leve en botones al pasar el mouse */
+.btn:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Animación sutil en títulos */
+.section-title {
+  transition: all 0.8s ease;
+}
+
+.section-title.visible {
+  letter-spacing: 1px;
+}
+/* Botón de traducción */
+.translate-btn {
+    background: linear-gradient(135deg, #e63946 0%, #ff6b6b 100%);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(230, 57, 70, 0.4);
+}
+
+.translate-btn i {
+    transition: transform 0.3s ease;
+}
+
+.translate-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(230, 57, 70, 0.6), 0 0 15px rgba(255, 107, 107, 0.4);
+}
+
+.translate-btn:hover i {
+    transform: rotate(20deg);
+}
