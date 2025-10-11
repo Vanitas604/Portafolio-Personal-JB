@@ -3,240 +3,131 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jennifer Baires | Portafolio Personal</title>
+    <title>Mi Portafolio Personal</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
     <!-- Navegación -->
-<nav id="navbar">
-    <div class="container">
-        <h2 class="logo" data-translate="logoTitle">Mi<span>Portafolio</span></h2>
-        <div class="menu-toggle" id="menuToggle">
-            <i class="fas fa-bars"></i>
+    <nav>
+        <div class="container">
+            <h2 class="logo">Mi<span>Portafolio</span></h2>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre-mi">Sobre Mí</a></li>
+                <li><a href="#proyectos">Proyectos</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
         </div>
-        <ul id="menu">
-            <li><a href="#inicio" data-translate="navHome">Inicio</a></li>
-            <li><a href="#sobre-mi" data-translate="navAbout">Sobre Mí</a></li>
-            <li><a href="#intereses" data-translate="navInterests">Intereses</a></li>
-            <li><a href="#proyectos" data-translate="navProjects">Proyectos</a></li>
-            <li><a href="#testimonios" data-translate="navTestimonials">Testimonios</a></li>
-            <li><a href="#contacto" data-translate="navContact">Contacto</a></li>
-        </ul>
-    </div>
-    <div class="language-selector">
-        <select id="languageSelect">
-            <option value="es" selected>🇪🇸 Español</option>
-            <option value="en">🇺🇸 English</option>
-        </select>
-    </div>
     </nav>
 
     <!-- Sección de Inicio -->
 <section id="inicio" class="hero">
     <div class="container">
         <div class="hero-content">
-            <h1 data-translate="heroGreeting">
-                Hola, soy <span class="highlight">Jennifer Yamileth Baires Acosta</span>
-            </h1>
-
-            <p>
-                <h3 data-translate="interestTitle">Áreas de Interés:</h3>
-                <span data-translate="interestAreas">Scrum Master | Desarrolladora Web | Diseñadora UX/UI</span>
-            </p>
-
-            <div class="hero-buttons">
-                <a href="#proyectos" class="btn" data-translate="viewProjects">Ver Mis Proyectos</a>
-                <a href="CV-Jennifer-Baires.pdf" class="btn btn-outline" download data-translate="downloadCV">
-                    <i class="fas fa-download"></i> Descargar CV
-                </a>
-            </div>
+            <h1>Hola, soy <span class="highlight">Jennifer Yamileth Baires Acosta</span></h1>
+            <p><h2>Áreas de interés:</h2> Scrum Master, Desarrollador Web & Diseñador UX/UI</p>
+            
+            <!-- Botón para ver proyectos -->
+            <a href="#proyectos" class="btn">Ver Mis Proyectos</a>
+            
+            <!-- Botón para descargar CV -->
+            <a href="CV-Jennifer-Baires.pdf" class="btn" download>
+                <i class="fas fa-download"></i> Descargar CV
+            </a>
         </div>
-
         <div class="hero-image">
+            <!-- Imagen personal -->
             <img src="Jennifer Baires.jpeg" alt="Foto de Jennifer" class="hero-photo">
-            <div class="floating-icons">
-                <div class="floating-icon"><i class="fab fa-html5"></i></div>
-                <div class="floating-icon"><i class="fab fa-css3-alt"></i></div>
-                <div class="floating-icon"><i class="fab fa-python"></i></div>
-            </div>
         </div>
     </div>
 </section>
 
     <!-- Sección Sobre Mí -->
-<section id="sobre-mi" class="about">
-  <div class="container">
-    <h2 class="section-title" data-translate="aboutSectionTitle">Sobre <span>Mí</span></h2>
-    <div class="about-content">
-      <div class="about-text">
-        <p data-translate="aboutParagraph1">
-          Soy una persona optimista, responsable y orientada al progreso, con facilidad para trabajar en equipo, adaptarse a nuevos retos y mantener relaciones interpersonales positivas.
-        </p>
+    <section id="sobre-mi" class="about">
+        <div class="container">
+            <h2 class="section-title">Sobre <span>Mí</span></h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Persona optimista, responsable y orientada al progreso, con facilidad para trabajar en equipo, adaptarse a nuevos retos y mantener relaciones interpersonales positivas.</p>
+                    <p>Mi objetivo es crear experiencias digitales que no solo sean visualmente atractivas, sino también intuitivas y accesibles para todos los usuarios.</p>
+                    <div class="skills">
+                        <h3>Habilidades</h3>
+                            <h4>Habilidades Fuertes</h4>
+                            <ul>
+                                <li>Conocimientos básicos en Git para control de versiones</li>
+                                <li>Manejo de Android Studio para crear aplicaciones móviles</li>
+                                <li>Desarrollo de apps con interfaces gráficas simples</li>
+                                <li>Instalación y prueba de apps en emuladores de Android</li>
+                                <li>Experiencia en proyectos pequeños para reforzar el aprendizaje</li>
+                            </ul>
 
-        <p data-translate="aboutParagraph2">
-          Mi objetivo es crear experiencias digitales que no solo sean visualmente atractivas, sino también intuitivas y accesibles para todos los usuarios.
-        </p>
+                            <br>
 
-        <a href="CV-Jennifer-Baires.pdf" class="btn" download data-translate="downloadFullCV">
-          <i class="fas fa-download"></i> Descargar CV Completo
-        </a>
+                            <h4>Habilidades Blandas</h4>
+                            <ul>
+                                <li>Responsable</li>
+                                <li>Comunicación asertiva</li>
+                                <li>Resolución de problemas</li>
+                                <li>Trabajo en equipo</li>
+                                <li>Sociabilidad</li>
+                                <li>Adaptabilidad</li>
+                            </ul>
+                            <!-- Lenguajes de Programación -->
+                                <h3 class="habilidad-titulo">
+                                <i class="fa-solid fa-code"></i> Lenguajes de Programación
+                                </h3>
 
-        <div class="skills-category">
-          <h3 data-translate="programmingLanguagesTitle">
-            <i class="fas fa-code"></i> Lenguajes de Programación
-          </h3>
+                                <div class="skills-grid">
+                                <!-- HTML -->
+                                <div class="skill-card">
+                                    <div class="skill-icon html"><i class="fa-brands fa-html5"></i></div>
+                                    <h3>HTML</h3>
+                                </div>
 
-          <div class="skills-grid">
-            <div class="skill-card">
-              <div class="skill-icon html"><i class="fab fa-html5"></i></div>
-              <h3>HTML</h3>
-              <div class="progress-bar">
-                <div class="progress" style="width: 90%"></div>
-              </div>
-            </div>
+                                <!-- C# -->
+                                <div class="skill-card">
+                                    <div class="skill-icon csharp"><i class="fa-solid fa-code"></i></div>
+                                    <h3>C#</h3>
+                                </div>
 
-            <div class="skill-card">
-              <div class="skill-icon css"><i class="fab fa-css3-alt"></i></div>
-              <h3>CSS</h3>
-              <div class="progress-bar">
-                <div class="progress" style="width: 85%"></div>
-              </div>
-            </div>
+                                <!-- CSS -->
+                                <div class="skill-card">
+                                    <div class="skill-icon css"><i class="fa-brands fa-css3-alt"></i></div>
+                                    <h3>CSS</h3>
+                                </div>
 
-            <div class="skill-card">
-              <div class="skill-icon python"><i class="fab fa-python"></i></div>
-              <h3>Python</h3>
-              <div class="progress-bar">
-                <div class="progress" style="width: 80%"></div>
-              </div>
-            </div>
-
-            <div class="skill-card">
-              <div class="skill-icon csharp"><i class="fas fa-code"></i></div>
-              <h3>C#</h3>
-              <div class="progress-bar">
-                <div class="progress" style="width: 75%"></div>
-              </div>
-            </div>
-
-            <div class="skill-card">
-              <div class="skill-icon js"><i class="fab fa-js"></i></div>
-              <h3>JavaScript</h3>
-              <div class="progress-bar">
-                <div class="progress" style="width: 70%"></div>
-              </div>
-            </div>
-
-            <div class="skill-card">
-              <div class="skill-icon java"><i class="fab fa-java"></i></div>
-              <h3>Java</h3>
-              <div class="progress-bar">
-                <div class="progress" style="width: 65%"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-    <!-- Sección Habilidades -->
-<section id="habilidades" class="skills">
-    <div class="container">
-        <h2 class="section-title" data-translate="skills-title">Mis <span>Habilidades</span></h2>
-        <div class="skills-container">
-
-            <div class="skills-category">
-                <h3 data-translate="technical-skills-title"><i class="fas fa-laptop-code"></i> Habilidades Técnicas</h3>
-                <ul class="skills-list">
-                    <li data-translate="frontend"><i class="fas fa-check-circle"></i> Desarrollo Front-End (HTML, CSS, JavaScript)</li>
-                    <li data-translate="programming"><i class="fas fa-check-circle"></i> Programación en Python, C#, Java</li>
-                    <li data-translate="design"><i class="fas fa-check-circle"></i> Diseño UX/UI con Figma y Canva</li>
-                    <li data-translate="database"><i class="fas fa-check-circle"></i> Manejo de bases de datos SQL Server y SQLite</li>
-                    <li data-translate="git"><i class="fas fa-check-circle"></i> Control de versiones con Git y GitHub</li>
-                </ul>
-            </div>
-
-            <div class="skills-category">
-                <h3 data-translate="soft-skills-title"><i class="fas fa-user-friends"></i> Habilidades Blandas</h3>
-                <ul class="skills-list">
-                    <li data-translate="leadership"><i class="fas fa-check-circle"></i> Liderazgo y trabajo en equipo</li>
-                    <li data-translate="communication"><i class="fas fa-check-circle"></i> Comunicación efectiva</li>
-                    <li data-translate="adaptability"><i class="fas fa-check-circle"></i> Adaptabilidad y aprendizaje continuo</li>
-                    <li data-translate="critical-thinking"><i class="fas fa-check-circle"></i> Pensamiento crítico y resolución de problemas</li>
-                    <li data-translate="time-management"><i class="fas fa-check-circle"></i> Gestión del tiempo y organización</li>
-                </ul>
-            </div>
-
-        </div>
-    </div>
-</section>
-
-    <!-- Sección Intereses -->
-<section id="intereses" class="interests">
-    <div class="container">
-        <h2 class="section-title" data-translate="interests-title">Mis <span>Intereses</span></h2>
-        <div class="interests-grid">
-
-            <div class="interest-card">
-                <div class="interest-icon">
-                    <i class="fas fa-scrum"></i>
-                </div>
-                <h3 data-translate="scrum-title">Scrum Master</h3>
-                <p data-translate="scrum-text">Me apasiona facilitar procesos ágiles y ayudar a los equipos a alcanzar su máximo potencial mediante metodologías Scrum.</p>
-            </div>
-
-            <div class="interest-card">
-                <div class="interest-icon">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
-                <h3 data-translate="webdev-title">Desarrollo Web</h3>
-                <p data-translate="webdev-text">Disfruto crear aplicaciones web modernas, responsivas y accesibles utilizando las últimas tecnologías.</p>
-            </div>
-
-            <div class="interest-card">
-                <div class="interest-icon">
-                    <i class="fas fa-paint-brush"></i>
-                </div>
-                <h3 data-translate="uxui-title">Diseño UX/UI</h3>
-                <p data-translate="uxui-text">Me encanta diseñar interfaces intuitivas y experiencias de usuario que sean tanto funcionales como estéticamente agradables.</p>
-            </div>
-
-            <div class="interest-card">
-                <div class="interest-icon">
-                    <i class="fas fa-mobile-alt"></i>
-                </div>
-                <h3 data-translate="apps-title">Apps Móviles</h3>
-                <p data-translate="apps-text">Me interesa el desarrollo de aplicaciones móviles nativas e híbridas que resuelvan problemas reales.</p>
-            </div>
-
-        </div>
-    </div>
-</section>
+                                <!-- Python -->
+                                <div class="skill-card">
+                                    <div class="skill-icon python"><i class="fa-brands fa-python"></i></div>
+                                    <h3>Python</h3>
+                                </div>
+                                </div>
+                                                    </div>
+                                                    <a href="CV-Jennifer-Baires.pdf" class="btn" download>
+                                                        <i class="fas fa-download"></i> Descargar CV
+                                                    </a>
+                                                </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
 
     <!-- Sección Proyectos -->
 <section id="proyectos" class="projects">
     <div class="container">
-        <h2 class="section-title" data-translate="projects-title">Mis <span>Proyectos</span></h2>
+        <h2 class="section-title">Mis <span>Proyectos</span></h2>
         <div class="projects-grid">
-
+            
             <div class="project-card">
                 <div class="project-image">
                     <img src="Adopta un amigo.jpeg" alt="Adopta a un amigo">
                 </div>
                 <div class="project-info">
-                    <h3 data-translate="project1-title">Adopta a un amigo</h3>
-                    <p data-translate="project1-text">Plataforma web para un refugio de animales, enfocada en promover la adopción responsable de mascotas.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">HTML</span>
-                        <span class="project-tag">CSS</span>
-                        <span class="project-tag">JavaScript</span>
-                    </div>
-                    <a href="https://github.com/Vanitas604/Progra-I-2024/activity" target="_blank" class="btn" data-translate="github-link">
+                    <h3>Adopta a un amigo</h3>
+                    <p>Plataforma web para un refugio de animales, enfocada en promover la adopción responsable de mascotas.</p>
+                    <a href="https://github.com/Vanitas604/Progra-I-2024/activity" target="_blank" class="btn">
                         <i class="fab fa-github"></i> Ver en GitHub
                     </a>
                 </div>
@@ -247,14 +138,9 @@
                     <img src="Artesanias conchita.jpeg" alt="Artesanías Conchita">
                 </div>
                 <div class="project-info">
-                    <h3 data-translate="project2-title">Software Artesanías Conchita</h3>
-                    <p data-translate="project2-text">Prototipo de software empresarial que permite llevar el control completo de facturación e inventario.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">C#</span>
-                        <span class="project-tag">SQL</span>
-                        <span class="project-tag">.NET</span>
-                    </div>
-                    <a href="https://github.com/Vanitas604/Proyecto-Artesanias-Conchita" target="_blank" class="btn" data-translate="github-link">
+                    <h3>Software Empresarial Artesanías Conchita</h3>
+                    <p>Prototipo de software empresarial que permite llevar el control completo de facturación e inventario de la empresa.</p>
+                    <a href="https://github.com/Vanitas604/Proyecto-Artesanias-Conchita" target="_blank" class="btn">
                         <i class="fab fa-github"></i> Ver en GitHub
                     </a>
                 </div>
@@ -265,14 +151,9 @@
                     <img src="Artesanias conchita.jpeg" alt="Artesanías Conchita">
                 </div>
                 <div class="project-info">
-                    <h3 data-translate="project3-title">Sitio Web Artesanías Conchita</h3>
-                    <p data-translate="project3-text">Sitio Web informativo que muestra los productos de la empresa.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">HTML</span>
-                        <span class="project-tag">CSS</span>
-                        <span class="project-tag">JavaScript</span>
-                    </div>
-                    <a href="https://github.com/Vanitas604/Proyecto-Artesanias-Conchita-SitioWeb-Informativo" target="_blank" class="btn" data-translate="github-link">
+                    <h3>Sitio Web de Artesanías Conchita</h3>
+                    <p>Sitio Web informativo que muestra los productos de la empresa.</p>
+                    <a href="https://github.com/Vanitas604/Proyecto-Artesanias-Conchita-SitioWeb-Informativo" target="_blank" class="btn">
                         <i class="fab fa-github"></i> Ver en GitHub
                     </a>
                 </div>
@@ -283,14 +164,9 @@
                     <img src="Task planner.jpeg" alt="Task Planner">
                 </div>
                 <div class="project-info">
-                    <h3 data-translate="project4-title">Task Planner</h3>
-                    <p data-translate="project4-text">Aplicación móvil para organizar tareas, con almacenamiento local y filtros para una mejor gestión del tiempo.</p>
-                    <div class="project-tags">
-                        <span class="project-tag">Android</span>
-                        <span class="project-tag">Java</span>
-                        <span class="project-tag">SQLite</span>
-                    </div>
-                    <a href="https://github.com/Vanitas604/PrograII-Semi-2025/tree/ProyectoFinal" target="_blank" class="btn" data-translate="github-link">
+                    <h3>Task Planner</h3>
+                    <p>Aplicación móvil para organizar tareas, con almacenamiento local y filtros para una mejor gestión del tiempo.</p>
+                    <a href="https://github.com/Vanitas604/PrograII-Semi-2025/tree/ProyectoFinal" target="_blank" class="btn">
                         <i class="fab fa-github"></i> Ver en GitHub
                     </a>
                 </div>
@@ -300,183 +176,42 @@
     </div>
 </section>
 
-    <!-- Sección Testimonios -->
-<section id="testimonios" class="testimonials">
-    <div class="container">
-        <h2 class="section-title" data-translate="testimonials-title">Testi<span>monios</span></h2>
-        <div class="testimonials-slider">
-            <div class="testimonials-container">
-
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p data-translate="testimonial1-text">
-                            Jennifer demostró una gran capacidad de liderazgo como Scrum Master en nuestro último proyecto. 
-                            Su habilidad para facilitar las reuniones y mantener al equipo enfocado fue fundamental para nuestro éxito.
-                        </p>
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">
-                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Carlos Rodríguez">
-                        </div>
-                        <div class="testimonial-info">
-                            <h4 data-translate="testimonial1-name">Carlos Rodríguez</h4>
-                            <p data-translate="testimonial1-role">Team Lead en TechSolutions</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p data-translate="testimonial2-text">
-                            El trabajo de Jennifer en el diseño UX/UI de nuestra aplicación fue excepcional. 
-                            Logró crear una interfaz intuitiva y atractiva que nuestros usuarios han elogiado constantemente.
-                        </p>
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">
-                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="María López">
-                        </div>
-                        <div class="testimonial-info">
-                            <h4 data-translate="testimonial2-name">María López</h4>
-                            <p data-translate="testimonial2-role">Product Manager en DesignCo</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-card">
-                    <div class="testimonial-content">
-                        <p data-translate="testimonial3-text">
-                            Como desarrolladora, Jennifer tiene una gran atención al detalle y siempre entrega código limpio y bien documentado. 
-                            Es un placer trabajar con ella en cualquier proyecto.
-                        </p>
-                    </div>
-                    <div class="testimonial-author">
-                        <div class="testimonial-avatar">
-                            <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Roberto Sánchez">
-                        </div>
-                        <div class="testimonial-info">
-                            <h4 data-translate="testimonial3-name">Roberto Sánchez</h4>
-                            <p data-translate="testimonial3-role">Senior Developer en CodeWorks</p>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="testimonial-nav">
-                <button class="active"></button>
-                <button></button>
-                <button></button>
-            </div>
-        </div>
-    </div>
-</section>
-
     <!-- Sección Contacto -->
-<section id="contacto" class="contact">
-    <div class="container">
-        <h2 class="section-title" data-translate="contact-title">Contácta<span>me</span></h2>
-        <div class="contact-content">
-            <div class="contact-info">
-                <h3 data-translate="contact-subtitle">Ponte en contacto</h3>
-                <p data-translate="contact-text">Si estás interesado en trabajar conmigo, no dudes en contactarme.</p>
-                <div class="contact-details">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <p data-translate="contact-email">jennferbaires@gmail.com</p>
+    <section id="contacto" class="contact">
+        <div class="container">
+            <h2 class="section-title">Contácta<span>me</span></h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Ponte en contacto</h3>
+                    <p>Si estás interesado en trabajar conmigo, no dudes en contactarme.</p>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <p>jennferbaires@gmail.com</p>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <p>Usulután - Usulután, El Salvador</p>
+                        </div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <p data-translate="contact-location">Usulután - Usulután, El Salvador</p>
-                    </div>
-                </div>
-                <div class="social-links">
+                    <div class="social-links">
                     <a href="https://www.linkedin.com/in/jennifer-yamileth-baires-acosta-83837b381/" target="_blank">
-                        <i class="fab fa-linkedin-in"></i>
+                    <i class="fab fa-linkedin"></i>
                     </a>
                     <a href="https://github.com/Vanitas604" target="_blank">
-                        <i class="fab fa-github"></i>
+                    <i class="fab fa-github"></i>
                     </a>
-                    <a href="#" target="_blank">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a href="#" target="_blank">
-                        <i class="fab fa-instagram"></i>
-                    </a>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!-- Footer -->
-<footer>
-    <div class="container">
-        <p data-translate="footer-text">&copy; 2025 Jennifer Baires. Todos los derechos reservados.</p>
-    </div>
-</footer>
-
-    <script>
-        // Navegación fija y menú móvil
-        const navbar = document.getElementById('navbar');
-        const menuToggle = document.getElementById('menuToggle');
-        const menu = document.getElementById('menu');
-        
-        window.addEventListener('scroll', function() {
-            if (window.scrollY > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-        });
-        
-        menuToggle.addEventListener('click', function() {
-            menu.classList.toggle('active');
-        });
-        
-        // Cerrar menú al hacer clic en un enlace
-        const navLinks = document.querySelectorAll('nav ul li a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                menu.classList.remove('active');
-            });
-        });
-        
-        
-        // Slider de testimonios
-        const testimonialButtons = document.querySelectorAll('.testimonial-nav button');
-        const testimonials = document.querySelectorAll('.testimonial-card');
-        let currentTestimonial = 0;
-        
-        function showTestimonial(index) {
-            testimonials.forEach(testimonial => {
-                testimonial.style.display = 'none';
-            });
-            testimonials[index].style.display = 'block';
-            
-            testimonialButtons.forEach(button => {
-                button.classList.remove('active');
-            });
-            testimonialButtons[index].classList.add('active');
-            
-            currentTestimonial = index;
-        }
-        
-        testimonialButtons.forEach((button, index) => {
-            button.addEventListener('click', function() {
-                showTestimonial(index);
-            });
-        });
-        
-        // Inicializar el primer testimonio
-        showTestimonial(0);
-        
-        // Cambio automático de testimonios cada 5 segundos
-        setInterval(() => {
-            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-            showTestimonial(currentTestimonial);
-        }, 5000);
-    </script>
-    <script src="script.js"></script>
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Jennifer Baires. Todos los derechos reservados.</p>
+        </div>
+    </footer>
 </body>
 </html>
