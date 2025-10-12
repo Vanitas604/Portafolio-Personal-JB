@@ -110,8 +110,18 @@ function translatePage(lang) {
 }
 
 // Botón de traducción
-document.getElementById('translateBtn').addEventListener('click', () => {
+const translateBtn = document.getElementById('translateBtn');
+let langTextSpan;
+
+// Asegura que el botón tenga estructura HTML correcta
+translateBtn.innerHTML = `<span class="lang-icon">🌐</span><span class="lang-text">EN</span>`;
+langTextSpan = translateBtn.querySelector(".lang-text");
+
+// Evento de clic
+translateBtn.addEventListener('click', () => {
     currentLang = currentLang === 'es' ? 'en' : 'es';
     translatePage(currentLang);
-    document.getElementById('translateBtn').innerText = currentLang === 'es' ? 'EN' : 'ES';
+
+    // ✅ Cambia solo el texto, sin borrar el diseño ni icono
+    langTextSpan.textContent = currentLang === 'es' ? 'EN' : 'ES';
 });
