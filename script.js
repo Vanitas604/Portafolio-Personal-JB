@@ -1,4 +1,6 @@
-// script.js
+// =========================
+// script.js – versión mejorada
+// =========================
 
 // Traducciones en Español e Inglés
 const translations = {
@@ -96,32 +98,54 @@ const translations = {
     }
 };
 
+// ==============================
 // Estado actual del idioma
+// ==============================
 let currentLang = 'es';
 
-// Función para traducir todos los elementos
+// ==============================
+// Función de traducción mejorada
+// ==============================
 function translatePage(lang) {
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
-        if (translations[lang][key]) {
-            el.innerHTML = translations[lang][key];
+        const translation = translations[lang][key];
+
+        if (translation) {
+    if (["heroTitulo", "heroAreas", "proyectosTitulo", "sobreMiTitulo", "contactoTitulo"].includes(key)) {
+        el.innerHTML = translation; // Mantiene HTML en títulos con etiquetas internas
+    } else {
+        // ✅ Si el elemento está dentro de un botón con ícono, solo cambia el texto
+        if (el.tagName === "SPAN" && el.closest(".btn")) {
+            el.textContent = translation;
+        } else {
+            el.textContent = translation;
         }
+    }
+}
     });
 }
 
-// Botón de traducción
+// ==============================
+// Botón de traducción estilizado
+// ==============================
 const translateBtn = document.getElementById('translateBtn');
-let langTextSpan;
 
-// Asegura que el botón tenga estructura HTML correcta
-translateBtn.innerHTML = `<span class="lang-icon">🌐</span><span class="lang-text">EN</span>`;
-langTextSpan = translateBtn.querySelector(".lang-text");
+// Estructura del botón (se mantiene igual siempre)
+translateBtn.innerHTML = `<i class="fa-solid fa-globe"></i> <span class="lang-text">EN</span>`;
 
-// Evento de clic
+// Referencia al texto del botón
+const langTextSpan = translateBtn.querySelector(".lang-text");
+
+// Evento al hacer clic
 translateBtn.addEventListener('click', () => {
     currentLang = currentLang === 'es' ? 'en' : 'es';
     translatePage(currentLang);
 
-    // ✅ Cambia solo el texto, sin borrar el diseño ni icono
+    // ✅ Actualiza el texto sin cambiar el estilo ni el icono
     langTextSpan.textContent = currentLang === 'es' ? 'EN' : 'ES';
+
+    // ✅ Mantiene animaciones y clases intactas
+    document.body.classList.add("language-change");
+    setTimeout(() => document.body.classList.remove("language-change"), 400);
 });
