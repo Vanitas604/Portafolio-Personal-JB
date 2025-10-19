@@ -622,3 +622,80 @@ body.page-loaded {
 .translate-btn * {
     color: inherit;
 }
+
+/* === MARCA PERSONAL - VERSIÓN FINAL AJUSTADA === */
+.marca-personal {
+  background: linear-gradient(135deg, #fff5f5 0%, #ffeaea 100%);
+  padding: 80px 0;
+  text-align: center;
+  width: 100vw;
+  margin-left: calc(-50vw + 50%);
+
+  /* 🔹 NUEVO: baja toda la franja */
+  margin-top: 60px; /* puedes ajustar el valor (40px, 80px, etc.) */
+}
+
+/* Contenido centrado */
+.marca-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* Imagen del logo */
+.marca-logo img {
+  width: 240px; /* 🔸 Más grande */
+  height: 240px;
+  object-fit: contain; /* 🔸 se ve completa sin recorte */
+  border-radius: 50%;
+  background-color: #fff;
+  padding: 15px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.marca-logo img:hover {
+  transform: scale(1.08);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Texto */
+.marca-texto .frase {
+  font-style: italic;
+  font-size: 1.3rem;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+.marca-texto .autor {
+  color: #e63946;
+  font-weight: 600;
+  font-size: 1.05rem;
+}
+
+/* 🔹 Línea roja decorativa más ancha */
+.marca-personal .section-title::after {
+  content: '';
+  display: block;
+  width: 50%;
+  max-width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #e63946 0%, #ff6b6b 100%);
+  margin: 15px auto 0 auto;
+  border-radius: 10px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .marca-logo img {
+    width: 180px;
+    height: 180px;
+  }
+
+  .marca-texto .frase {
+    font-size: 1.1rem;
+  }
+}
