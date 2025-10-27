@@ -808,3 +808,115 @@ body.page-loaded {
         grid-template-columns: 1fr;
     }
 }
+/* ===== HABILIDADES MEJORADAS - ESTILOS SUPER SEGUROS ===== */
+
+/* Solo elementos específicos dentro de .about .skills */
+.about .skills > h3[data-i18n="skillsTitulo"] {
+    text-align: center;
+    font-size: 2.2rem;
+    margin-bottom: 40px;
+    background: linear-gradient(90deg, #e63946 0%, #ff6b6b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    display: block;
+}
+
+.about .skills h4[data-i18n="skillsFuertes"],
+.about .skills h4[data-i18n="skillsBlandas"] {
+    font-size: 1.3rem;
+    margin: 30px 0 20px 0;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #ffeaea;
+    display: block;
+}
+
+.about .skills h4 i {
+    color: #e63946;
+}
+
+/* Mejora las listas existentes SIN cambiar estructura */
+.about .skills ul:first-of-type {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+.about .skills ul:first-of-type li {
+    background: linear-gradient(135deg, #fff5f5 0%, #ffeaea 100%);
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    border-left: 4px solid #e63946;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.about .skills ul:first-of-type li:hover {
+    transform: translateX(8px);
+    box-shadow: 0 5px 15px rgba(230, 57, 70, 0.15);
+}
+
+.about .skills ul:first-of-type li::before {
+    content: '✓';
+    color: #e63946;
+    font-weight: bold;
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.about .skills ul:first-of-type li span {
+    color: #333;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0;
+}
+
+/* Segunda lista (habilidades blandas) */
+.about .skills ul:last-of-type {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+.about .skills ul:last-of-type li {
+    background: linear-gradient(135deg, #fff5f5 0%, #ffeaea 100%);
+    padding: 16px 20px;
+    margin-bottom: 12px;
+    border-radius: 10px;
+    border-left: 4px solid #e63946;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.about .skills ul:last-of-type li:hover {
+    transform: translateX(8px);
+    box-shadow: 0 5px 15px rgba(230, 57, 70, 0.15);
+}
+
+.about .skills ul:last-of-type li::before {
+    content: '✓';
+    color: #e63946;
+    font-weight: bold;
+    font-size: 1.1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.about .skills ul:last-of-type li span {
+    color: #333;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0;
+}
