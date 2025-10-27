@@ -145,7 +145,19 @@
     <div class="container">
         <h2 class="section-title" data-i18n="proyectosTitulo">Mis <span>Proyectos</span></h2>
         <div class="projects-grid">
-            <div class="project-card">
+            
+            <!-- Proyecto 1 con data attributes -->
+            <div class="project-card" 
+                 data-project-id="adopta-amigo"
+                 data-title="Adopta a un amigo"
+                 data-languages='["HTML", "CSS", "JavaScript", "PHP"]'
+                 data-role="Desarrolladora Full Stack y Diseñadora UX/UI"
+                 data-description="Plataforma web completa para un refugio de animales, enfocada en promover la adopción responsable. Incluye sistema de gestión de mascotas, formularios de adopción y panel administrativo."
+                 data-images='[
+                                "Adopta un amigo.jpeg",
+                                "Adopta-un-amigo-1.jpeg"
+                                ]'
+                 data-github="https://github.com/Vanitas604/Progra-I-2024/activity">
                 <div class="project-image">
                     <img src="Adopta un amigo.jpeg" alt="Adopta a un amigo">
                 </div>
@@ -155,7 +167,20 @@
                     <a href="https://github.com/Vanitas604/Progra-I-2024/activity" target="_blank" class="btn" data-i18n="proj1Btn">Ver en GitHub</a>
                 </div>
             </div>
-            <div class="project-card">
+
+            <!-- Proyecto 2 con data attributes -->
+            <div class="project-card" 
+                 data-project-id="artesanias-software"
+                 data-title="Software Empresarial Artesanías Conchita"
+                 data-languages='["C#", ".NET", "SQL Server", "WinForms"]'
+                 data-role="Desarrolladora Backend y Analista de Requerimientos"
+                 data-description="Prototipo de software empresarial que permite llevar el control completo de facturación, inventario, clientes y proveedores de la empresa Artesanías Conchita."
+                 data-images='[
+                                "Artesanias conchita.jpeg",
+                                "conchita-1.jpeg",
+                                "conchita.jpeg"
+                                ]'
+                 data-github="https://github.com/Vanitas604/Proyecto-Artesanias-Conchita">
                 <div class="project-image">
                     <img src="Artesanias conchita.jpeg" alt="Artesanías Conchita">
                 </div>
@@ -165,7 +190,20 @@
                     <a href="https://github.com/Vanitas604/Proyecto-Artesanias-Conchita" target="_blank" class="btn" data-i18n="proj2Btn">Ver en GitHub</a>
                 </div>
             </div>
-            <div class="project-card">
+
+            <!-- Proyecto 3 con data attributes -->
+            <div class="project-card" 
+                 data-project-id="artesanias-web"
+                 data-title="Sitio Web de Artesanías Conchita"
+                 data-languages='["HTML", "CSS", "JavaScript"]'
+                 data-role="Desarrolladora Frontend y Diseñadora Web"
+                 data-description="Sitio web informativo y catálogo en línea que muestra los productos artesanales de la empresa, con diseño responsive y optimizado para SEO."
+                 data-images='[
+                                "Artesanias conchita.jpeg",
+                                "conchita-web.png",
+                                "conchita-web-2.png"
+                                ]'
+                 data-github="https://github.com/Vanitas604/Proyecto-Artesanias-Conchita-SitioWeb-Informativo">
                 <div class="project-image">
                     <img src="Artesanias conchita.jpeg" alt="Artesanías Conchita">
                 </div>
@@ -175,9 +213,24 @@
                     <a href="https://github.com/Vanitas604/Proyecto-Artesanias-Conchita-SitioWeb-Informativo" target="_blank" class="btn" data-i18n="proj3Btn">Ver en GitHub</a>
                 </div>
             </div>
-            <div class="project-card">
+
+            <!-- Proyecto 4 con data attributes -->
+            <div class="project-card" 
+                 data-project-id="task-planner"
+                 data-title="Task Planner"
+                 data-languages='["Java", "Android SDK", "SQLite", "XML"]'
+                 data-role="Desarrolladora Mobile y Diseñadora de UI"
+                 data-description="Aplicación móvil para organizar tareas diarias, con sistema de recordatorios, categorías, prioridades y almacenamiento local para una mejor gestión del tiempo."
+                data-images='[
+                                "Task-planner.jpeg",
+                                "Task-Planner-1.jpeg",
+                                "Task-Planner-2.jpeg",
+                                "Task-Planner-3.jpeg",
+                                "Task-Planner-4.jpeg"
+                                ]'
+                 data-github="https://github.com/Vanitas604/PrograII-Semi-2025/tree/ProyectoFinal">
                 <div class="project-image">
-                    <img src="Task planner.jpeg" alt="Task Planner">
+                    <img src="Task-planner.jpeg" alt="Task Planner">
                 </div>
                 <div class="project-info">
                     <h3 data-i18n="proj4Titulo">Task Planner</h3>
@@ -188,6 +241,47 @@
         </div>
     </div>
 </section>
+
+<!-- Modal de Proyectos -->
+<div id="projectModal" class="modal">
+  <div class="modal-content">
+    <span class="close-modal">&times;</span>
+    
+    <div class="project-header">
+      <h2 id="modalProjectTitle">Título del Proyecto</h2>
+    </div>
+    
+    <div class="project-details-grid">
+      <div class="detail-section">
+        <h3><i class="fas fa-code"></i> <span data-i18n="modalLenguajes">Lenguajes de Programación</span></h3>
+        <div id="modalLanguages" class="tech-tags"></div>
+      </div>
+      
+      <div class="detail-section">
+        <h3><i class="fas fa-user-tie"></i> <span data-i18n="modalRol">Mi Rol</span></h3>
+        <p id="modalRole">Descripción del rol</p>
+      </div>
+      
+      <div class="detail-section full-width">
+        <h3><i class="fas fa-file-alt"></i> <span data-i18n="modalDescripcion">Descripción</span></h3>
+        <p id="modalDescription">Descripción completa del proyecto</p>
+      </div>
+    </div>
+    
+    <div class="project-gallery">
+      <h3><i class="fas fa-images"></i> <span data-i18n="modalGaleria">Galería del Proyecto</span></h3>
+      <div id="modalGallery" class="gallery-container">
+        <!-- Imágenes se insertarán aquí -->
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <a href="#" id="modalGitHubLink" class="btn btn-github" target="_blank">
+        <i class="fab fa-github"></i> <span data-i18n="modalVerGitHub">Ver en GitHub</span>
+      </a>
+    </div>
+  </div>
+</div>
 
 <!-- Sección Contacto -->
 <section id="contacto" class="contact">

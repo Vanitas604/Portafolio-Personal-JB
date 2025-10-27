@@ -149,3 +149,242 @@ translateBtn.addEventListener('click', () => {
     document.body.classList.add("language-change");
     setTimeout(() => document.body.classList.remove("language-change"), 400);
 });
+
+// ===== FUNCIÓN MEJORADA PARA MANEJAR IMÁGENES =====
+function openProjectModal(projectCard) {
+    console.log("🎯 Abriendo modal para:", projectCard);
+    
+    try {
+        const title = projectCard.getAttribute('data-title');
+        const languages = JSON.parse(projectCard.getAttribute('data-languages'));
+        const role = projectCard.getAttribute('data-role');
+        const description = projectCard.getAttribute('data-description');
+        const images = JSON.parse(projectCard.getAttribute('data-images'));
+        const githubLink = projectCard.getAttribute('data-github');
+
+        const modal = document.getElementById('projectModal');
+        const modalTitle = document.getElementById('modalProjectTitle');
+        const modalLanguages = document.getElementById('modalLanguages');
+        const modalRole = document.getElementById('modalRole');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalGallery = document.getElementById('modalGallery');
+        const modalGitHubLink = document.getElementById('modalGitHubLink');
+
+        if (!modal) {
+            console.error("❌ Modal no encontrado en el DOM");
+            return;
+        }
+
+        // Llenar datos
+        modalTitle.textContent = title;
+        modalRole.textContent = role;
+        modalDescription.textContent = description;
+        modalGitHubLink.href = githubLink;
+
+        // Llenar lenguajes
+        modalLanguages.innerHTML = '';
+        languages.forEach(lang => {
+            const tag = document.createElement('span');
+            tag.className = 'tech-tag';
+            tag.textContent = lang;
+            modalLanguages.appendChild(tag);
+        });
+
+        // 🔹 MEJORADO: Llenar galería con manejo de imágenes faltantes
+        modalGallery.innerHTML = '';
+        
+        images.forEach((image, index) => {
+            const imgContainer = document.createElement('div');
+            imgContainer.style.position = 'relative';
+            imgContainer.style.borderRadius = '8px';
+            imgContainer.style.overflow = 'hidden';
+            
+            const img = document.createElement('img');
+            img.src = image;
+            img.alt = `${title} - Imagen ${index + 1}`;
+            img.className = 'gallery-image';
+            
+            // 🔹 Manejar imágenes que no cargan
+            img.onerror = function() {
+                console.log(`❌ Imagen no encontrada: ${image}`);
+                this.src = 'https://via.placeholder.com/300x200/ffeaea/333333?text=Imagen+No+Disponible';
+                this.alt = 'Imagen no disponible';
+            };
+            
+            img.onload = function() {
+                console.log(`✅ Imagen cargada: ${image}`);
+            };
+            
+            img.onclick = () => openImageModal(img.src);
+            
+            imgContainer.appendChild(img);
+            modalGallery.appendChild(imgContainer);
+        });
+
+        // Mostrar modal
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        console.log("✅ Modal abierto exitosamente");
+        
+    } catch (error) {
+        console.error("❌ Error al abrir modal:", error);
+    }
+}
+// ===== FUNCIONES DEL MODAL - VERSIÓN CORREGIDA =====
+
+function openProjectModal(projectCard) {
+    console.log("🎯 Abriendo modal para:", projectCard);
+    
+    try {
+        const title = projectCard.getAttribute('data-title');
+        const languages = JSON.parse(projectCard.getAttribute('data-languages'));
+        const role = projectCard.getAttribute('data-role');
+        const description = projectCard.getAttribute('data-description');
+        const images = JSON.parse(projectCard.getAttribute('data-images'));
+        const githubLink = projectCard.getAttribute('data-github');
+
+        console.log("📊 Datos obtenidos:", { title, languages, role, description, images, githubLink });
+
+        const modal = document.getElementById('projectModal');
+        const modalTitle = document.getElementById('modalProjectTitle');
+        const modalLanguages = document.getElementById('modalLanguages');
+        const modalRole = document.getElementById('modalRole');
+        const modalDescription = document.getElementById('modalDescription');
+        const modalGallery = document.getElementById('modalGallery');
+        const modalGitHubLink = document.getElementById('modalGitHubLink');
+
+        if (!modal) {
+            console.error("❌ Modal no encontrado en el DOM");
+            return;
+        }
+
+        // Llenar datos
+        modalTitle.textContent = title;
+        modalRole.textContent = role;
+        modalDescription.textContent = description;
+        modalGitHubLink.href = githubLink;
+
+        // Llenar lenguajes
+        modalLanguages.innerHTML = '';
+        languages.forEach(lang => {
+            const tag = document.createElement('span');
+            tag.className = 'tech-tag';
+            tag.textContent = lang;
+            modalLanguages.appendChild(tag);
+        });
+
+        // Llenar galería
+        modalGallery.innerHTML = '';
+        images.forEach((image, index) => {
+            const img = document.createElement('img');
+            img.src = image;
+            img.alt = `${title} - Imagen ${index + 1}`;
+            img.className = 'gallery-image';
+            img.onclick = () => openImageModal(image);
+            modalGallery.appendChild(img);
+        });
+
+        // Mostrar modal
+        modal.style.display = 'block';
+        document.body.style.overflow = 'hidden';
+        console.log("✅ Modal abierto exitosamente");
+        
+    } catch (error) {
+        console.error("❌ Error al abrir modal:", error);
+    }
+}
+
+function closeProjectModal() {
+    const modal = document.getElementById('projectModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+function openImageModal(imageSrc) {
+    const imageModal = document.createElement('div');
+    imageModal.style.cssText = `
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.9);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    `;
+    
+    const image = document.createElement('img');
+    image.src = imageSrc;
+    image.style.cssText = `
+        max-width: 90%;
+        max-height: 90%;
+        object-fit: contain;
+        border-radius: 10px;
+    `;
+    
+    imageModal.appendChild(image);
+    imageModal.onclick = () => document.body.removeChild(imageModal);
+    
+    document.body.appendChild(imageModal);
+}
+
+// ===== INICIALIZACIÓN CORREGIDA =====
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("🚀 DOM cargado - Inicializando modal");
+    
+    // Cerrar modal con la X
+    const closeBtn = document.querySelector('.close-modal');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeProjectModal);
+        console.log("✅ Botón cerrar configurado");
+    } else {
+        console.log("❌ Botón cerrar NO encontrado");
+    }
+
+    // Cerrar al hacer click fuera del modal
+    window.addEventListener('click', function(event) {
+        const modal = document.getElementById('projectModal');
+        if (event.target === modal) {
+            closeProjectModal();
+        }
+    });
+
+    // Cerrar con tecla Escape
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeProjectModal();
+        }
+    });
+
+    // Hacer las tarjetas de proyectos clickeables
+    const projectCards = document.querySelectorAll('.project-card');
+    console.log("🃏 Tarjetas de proyecto encontradas:", projectCards.length);
+    
+    projectCards.forEach((card, index) => {
+        card.style.cursor = 'pointer';
+        
+        // Prevenir que el click en el botón de GitHub abra el modal
+        const githubBtn = card.querySelector('.btn');
+        if (githubBtn) {
+            githubBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                console.log("🔗 Click en botón GitHub - modal evitado");
+            });
+        }
+        
+        card.addEventListener('click', function(e) {
+            console.log("🖱️ Click en tarjeta:", index + 1);
+            // Solo abrir modal si no se hizo click en el botón
+            if (!e.target.closest('.btn')) {
+                openProjectModal(card);
+            }
+        });
+    });
+    
+    console.log("✅ Modal completamente inicializado");
+});
