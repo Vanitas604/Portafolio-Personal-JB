@@ -388,3 +388,49 @@ document.addEventListener('DOMContentLoaded', function() {
     
     console.log("✅ Modal completamente inicializado");
 });
+
+// ===== MODO OSCURO =====
+document.addEventListener('DOMContentLoaded', function() {
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const darkModeIcon = darkModeToggle.querySelector('i');
+    const darkModeText = darkModeToggle.querySelector('.dark-mode-text');
+    
+    // Verificar preferencia guardada o del sistema
+    function initDarkMode() {
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            enableDarkMode();
+        } else {
+            disableDarkMode();
+        }
+    }
+    
+    function enableDarkMode() {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        darkModeIcon.className = 'fas fa-sun';
+        darkModeText.textContent = 'Modo Claro';
+    }
+    
+    function disableDarkMode() {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        darkModeIcon.className = 'fas fa-moon';
+        darkModeText.textContent = 'Modo Oscuro';
+    }
+    
+    // Event listener
+    darkModeToggle.addEventListener('click', function() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            disableDarkMode();
+        } else {
+            enableDarkMode();
+        }
+    });
+    
+    // Inicializar
+    initDarkMode();
+});

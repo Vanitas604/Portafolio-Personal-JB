@@ -920,3 +920,215 @@ body.page-loaded {
     line-height: 1.4;
     margin: 0;
 }
+/* ===== BOTONES DE NAVEGACIÓN ===== */
+.nav-buttons {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Botón de modo oscuro con estilo rojo como traducción */
+.dark-mode-btn {
+    background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    padding: 10px 22px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: transform 0.3s ease, box-shadow 0.4s ease;
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+    outline: none;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ícono del botón */
+.dark-mode-btn i {
+    font-size: 1.2rem;
+    transition: transform 0.4s ease, text-shadow 0.3s ease;
+}
+
+/* Texto del modo */
+.dark-mode-text {
+    letter-spacing: 1px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Hover animado */
+.dark-mode-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
+}
+
+.dark-mode-btn:hover i {
+    transform: rotate(360deg);
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+/* Active */
+.dark-mode-btn:active {
+    transform: scale(0.95);
+}
+
+/* Estados del botón en modo oscuro */
+[data-theme="dark"] .dark-mode-btn {
+    background: linear-gradient(135deg, #ff8e8e 0%, #ff6b6b 100%);
+    box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+}
+
+[data-theme="dark"] .dark-mode-btn:hover {
+    box-shadow: 0 8px 25px rgba(255, 107, 107, 0.5);
+}
+
+[data-theme="dark"] .dark-mode-btn i::before {
+    content: "\f185"; /* Icono de sol */
+}
+
+/* ===== MODO OSCURO ===== */
+[data-theme="dark"] {
+    /* Colores modo oscuro */
+    --bg-color: #1a1a1a;
+    --text-color: #e0e0e0;
+    --card-bg: #2d2d2d;
+    --nav-bg: #2d2d2d;
+    --hero-bg: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);
+    --projects-bg: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);
+    --border-color: #404040;
+    --skill-card-bg: #3d3d3d;
+    --marca-bg: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);
+}
+
+[data-theme="dark"] body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] nav {
+    background-color: var(--nav-bg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .hero {
+    background: var(--hero-bg);
+}
+
+[data-theme="dark"] .projects {
+    background: var(--projects-bg);
+}
+
+[data-theme="dark"] .marca-personal {
+    background: var(--marca-bg);
+}
+
+[data-theme="dark"] .project-card,
+[data-theme="dark"] .modal-content,
+[data-theme="dark"] .contact-item,
+[data-theme="dark"] .skill-card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+}
+
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .project-info h3,
+[data-theme="dark"] .about-text p,
+[data-theme="dark"] .contact-info h3,
+[data-theme="dark"] .contact-info p,
+[data-theme="dark"] .marca-texto .frase,
+[data-theme="dark"] .contact-item p {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .detail-section,
+[data-theme="dark"] .about .skills ul:first-of-type li,
+[data-theme="dark"] .about .skills ul:last-of-type li {
+    background: var(--skill-card-bg);
+}
+
+[data-theme="dark"] .close-modal {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .close-modal:hover {
+    color: #e63946;
+}
+
+[data-theme="dark"] footer {
+    background-color: #2d2d2d;
+    color: #e0e0e0;
+}
+
+[data-theme="dark"] .project-info p,
+[data-theme="dark"] .about-text p,
+[data-theme="dark"] .contact-info p {
+    color: #b0b0b0;
+}
+
+/* Mantener los gradientes de texto */
+[data-theme="dark"] .highlight,
+[data-theme="dark"] .section-title span,
+[data-theme="dark"] .logo span {
+    background: linear-gradient(90deg, #e63946 0%, #ff6b6b 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+[data-theme="dark"] .marca-texto .autor {
+    color: #e63946;
+}
+
+/* Ajustes para habilidades */
+[data-theme="dark"] .skills h3,
+[data-theme="dark"] .skills h4,
+[data-theme="dark"] .habilidad-titulo {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .about .skills ul:first-of-type li::before,
+[data-theme="dark"] .about .skills ul:last-of-type li::before {
+    color: #e63946;
+}
+
+[data-theme="dark"] .about .skills ul:first-of-type li span,
+[data-theme="dark"] .about .skills ul:last-of-type li span {
+    color: var(--text-color);
+}
+
+/* Ajustes para el modal en modo oscuro */
+[data-theme="dark"] .modal-content {
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .project-header h2 {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .detail-section h3 {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .detail-section p {
+    color: #b0b0b0;
+}
+
+[data-theme="dark"] .project-gallery h3 {
+    color: var(--text-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-buttons {
+        gap: 8px;
+    }
+    
+    .dark-mode-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
