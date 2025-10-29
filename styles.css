@@ -903,8 +903,8 @@ body.page-loaded {
         font-size: 0.9rem;
     }
 }
-/* ===== HABILIDADES MEJORADAS - ESTILOS SUPER SEGUROS ===== */
 
+/* ===== HABILIDADES MEJORADAS - ESTILOS SUPER SEGUROS ===== */
 /* Solo elementos específicos dentro de .about .skills */
 .about .skills > h3[data-i18n="skillsTitulo"] {
     text-align: center;
@@ -933,7 +933,57 @@ body.page-loaded {
 .about .skills h4 i {
     color: #e63946;
 }
+/* Separación mejorada entre galería y botón */
+.project-gallery {
+    margin-bottom: 30px;
+}
 
+.modal-actions {
+    margin-top: 35px;
+    padding-top: 25px;
+    text-align: center;
+    position: relative;
+}
+
+/* Línea separadora elegante (opcional) */
+.modal-actions::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 10%;
+    width: 80%;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent, 
+        rgba(230, 57, 70, 0.3), 
+        transparent
+    );
+}
+
+/* Mejora el botón */
+.btn-github {
+    margin-top: 10px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-github:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(230, 57, 70, 0.4);
+}
+
+/* Responsive para la separación */
+@media (max-width: 768px) {
+    .project-gallery {
+        margin-bottom: 25px;
+    }
+    
+    .modal-actions {
+        margin-top: 30px;
+        padding-top: 20px;
+    }
+}
 /* Mejora las listas existentes SIN cambiar estructura */
 .about .skills ul:first-of-type {
     list-style: none;
