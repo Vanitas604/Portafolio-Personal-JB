@@ -48,7 +48,23 @@ const translations = {
         proj4Btn: "Ver en GitHub",
         contactoTitulo: "Contácta<span>me</span>",
         contactoSubtitulo: "Ponte en contacto",
-        contactoTexto: "Si estás interesado en trabajar conmigo, no dudes en contactarme."
+        contactoTexto: "Si estás interesado en trabajar conmigo, no dudes en contactarme.",
+        // NUEVAS TRADUCCIONES PARA EL MODAL
+        modalLenguajes: "Lenguajes de Programación",
+        modalRol: "Mi Rol",
+        modalDescripcion: "Descripción",
+        modalGaleria: "Galería del Proyecto",
+        modalVerGitHub: "Ver en GitHub",
+        // Títulos del modal (nuevos)
+        modalProblema: "PROBLEMA",
+        modalSolucion: "SOLUCIÓN", 
+        modalResultado: "RESULTADO",
+        // Marca Personal (nuevo)
+        marcaPersonalTitulo: "Marca Personal",
+        marcaPersonalFrase: "“Una mente curiosa, un corazón empático y un espíritu que nunca deja de evolucionar.”",
+        marcaPersonalAutor: "- Jennifer Baires",
+        // Modo oscuro
+        darkModeText: "Modo Oscuro"
     },
     en: {
         logo: "MyPortfolio",
@@ -94,10 +110,62 @@ const translations = {
         proj4Btn: "View on GitHub",
         contactoTitulo: "Contact <span>Me</span>",
         contactoSubtitulo: "Get in touch",
-        contactoTexto: "If you are interested in working with me, feel free to contact me."
+        contactoTexto: "If you are interested in working with me, feel free to contact me.",
+        
+        // NUEVAS TRADUCCIONES PARA EL MODAL
+        modalLenguajes: "Programming Languages",
+        modalRol: "My Role",
+        modalDescripcion: "Description",
+        modalGaleria: "Project Gallery",
+        modalVerGitHub: "View on GitHub",
+        // Títulos del modal (nuevos)
+        modalProblema: "PROBLEM",
+        modalSolucion: "SOLUTION",
+        modalResultado: "RESULT",
+        // Marca Personal (nuevo)
+        marcaPersonalTitulo: "Personal Brand",
+        marcaPersonalFrase: "“A curious mind, an empathetic heart, and a spirit that never stops evolving.”",
+        marcaPersonalAutor: "- Jennifer Baires",
+        // Modo oscuro
+        darkModeText: "Dark Mode",
+        
+        // === TRADUCCIONES PARA EL MODAL DE PROYECTOS ===
+        // Proyecto 1: Adopta a un amigo
+        proj1Title: "Adopt a Friend",
+        proj1Role: "Full Stack Developer and Scrum Master",
+        proj1Description: "Complete web platform for an animal shelter, focused on promoting responsible adoption. Includes pet management system, adoption forms and administrative panel.",
+        proj1Problem: "Animal shelters faced difficulties in managing adoptions efficiently, with manual processes that caused delays and lack of follow-up on applications.",
+        proj1Solution: "User registration system|Catalog of animals available for adoption|Filters by type, size and age of animal|Adoption application form|Administrative panel for the shelter",
+        proj1Result: "The system increased adoptions by 40%, reduced application processing time from 5 days to 24 hours, and significantly improved the experience for both adopters and shelter staff.",
+
+        // Proyecto 2: Artesanías Software
+        proj2Title: "Business Software Artesanías Conchita",
+        proj2Role: "Scrum Master", 
+        proj2Description: "Business software prototype that allows complete control of billing, inventory, customers and suppliers of the Artesanías Conchita company.",
+        proj2Problem: "The Artesanías Conchita company managed its billing and inventory processes manually, which generated errors, loss of information and difficulties in accessing historical data.",
+        proj2Solution: "Automated billing system|Real-time inventory control|Centralized management of customers and suppliers|Sales reports and statistics|Automatic data backup",
+        proj2Result: "80% reduction in billing errors, 60% optimization in inventory management time and immediate access to financial reports.",
+
+        // Proyecto 3: Artesanías Web
+        proj3Title: "Artesanías Conchita Website",
+        proj3Role: "Scrum Master, Full Stack Developer and Web Designer",
+        proj3Description: "Informative website and online catalog showing the company's artisan products, with responsive design and SEO optimized.",
+        proj3Problem: "The company had no digital presence, which limited its reach to potential customers and made it difficult to disseminate its artisan products to a broader market.",
+        proj3Solution: "Responsive web design adapted to all devices|Digital product catalog organized by categories|SEO optimization for better positioning|Integrated contact form|High quality image gallery",
+        proj3Result: "200% increase in online visibility, generation of qualified leads and establishment of professional digital presence for the company.",
+
+        // Proyecto 4: Task Planner
+        proj4Title: "Task Planner", 
+        proj4Role: "Scrum Master and Full Stack Developer",
+        proj4Description: "Mobile application for organizing daily tasks, with reminder system, categories, priorities and local storage for better time management.",
+        proj4Problem: "Users needed an efficient tool to organize their daily tasks, as existing applications did not offer an intuitive experience or adequate customization features.",
+        proj4Solution: "Intuitive and easy-to-use interface|Customizable categories and tags system|Reminders and push notifications|Offline synchronization with SQLite|Filters by priority and due date",
+        proj4Result: "75% improvement in user productivity, reduction of task organization stress and high rating on Google Play Store (4.5/5)."
     }
 };
 
+// ==============================
+// Traducciones para el modal de proyectos
 // ==============================
 // Estado actual del idioma
 // ==============================
@@ -107,6 +175,7 @@ let currentLang = 'es';
 // Función de traducción mejorada
 // ==============================
 function translatePage(lang) {
+     currentLang = lang;
     document.querySelectorAll('[data-i18n]').forEach(el => {
         const key = el.getAttribute('data-i18n');
         const translation = translations[lang][key];
@@ -150,106 +219,47 @@ translateBtn.addEventListener('click', () => {
     setTimeout(() => document.body.classList.remove("language-change"), 400);
 });
 
-// ===== FUNCIÓN MEJORADA PARA MANEJAR IMÁGENES =====
-function openProjectModal(projectCard) {
-    console.log("🎯 Abriendo modal para:", projectCard);
-    
-    try {
-        const title = projectCard.getAttribute('data-title');
-        const languages = JSON.parse(projectCard.getAttribute('data-languages'));
-        const role = projectCard.getAttribute('data-role');
-        const description = projectCard.getAttribute('data-description');
-        const images = JSON.parse(projectCard.getAttribute('data-images'));
-        const githubLink = projectCard.getAttribute('data-github');
-
-        const modal = document.getElementById('projectModal');
-        const modalTitle = document.getElementById('modalProjectTitle');
-        const modalLanguages = document.getElementById('modalLanguages');
-        const modalRole = document.getElementById('modalRole');
-        const modalDescription = document.getElementById('modalDescription');
-        const modalGallery = document.getElementById('modalGallery');
-        const modalGitHubLink = document.getElementById('modalGitHubLink');
-
-        if (!modal) {
-            console.error("❌ Modal no encontrado en el DOM");
-            return;
-        }
-
-        // Llenar datos
-        modalTitle.textContent = title;
-        modalRole.textContent = role;
-        modalDescription.textContent = description;
-        modalGitHubLink.href = githubLink;
-
-        // Llenar lenguajes
-        modalLanguages.innerHTML = '';
-        languages.forEach(lang => {
-            const tag = document.createElement('span');
-            tag.className = 'tech-tag';
-            tag.textContent = lang;
-            modalLanguages.appendChild(tag);
-        });
-
-        // 🔹 MEJORADO: Llenar galería con manejo de imágenes faltantes
-        modalGallery.innerHTML = '';
-        
-        images.forEach((image, index) => {
-            const imgContainer = document.createElement('div');
-            imgContainer.style.position = 'relative';
-            imgContainer.style.borderRadius = '8px';
-            imgContainer.style.overflow = 'hidden';
-            
-            const img = document.createElement('img');
-            img.src = image;
-            img.alt = `${title} - Imagen ${index + 1}`;
-            img.className = 'gallery-image';
-            
-            // 🔹 Manejar imágenes que no cargan
-            img.onerror = function() {
-                console.log(`❌ Imagen no encontrada: ${image}`);
-                this.src = 'https://via.placeholder.com/300x200/ffeaea/333333?text=Imagen+No+Disponible';
-                this.alt = 'Imagen no disponible';
-            };
-            
-            img.onload = function() {
-                console.log(`✅ Imagen cargada: ${image}`);
-            };
-            
-            img.onclick = () => openImageModal(img.src);
-            
-            imgContainer.appendChild(img);
-            modalGallery.appendChild(imgContainer);
-        });
-
-        // Mostrar modal
-        modal.style.display = 'block';
-        document.body.style.overflow = 'hidden';
-        console.log("✅ Modal abierto exitosamente");
-        
-    } catch (error) {
-        console.error("❌ Error al abrir modal:", error);
-    }
-}
 // ===== FUNCIONES DEL MODAL - VERSIÓN COMPLETA =====
 function openProjectModal(projectCard) {
     console.log("🎯 Abriendo modal para:", projectCard);
+    console.log("🔊 Idioma actual:", currentLang);
     
     try {
-        // Obtener todos los datos de la tarjeta
-        const title = projectCard.getAttribute('data-title');
+        // Obtener el ID del proyecto
+        const projectId = projectCard.getAttribute('data-project-id');
+        
+        // Obtener datos base en español
+        const titleEs = projectCard.getAttribute('data-title');
+        const roleEs = projectCard.getAttribute('data-role');
+        const descriptionEs = projectCard.getAttribute('data-description');
+        const problemEs = projectCard.getAttribute('data-problem');
+        const solutionEs = JSON.parse(projectCard.getAttribute('data-solution'));
+        const resultEs = projectCard.getAttribute('data-result');
+
+        // Usar traducciones si está en inglés
+        const title = currentLang === 'en' ? 
+            (translations.en[`proj1Title`] || titleEs) : titleEs;
+            
+        const role = currentLang === 'en' ? 
+            (translations.en[`proj1Role`] || roleEs) : roleEs;
+            
+        const description = currentLang === 'en' ? 
+            (translations.en[`proj1Description`] || descriptionEs) : descriptionEs;
+            
+        const problem = currentLang === 'en' ? 
+            (translations.en[`proj1Problem`] || problemEs) : problemEs;
+            
+        let solution = solutionEs;
+        if (currentLang === 'en' && translations.en[`proj1Solution`]) {
+            solution = translations.en[`proj1Solution`].split('|');
+        }
+            
+        const result = currentLang === 'en' ? 
+            (translations.en[`proj1Result`] || resultEs) : resultEs;
+
         const languages = JSON.parse(projectCard.getAttribute('data-languages'));
-        const role = projectCard.getAttribute('data-role');
-        const description = projectCard.getAttribute('data-description');
         const images = JSON.parse(projectCard.getAttribute('data-images'));
         const githubLink = projectCard.getAttribute('data-github');
-        const problem = projectCard.getAttribute('data-problem');
-        const solution = JSON.parse(projectCard.getAttribute('data-solution'));
-        const result = projectCard.getAttribute('data-result');
-
-        console.log("📊 Datos obtenidos:", { 
-            title, languages, role, description, images, githubLink,
-            problem, solution, result 
-        });
 
         // Obtener elementos del DOM
         const modal = document.getElementById('projectModal');
@@ -286,8 +296,6 @@ function openProjectModal(projectCard) {
                 li.textContent = item;
                 modalSolution.appendChild(li);
             });
-        } else {
-            console.warn("⚠️ No se encontraron datos de solución o no es un array:", solution);
         }
 
         // Llenar lenguajes
@@ -313,7 +321,7 @@ function openProjectModal(projectCard) {
         // Mostrar modal
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
-        console.log("✅ Modal abierto exitosamente con nuevas secciones");
+        console.log("✅ Modal abierto exitosamente con TRADUCCIONES");
         
     } catch (error) {
         console.error("❌ Error al abrir modal:", error);
