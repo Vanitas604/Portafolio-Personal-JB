@@ -1227,6 +1227,79 @@ body.page-loaded {
     color: #e63946;
 }
 
+/* ===== CORRECCIÓN ESPECÍFICA PARA NAVEGACIÓN Y HABILIDADES ===== */
+/* Navegación - selectores exactos basados en tu HTML */
+[data-theme="dark"] nav ul li a,
+[data-theme="dark"] nav a {
+    color: #e0e0e0 !important;
+}
+
+[data-theme="dark"] nav ul li a:hover {
+    color: #e63946 !important;
+}
+
+/* Habilidades - selectores exactos basados en tu HTML */
+[data-theme="dark"] .about .skills h4,
+[data-theme="dark"] .about .skills h4[data-i18n="skillsFuertes"],
+[data-theme="dark"] .about .skills h4[data-i18n="skillsBlandas"] {
+    color: #e0e0e0 !important;
+}
+
+/* También asegurar los elementos de lista de habilidades */
+[data-theme="dark"] .about .skills ul li {
+    color: #e0e0e0 !important;
+}
+
+/* Ajustes para habilidades */
+[data-theme="dark"] .skills h3,
+[data-theme="dark"] .skills h4,
+[data-theme="dark"] .habilidad-titulo {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .about .skills ul:first-of-type li::before,
+[data-theme="dark"] .about .skills ul:last-of-type li::before {
+    color: #e63946;
+}
+
+[data-theme="dark"] .about .skills ul:first-of-type li span,
+[data-theme="dark"] .about .skills ul:last-of-type li span {
+    color: var(--text-color);
+}
+
+/* Ajustes para el modal en modo oscuro */
+[data-theme="dark"] .modal-content {
+    background: var(--card-bg);
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .project-header h2 {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .detail-section h3 {
+    color: var(--text-color);
+}
+
+[data-theme="dark"] .detail-section p {
+    color: #b0b0b0;
+}
+
+[data-theme="dark"] .project-gallery h3 {
+    color: var(--text-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .nav-buttons {
+        gap: 8px;
+    }
+    
+    .dark-mode-btn {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+    }
+}
 /* Ajustes para habilidades */
 [data-theme="dark"] .skills h3,
 [data-theme="dark"] .skills h4,
