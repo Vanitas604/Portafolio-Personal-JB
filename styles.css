@@ -756,6 +756,10 @@ body.page-loaded {
     border-left: 4px solid #e63946;
 }
 
+.detail-section.full-width {
+    grid-column: 1 / -1;
+}
+
 .tech-tags {
     display: flex;
     flex-wrap: wrap;
@@ -802,10 +806,101 @@ body.page-loaded {
     gap: 10px;
 }
 
+/* ===== ESTILOS PARA LAS NUEVAS SECCIONES ===== */
+.solution-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.solution-list li {
+    padding: 8px 0;
+    padding-left: 30px;
+    position: relative;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.solution-list li:last-child {
+    border-bottom: none;
+}
+
+.solution-list li:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 5px;
+    padding-left: 35px;
+}
+
+.solution-list li:before {
+    content: "✓";
+    color: #4CAF50;
+    font-weight: bold;
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.1rem;
+}
+
+/* Estilos específicos para los íconos de las nuevas secciones */
+.detail-section h3 i.fa-exclamation-triangle {
+    color: #ff9800;
+}
+
+.detail-section h3 i.fa-check-circle {
+    color: #4CAF50;
+}
+
+.detail-section h3 i.fa-chart-line {
+    color: #2196F3;
+}
+
+.detail-section p {
+    line-height: 1.6;
+    margin: 0;
+    color: #555;
+}
+
+.detail-section h3 {
+    color: #333;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+}
+
+/* Efectos hover para todas las secciones */
+.detail-section {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.detail-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
 /* Responsive */
 @media (max-width: 768px) {
     .project-details-grid {
         grid-template-columns: 1fr;
+    }
+    
+    .solution-list li {
+        padding: 10px 0;
+        padding-left: 35px;
+    }
+    
+    .solution-list li:before {
+        left: 15px;
+    }
+    
+    .detail-section h3 {
+        font-size: 1rem;
+    }
+    
+    .detail-section h3 i {
+        font-size: 0.9rem;
     }
 }
 /* ===== HABILIDADES MEJORADAS - ESTILOS SUPER SEGUROS ===== */

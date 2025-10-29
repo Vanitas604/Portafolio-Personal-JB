@@ -230,21 +230,28 @@ function openProjectModal(projectCard) {
         console.error("❌ Error al abrir modal:", error);
     }
 }
-// ===== FUNCIONES DEL MODAL - VERSIÓN CORREGIDA =====
-
+// ===== FUNCIONES DEL MODAL - VERSIÓN COMPLETA =====
 function openProjectModal(projectCard) {
     console.log("🎯 Abriendo modal para:", projectCard);
     
     try {
+        // Obtener todos los datos de la tarjeta
         const title = projectCard.getAttribute('data-title');
         const languages = JSON.parse(projectCard.getAttribute('data-languages'));
         const role = projectCard.getAttribute('data-role');
         const description = projectCard.getAttribute('data-description');
         const images = JSON.parse(projectCard.getAttribute('data-images'));
         const githubLink = projectCard.getAttribute('data-github');
+        const problem = projectCard.getAttribute('data-problem');
+        const solution = JSON.parse(projectCard.getAttribute('data-solution'));
+        const result = projectCard.getAttribute('data-result');
 
-        console.log("📊 Datos obtenidos:", { title, languages, role, description, images, githubLink });
+        console.log("📊 Datos obtenidos:", { 
+            title, languages, role, description, images, githubLink,
+            problem, solution, result 
+        });
 
+        // Obtener elementos del DOM
         const modal = document.getElementById('projectModal');
         const modalTitle = document.getElementById('modalProjectTitle');
         const modalLanguages = document.getElementById('modalLanguages');
@@ -252,17 +259,36 @@ function openProjectModal(projectCard) {
         const modalDescription = document.getElementById('modalDescription');
         const modalGallery = document.getElementById('modalGallery');
         const modalGitHubLink = document.getElementById('modalGitHubLink');
+        const modalProblem = document.getElementById('modalProblem');
+        const modalSolution = document.getElementById('modalSolution');
+        const modalResult = document.getElementById('modalResult');
 
         if (!modal) {
             console.error("❌ Modal no encontrado en el DOM");
             return;
         }
 
-        // Llenar datos
+        // Llenar datos básicos
         modalTitle.textContent = title;
         modalRole.textContent = role;
         modalDescription.textContent = description;
         modalGitHubLink.href = githubLink;
+        
+        // Llenar nuevas secciones
+        modalProblem.textContent = problem;
+        modalResult.textContent = result;
+        
+        // Llenar lista de soluciones
+        modalSolution.innerHTML = '';
+        if (solution && Array.isArray(solution)) {
+            solution.forEach(item => {
+                const li = document.createElement('li');
+                li.textContent = item;
+                modalSolution.appendChild(li);
+            });
+        } else {
+            console.warn("⚠️ No se encontraron datos de solución o no es un array:", solution);
+        }
 
         // Llenar lenguajes
         modalLanguages.innerHTML = '';
@@ -287,7 +313,7 @@ function openProjectModal(projectCard) {
         // Mostrar modal
         modal.style.display = 'block';
         document.body.style.overflow = 'hidden';
-        console.log("✅ Modal abierto exitosamente");
+        console.log("✅ Modal abierto exitosamente con nuevas secciones");
         
     } catch (error) {
         console.error("❌ Error al abrir modal:", error);
@@ -332,6 +358,32 @@ function openImageModal(imageSrc) {
     
     document.body.appendChild(imageModal);
 }
+
+// Event Listeners (agrega esto al final de tu JavaScript)
+document.addEventListener('DOMContentLoaded', function() {
+    // Cerrar modal al hacer clic en la X
+    const closeBtn = document.querySelector('.close-modal');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeProjectModal);
+    }
+    
+    // Cerrar modal al hacer clic fuera del contenido
+    const modal = document.getElementById('projectModal');
+    if (modal) {
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeProjectModal();
+            }
+        });
+    }
+    
+    // Cerrar modal con tecla Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            closeProjectModal();
+        }
+    });
+});
 
 // ===== INICIALIZACIÓN CORREGIDA =====
 document.addEventListener('DOMContentLoaded', function() {

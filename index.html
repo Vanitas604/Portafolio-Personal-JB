@@ -264,22 +264,46 @@
     </div>
     
     <div class="project-details-grid">
+      <!-- Sección Lenguajes -->
       <div class="detail-section">
         <h3><i class="fas fa-code"></i> <span data-i18n="modalLenguajes">Lenguajes de Programación</span></h3>
         <div id="modalLanguages" class="tech-tags"></div>
       </div>
       
+      <!-- Sección Rol -->
       <div class="detail-section">
         <h3><i class="fas fa-user-tie"></i> <span data-i18n="modalRol">Mi Rol</span></h3>
         <p id="modalRole">Descripción del rol</p>
       </div>
       
+      <!-- NUEVA SECCIÓN: PROBLEMA -->
+      <div class="detail-section full-width">
+        <h3><i class="fas fa-exclamation-triangle"></i> PROBLEMA</h3>
+        <p id="modalProblem">Descripción del problema que se resolvió</p>
+      </div>
+      
+      <!-- NUEVA SECCIÓN: SOLUCIÓN -->
+      <div class="detail-section full-width">
+        <h3><i class="fas fa-check-circle"></i> SOLUCIÓN</h3>
+        <ul id="modalSolution" class="solution-list">
+          <!-- Los puntos de solución se insertarán aquí -->
+        </ul>
+      </div>
+      
+      <!-- NUEVA SECCIÓN: RESULTADO -->
+      <div class="detail-section full-width">
+        <h3><i class="fas fa-chart-line"></i> RESULTADO</h3>
+        <p id="modalResult">Descripción de los resultados obtenidos</p>
+      </div>
+      
+      <!-- Sección Descripción (existente) -->
       <div class="detail-section full-width">
         <h3><i class="fas fa-file-alt"></i> <span data-i18n="modalDescripcion">Descripción</span></h3>
         <p id="modalDescription">Descripción completa del proyecto</p>
       </div>
     </div>
     
+    <!-- Sección Galería -->
     <div class="project-gallery">
       <h3><i class="fas fa-images"></i> <span data-i18n="modalGaleria">Galería del Proyecto</span></h3>
       <div id="modalGallery" class="gallery-container">
@@ -287,6 +311,7 @@
       </div>
     </div>
 
+    <!-- Acciones del Modal -->
     <div class="modal-actions">
       <a href="#" id="modalGitHubLink" class="btn btn-github" target="_blank">
         <i class="fab fa-github"></i> <span data-i18n="modalVerGitHub">Ver en GitHub</span>
