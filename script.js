@@ -49,6 +49,7 @@ const translations = {
         contactoTitulo: "Contácta<span>me</span>",
         contactoSubtitulo: "Ponte en contacto",
         contactoTexto: "Si estás interesado en trabajar conmigo, no dudes en contactarme.",
+        
         // NUEVAS TRADUCCIONES PARA EL MODAL
         modalLenguajes: "Lenguajes de Programación",
         modalRol: "Mi Rol",
@@ -493,4 +494,34 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Inicializar
     initDarkMode();
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  console.log("✅ Script cargado y funcionando...");
+
+  const botones = document.querySelectorAll('.btn-details');
+  console.log("🔎 Botones encontrados:", botones.length);
+
+  botones.forEach(boton => {
+    boton.addEventListener('click', function(e) {
+      e.stopPropagation(); // evita conflicto con el click de la tarjeta
+      console.log("🖱️ Click en botón Ver más");
+
+      const card = boton.closest('.project-card');
+      if (!card) {
+        console.warn("⚠️ No se encontró la tarjeta asociada");
+        return;
+      }
+
+      // Verificamos si la función del modal existe
+      if (typeof openProjectModal === "function") {
+        console.log("✅ Llamando a openProjectModal()");
+        openProjectModal(card);
+      } else {
+        console.error("❌ La función openProjectModal no existe. Asegúrate de definirla y exportarla:");
+        console.log("👉 Agrega esto al final del archivo donde está definida:");
+        console.log("window.openProjectModal = openProjectModal;");
+      }
+    });
+  });
 });
