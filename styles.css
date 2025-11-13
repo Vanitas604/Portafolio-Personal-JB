@@ -84,7 +84,10 @@ nav .container {
 }
 
 .logo {
-    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.4rem; /* tamaño más pequeño */
     font-weight: 700;
 }
 
@@ -113,6 +116,36 @@ nav ul li a {
 
 nav ul li a:hover {
     color: #e63946;
+}
+/* ===== Ajuste del logo ===== */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-img {
+  width: 42px;   /* un poco más grande */
+  height: 42px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  transform: translateY(1px); /* leve corrección vertical */
+}
+/* ===== Logo con marco ===== */
+.logo-img {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid #e63946; /* marco negro para modo claro */
+    transition: border 0.3s ease; /* animación suave */
+}
+
+/* ===== Versión para modo oscuro (opcional, si tienes toggle) ===== */
+.dark-mode .logo-img {
+    border: 2px solid #fff; /* cambia a blanco en modo oscuro */
 }
 
 /* Hero Section */
