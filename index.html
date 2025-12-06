@@ -102,6 +102,125 @@
     </div>
 </section>
 
+<!-- ===== PREMIOS Y RECONOCIMIENTOS ===== -->
+<section class="premios" id="premios">
+    <div class="container">
+        <h2 class="section-title" data-i18n="premiosTitulo">Premios y <span>Reconocimientos</span></h2>
+        
+        <div class="premios-carrusel">
+            <!-- Botón anterior -->
+            <button class="carrusel-btn prev-btn">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            
+            <!-- Contenedor del carrusel -->
+            <div class="carrusel-container">
+                <div class="carrusel-track">
+                    <!-- Premio 1 -->
+                    <div class="premio-card" data-i18n="premio1Titulo" data-index="0">
+                        <div class="premio-imagen">
+                            <img src="diploma-software.jpg" alt="Diploma Mejor Proyecto de Software">
+                            <div class="premio-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <div class="premio-content">
+                            <p class="premio-desc" data-i18n="premio1Desc">
+                                Reconocimiento al proyecto "Adopta a un amigo" como el mejor sistema de software del semestre, destacando su innovación, impacto social y calidad técnica.
+                            </p>
+                            <button class="btn ver-diploma-btn" data-index="0">
+                                <i class="fas fa-image"></i> Ver Diploma Completo
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Premio 2 -->
+                    <div class="premio-card" data-i18n="premio2Titulo" data-index="1">
+                        <div class="premio-imagen">
+                            <img src="certificacion-scrum.jpg" alt="Certificación Scrum Master">
+                            <div class="premio-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <div class="premio-content">
+                            <p class="premio-desc" data-i18n="premio2Desc">
+                                Certificación profesional que valida conocimientos avanzados en metodologías ágiles y liderazgo de equipos de desarrollo.
+                            </p>
+                            <button class="btn ver-diploma-btn" data-index="1">
+                                <i class="fas fa-image"></i> Ver Diploma Completo
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Premio 3 -->
+                    <div class="premio-card" data-i18n="premio3Titulo" data-index="2">
+                        <div class="premio-imagen">
+                            <img src="excelencia-web.jpg" alt="Diploma Excelencia Académica">
+                            <div class="premio-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <div class="premio-content">
+                            <p class="premio-desc" data-i18n="premio3Desc">
+                                Reconocimiento por destacar en el desarrollo de aplicaciones web responsivas y accesibles durante el curso de Desarrollo Web Avanzado.
+                            </p>
+                            <button class="btn ver-diploma-btn" data-index="2">
+                                <i class="fas fa-image"></i> Ver Diploma Completo
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Premio 4 -->
+                    <div class="premio-card" data-i18n="premio4Titulo" data-index="3">
+                        <div class="premio-imagen">
+                            <img src="hackathon-premio.jpg" alt="Premio Hackathon Nacional">
+                            <div class="premio-overlay">
+                                <i class="fas fa-search-plus"></i>
+                            </div>
+                        </div>
+                        <div class="premio-content">
+                            <p class="premio-desc" data-i18n="premio4Desc">
+                                Segundo lugar en competencia nacional de desarrollo de software con el proyecto "Task Planner", destacando por su innovación y usabilidad.
+                            </p>
+                            <button class="btn ver-diploma-btn" data-index="3">
+                                <i class="fas fa-image"></i> Ver Diploma Completo
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Botón siguiente -->
+            <button class="carrusel-btn next-btn">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            <!-- Indicadores del carrusel -->
+            <div class="carrusel-indicadores">
+                <span class="indicador active" data-index="0"></span>
+                <span class="indicador" data-index="1"></span>
+                <span class="indicador" data-index="2"></span>
+                <span class="indicador" data-index="3"></span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal para ver diploma en grande -->
+    <div id="diplomaModal" class="diploma-modal">
+        <div class="diploma-modal-content">
+            <span class="close-diploma-modal">&times;</span>
+            <div class="diploma-modal-body">
+                <img id="diplomaModalImage" src="" alt="Diploma en tamaño completo">
+                <div class="diploma-modal-info">
+                    <h3 id="diplomaModalTitle"></h3>
+                    <p id="diplomaModalDate"></p>
+                    <p id="diplomaModalDesc"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
                 <!-- Sección de habilidades -->
                 <div class="skills">
                     <h3 data-i18n="skillsTitulo">Habilidades</h3>
