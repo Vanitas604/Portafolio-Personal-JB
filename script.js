@@ -601,14 +601,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Información para el modal
         const titles = [
-            'Mejor Proyecto de Software - Universidad 2024',
+            'Talleres de Desarrollo y Seguridad – Universidad Gerardo Barrios',
             'Certificación Scrum Master - Scrum.org',
             'Excelencia Académica - Desarrollo Web',
             'Hackathon Nacional - Segundo Lugar'
         ];
         
         const dates = [
-            'Octubre 2024',
+            'Diciembre 2025',
             'Julio 2024',
             'Mayo 2024',
             'Marzo 2024'
