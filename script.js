@@ -527,134 +527,126 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ===== CARRUSEL DE PREMIOS (DESPLAZAMIENTO HORIZONTAL) =====
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+
     const carruselTrack = document.querySelector('.carrusel-track');
     const premioCards = document.querySelectorAll('.premio-card');
     const prevBtn = document.querySelector('.prev-btn');
     const nextBtn = document.querySelector('.next-btn');
     const indicadores = document.querySelectorAll('.indicador');
     const verDiplomaBtns = document.querySelectorAll('.ver-diploma-btn');
+
     const diplomaModal = document.getElementById('diplomaModal');
     const closeModalBtn = document.querySelector('.close-diploma-modal');
     const diplomaModalImage = document.getElementById('diplomaModalImage');
     const diplomaModalTitle = document.getElementById('diplomaModalTitle');
     const diplomaModalDate = document.getElementById('diplomaModalDate');
     const diplomaModalDesc = document.getElementById('diplomaModalDesc');
-    
+
     let currentIndex = 0;
     const cardCount = premioCards.length;
-    
-    // Actualizar posición del carrusel
+
+    // ===== CARRUSEL =====
     function updateCarrusel() {
-        // Calcular el desplazamiento basado en el índice actual
+        if (!carruselTrack) return;
         const translateX = -(currentIndex * 100);
         carruselTrack.style.transform = `translateX(${translateX}%)`;
-        
+
         updateIndicadores();
         updateButtons();
     }
-    
-    // Actualizar indicadores
+
     function updateIndicadores() {
         indicadores.forEach((indicador, index) => {
-            if (index === currentIndex) {
-                indicador.classList.add('active');
-            } else {
-                indicador.classList.remove('active');
-            }
+            indicador.classList.toggle('active', index === currentIndex);
         });
     }
-    
-    // Actualizar estado de botones
+
     function updateButtons() {
-        prevBtn.disabled = currentIndex === 0;
-        nextBtn.disabled = currentIndex === cardCount - 1;
+        if (prevBtn) prevBtn.disabled = currentIndex === 0;
+        if (nextBtn) nextBtn.disabled = currentIndex === cardCount - 1;
     }
-    
-    // Ir a slide específico
+
     function goToSlide(index) {
         currentIndex = index;
         updateCarrusel();
     }
-    
-    // Siguiente slide
+
     function nextSlide() {
         if (currentIndex < cardCount - 1) {
             currentIndex++;
             updateCarrusel();
         }
     }
-    
-    // Slide anterior
+
     function prevSlide() {
         if (currentIndex > 0) {
             currentIndex--;
             updateCarrusel();
         }
     }
-    
-    // Mostrar diploma en modal
+
+    // ===== MODAL DE DIPLOMAS =====
     function showDiploma(index) {
-        const premioCard = premioCards[index];
-        const imgSrc = premioCard.querySelector('.premio-imagen img').src;
-        const desc = premioCard.querySelector('.premio-desc').textContent;
-        
-        // Información para el modal
+        const card = premioCards[index];
+        if (!card) return;
+
+        const imgSrc = card.querySelector('.premio-imagen img')?.src;
+        const desc = card.querySelector('.premio-desc')?.textContent || '';
+
         const titles = [
             'Talleres de Desarrollo y Seguridad – Universidad Gerardo Barrios',
-            'Certificación Scrum Master - Scrum.org',
-            'Excelencia Académica - Desarrollo Web',
-            'Hackathon Nacional - Segundo Lugar'
+            'CCNA: Introducción a las Redes – Cisco Networking Academy & Universidad Gerardo Barrios',
+            'Curso de Maquetación Web con Dreamweaver – OEF de El Salvador',
+            'Diplomado de Inglés – Academia Internacional Idiomas 4U',
+            'Diplomado en Gestión de Riesgo y Cambio Climático – MINED & UNES'
         ];
-        
+
         const dates = [
             'Diciembre 2025',
-            'Julio 2024',
-            'Mayo 2024',
-            'Marzo 2024'
+            'Junio 2025',
+            'Febrero 2021',
+            'Diciembre 2016',
+            'Noviembre 2012'
         ];
-        
+
         diplomaModalImage.src = imgSrc;
         diplomaModalImage.alt = `Diploma completo: ${titles[index]}`;
         diplomaModalTitle.textContent = titles[index];
         diplomaModalDate.textContent = dates[index];
         diplomaModalDesc.textContent = desc;
-        
+
         diplomaModal.style.display = 'flex';
         document.body.style.overflow = 'hidden';
     }
-    
-    // Event Listeners
-    if (prevBtn && nextBtn) {
-        prevBtn.addEventListener('click', prevSlide);
-        nextBtn.addEventListener('click', nextSlide);
-    }
-    
-    // Event listeners para indicadores
+
+    // ===== EVENTOS =====
+
+    if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+    if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+
     indicadores.forEach(indicador => {
         indicador.addEventListener('click', () => {
-            const index = parseInt(indicador.getAttribute('data-index'));
-            goToSlide(index);
+            goToSlide(parseInt(indicador.dataset.index));
         });
     });
-    
-    // Event listeners para botones de ver diploma
+
     verDiplomaBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            const index = parseInt(btn.getAttribute('data-index'));
-            showDiploma(index);
+            showDiploma(parseInt(btn.dataset.index));
         });
     });
-    
-    // Event listeners para imágenes del diploma
+
+    // Overlay para ampliar diploma
     premioCards.forEach(card => {
-        const imgOverlay = card.querySelector('.premio-overlay');
-        imgOverlay.addEventListener('click', () => {
-            const index = parseInt(card.getAttribute('data-index'));
-            showDiploma(index);
-        });
+        const overlay = card.querySelector('.premio-overlay');
+        if (overlay) {
+            overlay.addEventListener('click', () => {
+                showDiploma(parseInt(card.dataset.index));
+            });
+        }
     });
-    
+
     // Cerrar modal
     if (closeModalBtn) {
         closeModalBtn.addEventListener('click', () => {
@@ -662,54 +654,46 @@ document.addEventListener('DOMContentLoaded', function() {
             document.body.style.overflow = 'auto';
         });
     }
-    
-    // Cerrar modal al hacer clic fuera
+
     diplomaModal.addEventListener('click', (e) => {
         if (e.target === diplomaModal) {
             diplomaModal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
     });
-    
-    // Cerrar modal con Escape
+
     document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape' && diplomaModal.style.display === 'flex') {
             diplomaModal.style.display = 'none';
             document.body.style.overflow = 'auto';
         }
     });
-    
-    // Swipe para móviles
+
+    // ===== Swipe para móviles =====
     let startX = 0;
     let endX = 0;
     const carruselContainer = document.querySelector('.carrusel-container');
-    
+
     if (carruselContainer) {
         carruselContainer.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
         });
-        
+
         carruselContainer.addEventListener('touchend', (e) => {
             endX = e.changedTouches[0].clientX;
             handleSwipe();
         });
     }
-    
+
     function handleSwipe() {
         const diff = startX - endX;
         const threshold = 50;
-        
+
         if (Math.abs(diff) > threshold) {
-            if (diff > 0) {
-                // Swipe izquierda - siguiente
-                nextSlide();
-            } else {
-                // Swipe derecha - anterior
-                prevSlide();
-            }
+            diff > 0 ? nextSlide() : prevSlide();
         }
     }
-    
-    // Inicializar
+
+    // Inicializar carrusel
     updateCarrusel();
 });
