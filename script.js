@@ -705,9 +705,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const prevInteresBtn = document.querySelector('.prev-intereses-btn');
     const nextInteresBtn = document.querySelector('.next-intereses-btn');
     const interesIndicadores = document.querySelectorAll('.interes-indicador');
-    
+
     if (!interesesTrack) return;
-    
+
     let currentInteresIndex = 0;
     const cardsPerView = 2;
     const totalCards = interesCards.length;
@@ -731,7 +731,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Actualizar indicadores
     function updateInteresIndicadores() {
         interesIndicadores.forEach((indicador, index) => {
-            indicador.classList.toggle('active', index === currentInteresIndex);
+            if (index === currentInteresIndex) {
+                indicador.classList.add('active');
+            } else {
+                indicador.classList.remove('active');
+            }
         });
     }
 
@@ -763,7 +767,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    // Event Listeners botones
+    // Event Listeners
     if (prevInteresBtn && nextInteresBtn) {
         prevInteresBtn.addEventListener('click', prevInteresSlide);
         nextInteresBtn.addEventListener('click', nextInteresSlide);
@@ -799,8 +803,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (Math.abs(diff) > threshold) {
             if (diff > 0) {
+                // Swipe izquierda - siguiente
                 nextInteresSlide();
             } else {
+                // Swipe derecha - anterior
                 prevInteresSlide();
             }
         }
