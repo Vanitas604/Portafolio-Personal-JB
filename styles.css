@@ -1885,3 +1885,295 @@ body.page-loaded {
         height: 12px;
     }
 }
+
+/* ===== ESTILOS PARA MIS INTERESES ===== */
+.intereses {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #fff5f5 0%, #ffeaea 100%);
+}
+
+[data-theme="dark"] .intereses {
+    background: linear-gradient(135deg, #2d2d2d 0%, #3d3d3d 100%);
+}
+
+.intereses-carrusel {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 70px;
+}
+
+.intereses-container {
+    overflow: hidden;
+    border-radius: 20px;
+    padding: 20px 0;
+}
+
+.intereses-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    gap: 30px;
+}
+
+.interes-card {
+    flex: 0 0 calc(50% - 15px); /* 2 tarjetas por fila (- gap) */
+    min-width: calc(50% - 15px);
+    background: white;
+    border-radius: 15px;
+    padding: 35px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    text-align: center;
+    border-left: 4px solid #e63946;
+}
+
+[data-theme="dark"] .interes-card {
+    background: var(--card-bg);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.interes-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(230, 57, 70, 0.15);
+}
+
+[data-theme="dark"] .interes-card:hover {
+    box-shadow: 0 15px 40px rgba(230, 57, 70, 0.25);
+}
+
+.interes-icon {
+    width: 70px;
+    height: 70px;
+    margin: 0 auto 25px;
+    background: linear-gradient(135deg, #e63946 0%, #ff6b6b 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.3);
+}
+
+.interes-icon i {
+    font-size: 28px;
+    color: white;
+}
+
+.interes-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    color: #333;
+    font-weight: 600;
+    min-height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+[data-theme="dark"] .interes-card h3 {
+    color: var(--text-color);
+}
+
+.interes-desc {
+    color: #666;
+    line-height: 1.7;
+    font-size: 1rem;
+    text-align: justify;
+}
+
+[data-theme="dark"] .interes-desc {
+    color: #b0b0b0;
+}
+
+/* Botones del carrusel */
+.carrusel-intereses-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, #e63946 0%, #ff6b6b 100%);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+    z-index: 10;
+    border: 3px solid white;
+}
+
+[data-theme="dark"] .carrusel-intereses-btn {
+    border: 3px solid var(--card-bg);
+}
+
+.carrusel-intereses-btn:hover {
+    transform: translateY(-50%) scale(1.1);
+    box-shadow: 0 6px 20px rgba(230, 57, 70, 0.5);
+}
+
+.carrusel-intereses-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+    transform: translateY(-50%);
+}
+
+.carrusel-intereses-btn:disabled:hover {
+    transform: translateY(-50%);
+    box-shadow: 0 4px 15px rgba(230, 57, 70, 0.3);
+}
+
+.prev-intereses-btn {
+    left: 10px;
+}
+
+.next-intereses-btn {
+    right: 10px;
+}
+
+/* Indicadores del carrusel */
+.intereses-indicadores {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 40px;
+}
+
+.interes-indicador {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #ddd;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.interes-indicador.active {
+    background: linear-gradient(135deg, #e63946 0%, #ff6b6b 100%);
+    transform: scale(1.3);
+}
+
+.interes-indicador:hover {
+    background: #e63946;
+    transform: scale(1.2);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .interes-card {
+        flex: 0 0 calc(50% - 15px);
+        min-width: calc(50% - 15px);
+    }
+    
+    .intereses-carrusel {
+        padding: 0 60px;
+    }
+    
+    .carrusel-intereses-btn {
+        width: 45px;
+        height: 45px;
+        font-size: 1.2rem;
+    }
+    
+    .interes-card {
+        padding: 30px;
+    }
+    
+    .interes-icon {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 20px;
+    }
+    
+    .interes-icon i {
+        font-size: 24px;
+    }
+    
+    .interes-card h3 {
+        font-size: 1.3rem;
+        min-height: 55px;
+    }
+}
+
+@media (max-width: 768px) {
+    .intereses-carrusel {
+        padding: 0 50px;
+    }
+    
+    .interes-card {
+        flex: 0 0 100%; /* 1 tarjeta por fila en móviles */
+        min-width: 100%;
+    }
+    
+    .carrusel-intereses-btn {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+    
+    .prev-intereses-btn {
+        left: 5px;
+    }
+    
+    .next-intereses-btn {
+        right: 5px;
+    }
+    
+    .interes-card {
+        padding: 25px;
+    }
+    
+    .interes-card h3 {
+        font-size: 1.2rem;
+        min-height: auto;
+        margin-bottom: 15px;
+    }
+    
+    .interes-desc {
+        font-size: 0.95rem;
+        text-align: left;
+    }
+}
+
+@media (max-width: 576px) {
+    .intereses {
+        padding: 60px 0;
+    }
+    
+    .intereses-carrusel {
+        padding: 0 40px;
+    }
+    
+    .carrusel-intereses-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1rem;
+    }
+    
+    .interes-card {
+        padding: 20px;
+    }
+    
+    .interes-icon {
+        width: 50px;
+        height: 50px;
+        margin-bottom: 15px;
+    }
+    
+    .interes-icon i {
+        font-size: 20px;
+    }
+    
+    .intereses-indicadores {
+        margin-top: 30px;
+        gap: 12px;
+    }
+    
+    .interes-indicador {
+        width: 10px;
+        height: 10px;
+    }
+}
