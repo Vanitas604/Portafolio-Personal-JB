@@ -953,3 +953,117 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar
     updateTestimoniosCarrusel();
 });
+
+// ===== CARRUSEL DE TESTIMONIOS (SIN AUTO-AVANCE) =====
+document.addEventListener('DOMContentLoaded', function() {
+    const testimoniosTrack = document.querySelector('.testimonios-track');
+    const testimonioCards = document.querySelectorAll('.testimonio-card');
+    const prevTestimonioBtn = document.querySelector('.prev-testimonio-btn');
+    const nextTestimonioBtn = document.querySelector('.next-testimonio-btn');
+    const testimonioIndicadores = document.querySelectorAll('.testimonio-indicador');
+    
+    if (!testimoniosTrack) return;
+    
+    let currentTestimonioIndex = 0;
+    const totalTestimonios = testimonioCards.length;
+    
+    // Actualizar posición del carrusel
+    function updateTestimoniosCarrusel() {
+        const translateX = -(currentTestimonioIndex * 100);
+        testimoniosTrack.style.transform = `translateX(${translateX}%)`;
+        
+        updateTestimonioIndicadores();
+        updateTestimonioButtons();
+    }
+    
+    // Actualizar indicadores
+    function updateTestimonioIndicadores() {
+        testimonioIndicadores.forEach((indicador, index) => {
+            if (index < totalTestimonios) {
+                if (index === currentTestimonioIndex) {
+                    indicador.classList.add('active');
+                } else {
+                    indicador.classList.remove('active');
+                }
+            }
+        });
+    }
+    
+    // Actualizar estado de botones
+    function updateTestimonioButtons() {
+        prevTestimonioBtn.disabled = currentTestimonioIndex === 0;
+        nextTestimonioBtn.disabled = currentTestimonioIndex === totalTestimonios - 1;
+    }
+    
+    // Ir a slide específico
+    function goToTestimonioSlide(index) {
+        if (index >= 0 && index < totalTestimonios) {
+            currentTestimonioIndex = index;
+            updateTestimoniosCarrusel();
+        }
+    }
+    
+    // Siguiente slide
+    function nextTestimonioSlide() {
+        if (currentTestimonioIndex < totalTestimonios - 1) {
+            currentTestimonioIndex++;
+            updateTestimoniosCarrusel();
+        }
+    }
+    
+    // Slide anterior
+    function prevTestimonioSlide() {
+        if (currentTestimonioIndex > 0) {
+            currentTestimonioIndex--;
+            updateTestimoniosCarrusel();
+        }
+    }
+    
+    // Event Listeners
+    if (prevTestimonioBtn && nextTestimonioBtn) {
+        prevTestimonioBtn.addEventListener('click', prevTestimonioSlide);
+        nextTestimonioBtn.addEventListener('click', nextTestimonioSlide);
+    }
+    
+    // Event listeners para indicadores
+    testimonioIndicadores.forEach(indicador => {
+        indicador.addEventListener('click', () => {
+            const index = parseInt(indicador.getAttribute('data-index'));
+            goToTestimonioSlide(index);
+        });
+    });
+    
+    // Swipe para móviles
+    let startX = 0;
+    let endX = 0;
+    const testimoniosContainer = document.querySelector('.testimonios-container');
+    
+    if (testimoniosContainer) {
+        testimoniosContainer.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+        
+        testimoniosContainer.addEventListener('touchend', (e) => {
+            endX = e.changedTouches[0].clientX;
+            handleTestimonioSwipe();
+        });
+    }
+    
+    function handleTestimonioSwipe() {
+        const diff = startX - endX;
+        const threshold = 50;
+        
+        if (Math.abs(diff) > threshold) {
+            if (diff > 0) {
+                // Swipe izquierda - siguiente
+                nextTestimonioSlide();
+            } else {
+                // Swipe derecha - anterior
+                prevTestimonioSlide();
+            }
+        }
+    }
+    
+    // Inicializar
+    updateTestimoniosCarrusel();
+});
