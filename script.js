@@ -712,45 +712,41 @@ document.addEventListener('DOMContentLoaded', function() {
     const cardsPerView = 2;
     const totalCards = interesCards.length;
     const totalSlides = Math.ceil(totalCards / cardsPerView);
-    
+
     // Calcular el ancho de cada grupo de tarjetas
     function getCardWidth() {
         return interesCards[0].offsetWidth + 30; // Ancho + gap
     }
-    
+
     // Actualizar posición del carrusel
     function updateInteresesCarrusel() {
         const cardWidth = getCardWidth();
         const translateX = -(currentInteresIndex * (cardWidth * cardsPerView));
         interesesTrack.style.transform = `translateX(${translateX}px)`;
-        
+
         updateInteresIndicadores();
         updateInteresButtons();
     }
-    
+
     // Actualizar indicadores
     function updateInteresIndicadores() {
         interesIndicadores.forEach((indicador, index) => {
-            if (index === currentInteresIndex) {
-                indicador.classList.add('active');
-            } else {
-                indicador.classList.remove('active');
-            }
+            indicador.classList.toggle('active', index === currentInteresIndex);
         });
     }
-    
+
     // Actualizar estado de botones
     function updateInteresButtons() {
         prevInteresBtn.disabled = currentInteresIndex === 0;
         nextInteresBtn.disabled = currentInteresIndex === totalSlides - 1;
     }
-    
+
     // Ir a slide específico
     function goToInteresSlide(index) {
         currentInteresIndex = index;
         updateInteresesCarrusel();
     }
-    
+
     // Siguiente slide
     function nextInteresSlide() {
         if (currentInteresIndex < totalSlides - 1) {
@@ -758,7 +754,7 @@ document.addEventListener('DOMContentLoaded', function() {
             updateInteresesCarrusel();
         }
     }
-    
+
     // Slide anterior
     function prevInteresSlide() {
         if (currentInteresIndex > 0) {
@@ -766,13 +762,13 @@ document.addEventListener('DOMContentLoaded', function() {
             updateInteresesCarrusel();
         }
     }
-    
-    // Event Listeners
+
+    // Event Listeners botones
     if (prevInteresBtn && nextInteresBtn) {
         prevInteresBtn.addEventListener('click', prevInteresSlide);
         nextInteresBtn.addEventListener('click', nextInteresSlide);
     }
-    
+
     // Event listeners para indicadores
     interesIndicadores.forEach(indicador => {
         indicador.addEventListener('click', () => {
@@ -780,73 +776,41 @@ document.addEventListener('DOMContentLoaded', function() {
             goToInteresSlide(index);
         });
     });
-    
+
     // Swipe para móviles
     let startX = 0;
     let endX = 0;
     const interesesContainer = document.querySelector('.intereses-container');
-    
+
     if (interesesContainer) {
         interesesContainer.addEventListener('touchstart', (e) => {
             startX = e.touches[0].clientX;
         });
-        
+
         interesesContainer.addEventListener('touchend', (e) => {
             endX = e.changedTouches[0].clientX;
             handleInteresSwipe();
         });
     }
-    
+
     function handleInteresSwipe() {
         const diff = startX - endX;
         const threshold = 50;
-        
+
         if (Math.abs(diff) > threshold) {
             if (diff > 0) {
-                // Swipe izquierda - siguiente
                 nextInteresSlide();
             } else {
-                // Swipe derecha - anterior
                 prevInteresSlide();
             }
         }
     }
-    
-    // Auto-avance opcional (cada 8 segundos)
-    let autoSlideInterval;
-    
-    function startAutoSlide() {
-        autoSlideInterval = setInterval(() => {
-            if (currentInteresIndex < totalSlides - 1) {
-                nextInteresSlide();
-            } else {
-                goToInteresSlide(0);
-            }
-        }, 8000);
-    }
-    
-    // Iniciar auto-avance
-    startAutoSlide();
-    
-    // Pausar auto-avance al interactuar
-    interesesContainer.addEventListener('mouseenter', () => {
-        clearInterval(autoSlideInterval);
-    });
-    
-    interesesContainer.addEventListener('mouseleave', () => {
-        startAutoSlide();
-    });
-    
-    // Pausar auto-avance en touch devices
-    interesesContainer.addEventListener('touchstart', () => {
-        clearInterval(autoSlideInterval);
-    });
-    
+
     // Recalcular en resize
     window.addEventListener('resize', () => {
         setTimeout(updateInteresesCarrusel, 100);
     });
-    
+
     // Inicializar
     updateInteresesCarrusel();
 });
