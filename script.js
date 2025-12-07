@@ -817,6 +817,30 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(updateInteresesCarrusel, 100);
     });
 
-    // Inicializar
-    updateInteresesCarrusel();
+function updateInteresesCarrusel() {
+    const cardWidth = getCardWidth();
+    const translateX = -(currentInteresIndex * (cardWidth * cardsPerView));
+    interesesTrack.style.transform = `translateX(${translateX}px)`;
+
+    updateActiveInteresCards();  // ← Agregado
+    updateInteresIndicadores();
+    updateInteresButtons();
+}
+    
+// =========================================
+// 🔥 MARCAR TARJETAS ACTIVAS
+// =========================================
+function updateActiveInteresCards() {
+    // Limpiar clases activas
+    interesCards.forEach(card => card.classList.remove('active'));
+
+    // Marcar las tarjetas visibles según el índice y cardsPerView
+    const start = currentInteresIndex * cardsPerView;
+    const end = start + cardsPerView;
+
+    for (let i = start; i < end && i < interesCards.length; i++) {
+        interesCards[i].classList.add('active');
+    }
+}
+
 });

@@ -2212,6 +2212,15 @@ body.page-loaded {
     }
 }
 
+/* === EXPANDIR EL FONDO DE LA SECCIÓN INTERESES A LOS BORDES === */
+.intereses {
+    width: 100vw !important;
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+
 /* ==== ANIMACIÓN ESPECIAL PARA ICONOS ====
    Combina:
    - Aura suave animada
