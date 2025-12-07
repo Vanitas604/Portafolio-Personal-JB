@@ -1886,6 +1886,40 @@ body.page-loaded {
     }
 }
 
+/* ===== AGRANDAR DIPLOMA EN EL MODAL ===== */
+/* Aumentar ancho del modal */
+.diploma-modal-content {
+    max-width: 1200px !important;  /* Antes 900px */
+    max-height: 95vh !important;   /* Más alto */
+}
+
+/* Hacer la imagen del diploma mucho más grande */
+.diploma-modal-body img {
+    max-height: 82vh !important;   /* Antes 65vh */
+    padding: 10px !important;      /* Menos margen alrededor */
+}
+
+/* Hacer el modal más cómodo visualmente */
+.diploma-modal-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;  /* Centra el diploma */
+}
+
+/* Texto más grande y mejor distribuido */
+.diploma-modal-info {
+    padding: 35px !important;
+}
+
+.diploma-modal-info h3 {
+    font-size: 1.7rem !important;
+}
+
+#diplomaModalDesc {
+    font-size: 1.2rem !important;
+    line-height: 1.9 !important;
+}
+
 /* ===== ESTILOS PARA MIS INTERESES ===== */
 .intereses {
     padding: 80px 0;
