@@ -1962,3 +1962,14 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar
     updateMoreText();
 });
+
+// Verifica si body tiene la clase dark-mode
+console.log('Body tiene dark-mode?', document.body.classList.contains('dark-mode'));
+
+// Verifica el color computado del dropdown
+const dropdown = document.querySelector('.more-dropdown');
+const computedStyle = window.getComputedStyle(dropdown);
+console.log('Fondo del dropdown:', computedStyle.backgroundColor);
+
+// Aplica dark-mode manualmente
+document.body.classList.add('dark-mode');
