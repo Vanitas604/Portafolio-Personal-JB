@@ -1764,92 +1764,195 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeSearchContent();
 });
 
-// ===== MENÚ HAMBURGUESA =====
+// ===== MENÚ HAMBURGUESA COMPLETO =====
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. Crear botón hamburguesa
-    const menuToggle = document.createElement('button');
-    menuToggle.className = 'menu-toggle';
-    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-    menuToggle.setAttribute('aria-label', 'Abrir menú');
-    
-    // 2. Insertar en el logo
-    const logo = document.querySelector('.logo');
-    if (logo) {
-        logo.appendChild(menuToggle);
-    }
-    
-    // 3. Obtener el menú
-    const navMenu = document.querySelector('nav ul');
-    
-    // 4. Función para mostrar/ocultar menú
-    function toggleMenu() {
-        navMenu.classList.toggle('active');
-        
-        // Cambiar ícono
-        const icon = menuToggle.querySelector('i');
-        if (navMenu.classList.contains('active')) {
-            icon.className = 'fas fa-times';
-            document.body.style.overflow = 'hidden'; // Prevenir scroll
-        } else {
-            icon.className = 'fas fa-bars';
-            document.body.style.overflow = ''; // Restaurar scroll
+    // Crear botón hamburguesa dinámicamente
+    function createMobileMenu() {
+        // Solo si estamos en móvil y no existe ya el botón
+        if (window.innerWidth <= 768 && !document.querySelector('.menu-toggle')) {
+            const menuToggle = document.createElement('button');
+            menuToggle.className = 'menu-toggle';
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            menuToggle.setAttribute('aria-label', 'Abrir menú de navegación');
+            menuToggle.setAttribute('aria-expanded', 'false');
+            
+            // Insertar en el contenedor del logo
+            const logo = document.querySelector('.logo');
+            if (logo) {
+                logo.appendChild(menuToggle);
+                
+                // Obtener el menú
+                const navMenu = document.querySelector('nav ul');
+                
+                if (navMenu) {
+                    // Asegurar que el menú esté oculto inicialmente en móvil
+                    navMenu.style.display = 'none';
+                    
+                    // Toggle del menú
+                    menuToggle.addEventListener('click', function(e) {
+                        e.stopPropagation();
+                        const isExpanded = this.getAttribute('aria-expanded') === 'true';
+                        
+                        if (isExpanded) {
+                            // Cerrar menú
+                            navMenu.style.display = 'none';
+                            this.setAttribute('aria-expanded', 'false');
+                            this.innerHTML = '<i class="fas fa-bars"></i>';
+                            document.body.style.overflow = '';
+                        } else {
+                            // Abrir menú
+                            navMenu.style.display = 'flex';
+                            navMenu.style.flexDirection = 'column';
+                            this.setAttribute('aria-expanded', 'true');
+                            this.innerHTML = '<i class="fas fa-times"></i>';
+                            document.body.style.overflow = 'hidden';
+                        }
+                    });
+                    
+                    // Cerrar menú al hacer clic en un enlace
+                    const navLinks = document.querySelectorAll('nav ul li a');
+                    navLinks.forEach(link => {
+                        link.addEventListener('click', () => {
+                            navMenu.style.display = 'none';
+                            menuToggle.setAttribute('aria-expanded', 'false');
+                            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                            document.body.style.overflow = '';
+                        });
+                    });
+                }
+            }
         }
     }
     
-    // 5. Event listener para el botón
-    if (menuToggle && navMenu) {
-        menuToggle.addEventListener('click', function(e) {
-            e.stopPropagation();
-            toggleMenu();
-        });
-        
-        // 6. Cerrar menú al hacer clic en un enlace
-        const navLinks = document.querySelectorAll('nav ul li a');
-        navLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-                menuToggle.querySelector('i').className = 'fas fa-bars';
-                document.body.style.overflow = '';
-            });
-        });
-        
-        // 7. Cerrar menú al hacer clic fuera
-        document.addEventListener('click', function(e) {
-            if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
-                navMenu.classList.remove('active');
-                menuToggle.querySelector('i').className = 'fas fa-bars';
-                document.body.style.overflow = '';
-            }
-        });
-        
-        // 8. Cerrar menú al presionar Escape
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-                menuToggle.querySelector('i').className = 'fas fa-bars';
-                document.body.style.overflow = '';
-            }
-        });
-    }
-    
-    // 9. Ajustar menú en redimensionamiento
+    // Manejar redimensionamiento
     function handleResize() {
-        if (window.innerWidth > 768 && navMenu) {
-            navMenu.classList.remove('active');
-            navMenu.style.display = 'flex';
+        const navMenu = document.querySelector('nav ul');
+        const menuToggle = document.querySelector('.menu-toggle');
+        
+        if (window.innerWidth > 768) {
+            // En desktop: mostrar menú normal, eliminar botón hamburguesa
+            if (navMenu) {
+                navMenu.style.display = 'flex';
+                navMenu.style.flexDirection = 'row';
+            }
             if (menuToggle) {
-                menuToggle.querySelector('i').className = 'fas fa-bars';
+                menuToggle.remove();
             }
             document.body.style.overflow = '';
+        } else {
+            // En móvil: ocultar menú, crear botón hamburguesa
+            if (navMenu) {
+                navMenu.style.display = 'none';
+            }
+            createMobileMenu();
         }
     }
     
+    // Crear menú inicial
+    createMobileMenu();
+    
+    // Manejar redimensionamiento
     window.addEventListener('resize', handleResize);
     
-    // 10. Inicializar menú según tamaño actual
-    if (window.innerWidth <= 768 && menuToggle) {
-        menuToggle.style.display = 'block';
-    } else if (menuToggle) {
-        menuToggle.style.display = 'none';
+    // Cerrar menú al hacer clic fuera (evento global)
+    document.addEventListener('click', function(e) {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navMenu = document.querySelector('nav ul');
+        
+        if (window.innerWidth <= 768 && menuToggle && navMenu && 
+            navMenu.style.display === 'flex' &&
+            !menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+            
+            navMenu.style.display = 'none';
+            menuToggle.setAttribute('aria-expanded', 'false');
+            menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+            document.body.style.overflow = '';
+        }
+    });
+    
+    // Cerrar menú con tecla Escape
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && window.innerWidth <= 768) {
+            const menuToggle = document.querySelector('.menu-toggle');
+            const navMenu = document.querySelector('nav ul');
+            
+            if (menuToggle && navMenu && navMenu.style.display === 'flex') {
+                navMenu.style.display = 'none';
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                document.body.style.overflow = '';
+            }
+        }
+    });
+});
+
+// ===== CARRUSEL DE TESTIMONIOS FIXED =====
+function initTestimoniosCarousel() {
+    const track = document.querySelector('.testimonios-track');
+    const cards = document.querySelectorAll('.testimonio-card');
+    const prevBtn = document.querySelector('.prev-testimonio-btn');
+    const nextBtn = document.querySelector('.next-testimonio-btn');
+    const indicators = document.querySelectorAll('.testimonio-indicador');
+    
+    if (!track || cards.length === 0) return;
+    
+    let currentIndex = 0;
+    const cardWidth = cards[0].offsetWidth + 30; // width + gap
+    
+    // Función para actualizar posición
+    function updateCarousel() {
+        const offset = -(currentIndex * 100); // 100% por tarjeta
+        track.style.transform = `translateX(${offset}%)`;
+        
+        // Actualizar indicadores
+        indicators.forEach((ind, i) => {
+            ind.classList.toggle('active', i === currentIndex);
+        });
+        
+        // Habilitar/deshabilitar botones
+        if (prevBtn) prevBtn.disabled = currentIndex === 0;
+        if (nextBtn) nextBtn.disabled = currentIndex >= cards.length - 1;
     }
+    
+    // Botón anterior
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateCarousel();
+            }
+        });
+    }
+    
+    // Botón siguiente
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex < cards.length - 1) {
+                currentIndex++;
+                updateCarousel();
+            }
+        });
+    }
+    
+    // Indicadores
+    indicators.forEach((indicator, index) => {
+        indicator.addEventListener('click', () => {
+            currentIndex = index;
+            updateCarousel();
+        });
+    });
+    
+    // Ajustar en redimensionamiento
+    window.addEventListener('resize', updateCarousel);
+    
+    // Inicializar
+    updateCarousel();
+}
+
+// Inicializar cuando el DOM esté listo
+document.addEventListener('DOMContentLoaded', function() {
+    // Inicializar carrusel de testimonios
+    setTimeout(() => {
+        initTestimoniosCarousel();
+    }, 100); // Pequeño delay para asegurar que el DOM esté listo
 });
