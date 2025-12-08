@@ -2404,24 +2404,27 @@ body.page-loaded {
     color: #d0d0d0;
 }
 
-/* Comillas de cierre - estilo igual a las iniciales */
+/* Comillas de cierre alineadas exactamente al final del texto */
 .comillas-fin {
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     background: linear-gradient(135deg, #e63946 0%, #ff6b6b 100%);
     border-radius: 50%;
-    display: flex;
+    display: inline-flex; /* Alinea como parte del texto */
     align-items: center;
     justify-content: center;
     box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
-    margin-top: 15px;        /* Más cerca del texto */
-    margin-left: auto;       /* Alineación a la derecha */
-    margin-right: 0;
+
+    position: absolute;
+    right: 0;
+    bottom: 0;   /* Alineado EXACTO al final del texto */
+
+    transform: translateY(20%); /* Ajuste fino para perfecto alineamiento */
 }
 
 .comillas-fin i {
     color: white;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 /* Botones del carrusel */
