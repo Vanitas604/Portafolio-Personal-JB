@@ -1101,13 +1101,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
         if (heroTitle) {
             allContent.push({
-                id: 'inicio-titulo',
+                id: 'inicio',
                 title: 'Inicio - Título',
                 content: heroTitle.textContent,
                 icon: 'fas fa-home',
                 category: 'Inicio',
                 section: 'inicio',
-                sectionName: 'Inicio'
+                sectionName: 'Inicio',
+                element: heroTitle // Guardar referencia al elemento real
             });
         }
         
@@ -1119,7 +1120,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon: 'fas fa-star',
                 category: 'Inicio',
                 section: 'inicio',
-                sectionName: 'Inicio'
+                sectionName: 'Inicio',
+                element: heroSubtitle
             });
         }
         
@@ -1132,7 +1134,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon: 'fas fa-bullseye',
                 category: 'Inicio',
                 section: 'inicio',
-                sectionName: 'Inicio'
+                sectionName: 'Inicio',
+                element: heroDescription
             });
         }
         
@@ -1148,7 +1151,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon: 'fas fa-user',
                 category: 'Sobre Mí',
                 section: 'sobre-mi',
-                sectionName: 'Sobre Mí'
+                sectionName: 'Sobre Mí',
+                element: aboutTitle
             });
         }
         
@@ -1161,7 +1165,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     icon: 'fas fa-file-alt',
                     category: 'Sobre Mí',
                     section: 'sobre-mi',
-                    sectionName: 'Sobre Mí'
+                    sectionName: 'Sobre Mí',
+                    element: text
                 });
             }
         });
@@ -1178,7 +1183,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon: 'fas fa-code',
                 category: 'Habilidades',
                 section: 'sobre-mi',
-                sectionName: 'Sobre Mí'
+                sectionName: 'Sobre Mí',
+                element: skillsTitle
             });
         }
         
@@ -1192,7 +1198,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     icon: listIndex === 0 ? 'fas fa-check-circle' : 'fas fa-users',
                     category: 'Habilidades',
                     section: 'sobre-mi',
-                    sectionName: 'Sobre Mí'
+                    sectionName: 'Sobre Mí',
+                    element: item
                 });
             });
         });
@@ -1209,7 +1216,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon: 'fas fa-laptop-code',
                 category: 'Tecnologías',
                 section: 'sobre-mi',
-                sectionName: 'Sobre Mí'
+                sectionName: 'Sobre Mí',
+                element: languagesTitle
             });
         }
         
@@ -1221,7 +1229,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon: 'fas fa-code',
                 category: 'Tecnologías',
                 section: 'sobre-mi',
-                sectionName: 'Sobre Mí'
+                sectionName: 'Sobre Mí',
+                element: lang
             });
         });
         
@@ -1238,7 +1247,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon: 'fas fa-certificate',
                 category: 'Marca Personal',
                 section: 'marca-personal',
-                sectionName: 'Marca Personal'
+                sectionName: 'Marca Personal',
+                element: marcaTitle
             });
         }
         
@@ -1250,7 +1260,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon: 'fas fa-quote-left',
                 category: 'Marca Personal',
                 section: 'marca-personal',
-                sectionName: 'Marca Personal'
+                sectionName: 'Marca Personal',
+                element: marcaFrase
             });
         }
         
@@ -1262,7 +1273,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon: 'fas fa-user-tag',
                 category: 'Marca Personal',
                 section: 'marca-personal',
-                sectionName: 'Marca Personal'
+                sectionName: 'Marca Personal',
+                element: marcaAutor
             });
         }
         
@@ -1278,7 +1290,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon: 'fas fa-trophy',
                 category: 'Premios',
                 section: 'premios',
-                sectionName: 'Premios y Reconocimientos'
+                sectionName: 'Premios y Reconocimientos',
+                element: premiosTitle
             });
         }
         
@@ -1293,7 +1306,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     category: 'Premios',
                     section: 'premios',
                     sectionName: 'Premios y Reconocimientos',
-                    diplomaIndex: index
+                    diplomaIndex: index,
+                    element: premio // Guardar referencia a la tarjeta completa
                 });
             }
         });
@@ -1310,7 +1324,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon: 'fas fa-heart',
                 category: 'Intereses',
                 section: 'intereses',
-                sectionName: 'Mis Intereses'
+                sectionName: 'Mis Intereses',
+                element: interesesTitle
             });
         }
         
@@ -1327,7 +1342,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     category: 'Intereses',
                     section: 'intereses',
                     sectionName: 'Mis Intereses',
-                    interesIndex: index
+                    interesIndex: index,
+                    element: interes // Guardar referencia a la tarjeta completa
                 });
             }
         });
@@ -1344,7 +1360,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon: 'fas fa-quote-left',
                 category: 'Testimonios',
                 section: 'testimonios',
-                sectionName: 'Testimonios y Reseñas'
+                sectionName: 'Testimonios y Reseñas',
+                element: testimoniosTitle
             });
         }
         
@@ -1362,7 +1379,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     category: 'Testimonios',
                     section: 'testimonios',
                     sectionName: 'Testimonios y Reseñas',
-                    testimonioIndex: index
+                    testimonioIndex: index,
+                    element: testimonio // Guardar referencia a la tarjeta completa
                 });
             }
         });
@@ -1379,7 +1397,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon: 'fas fa-project-diagram',
                 category: 'Proyectos',
                 section: 'proyectos',
-                sectionName: 'Proyectos'
+                sectionName: 'Proyectos',
+                element: proyectosTitle
             });
         }
         
@@ -1402,7 +1421,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     fullDescription: project.getAttribute('data-description'),
                     problem: project.getAttribute('data-problem'),
                     solution: project.getAttribute('data-solution'),
-                    result: project.getAttribute('data-result')
+                    result: project.getAttribute('data-result'),
+                    element: project // Guardar referencia a la tarjeta del proyecto
                 });
             }
         });
@@ -1419,7 +1439,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 icon: 'fas fa-envelope',
                 category: 'Contacto',
                 section: 'contacto',
-                sectionName: 'Contacto'
+                sectionName: 'Contacto',
+                element: contactoTitle
             });
         }
         
@@ -1435,7 +1456,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     icon: 'fas fa-address-card',
                     category: 'Contacto',
                     section: 'contacto',
-                    sectionName: 'Contacto'
+                    sectionName: 'Contacto',
+                    element: contactoTexto
                 });
             }
             
@@ -1447,7 +1469,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     icon: 'fas fa-phone-alt',
                     category: 'Contacto',
                     section: 'contacto',
-                    sectionName: 'Contacto'
+                    sectionName: 'Contacto',
+                    element: item
                 });
             });
             
@@ -1462,7 +1485,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     icon: 'fas fa-share-alt',
                     category: 'Contacto',
                     section: 'contacto',
-                    sectionName: 'Contacto'
+                    sectionName: 'Contacto',
+                    element: link
                 });
             });
         }
@@ -1658,56 +1682,90 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 100);
     }
     
-    // Navegar al resultado
+    // Navegar al resultado (CORREGIDO)
     function navigateToResult(result) {
         // Ocultar resultados de búsqueda
         hideSearchResults();
         
-        // Navegar a la sección
-        const section = document.getElementById(result.section);
-        if (section) {
-            // Cerrar todos los modales abiertos primero
-            const projectModal = document.getElementById('projectModal');
-            const diplomaModal = document.getElementById('diplomaModal');
+        // Cerrar todos los modales abiertos primero
+        const projectModal = document.getElementById('projectModal');
+        const diplomaModal = document.getElementById('diplomaModal');
+        
+        if (projectModal) projectModal.style.display = 'none';
+        if (diplomaModal) diplomaModal.style.display = 'none';
+        
+        // Si tenemos una referencia directa al elemento
+        if (result.element && result.element instanceof HTMLElement) {
+            // Desplazarse al elemento
+            result.element.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'center' 
+            });
             
-            if (projectModal) projectModal.style.display = 'none';
-            if (diplomaModal) diplomaModal.style.display = 'none';
-            
-            // Desplazarse a la sección
-            section.scrollIntoView({ behavior: 'smooth' });
+            // Resaltar el elemento
+            highlightElement(result.element);
             
             // Si es un proyecto, abrir su modal
             if (result.projectId) {
                 setTimeout(() => {
-                    const projectCard = document.querySelector(`[data-project-id="${result.projectId}"]`);
-                    if (projectCard) {
-                        const detailsBtn = projectCard.querySelector('.btn-details');
-                        if (detailsBtn) detailsBtn.click();
-                    }
-                }, 500);
+                    const detailsBtn = result.element.querySelector('.btn-details');
+                    if (detailsBtn) detailsBtn.click();
+                }, 800);
             }
             
             // Si es un premio, abrir el modal del diploma
             if (typeof result.diplomaIndex !== 'undefined') {
                 setTimeout(() => {
-                    const diplomaBtn = document.querySelector(`.ver-diploma-btn[data-index="${result.diplomaIndex}"]`);
+                    const diplomaBtn = result.element.querySelector('.ver-diploma-btn');
                     if (diplomaBtn) diplomaBtn.click();
-                }, 500);
+                }, 800);
             }
-            
-            // Resaltar el elemento temporalmente
-            setTimeout(() => {
-                const element = document.getElementById(result.id);
-                if (element) {
-                    const originalBg = element.style.backgroundColor;
-                    element.style.backgroundColor = 'rgba(255, 235, 59, 0.3)';
-                    element.style.transition = 'background-color 0.3s';
-                    setTimeout(() => {
-                        element.style.backgroundColor = originalBg;
-                    }, 2000);
-                }
-            }, 300);
+        } 
+        // Si no tenemos referencia directa, intentar navegar a la sección
+        else if (result.section) {
+            const section = document.getElementById(result.section);
+            if (section) {
+                section.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start' 
+                });
+                
+                // Intentar encontrar el elemento específico en la sección
+                setTimeout(() => {
+                    if (result.elementSelector) {
+                        const elementInSection = section.querySelector(result.elementSelector);
+                        if (elementInSection) {
+                            highlightElement(elementInSection);
+                        }
+                    } else {
+                        // Resaltar toda la sección si no encontramos el elemento específico
+                        highlightElement(section);
+                    }
+                }, 300);
+            }
         }
+    }
+    
+    // Función para resaltar elementos temporalmente
+    function highlightElement(element) {
+        if (!element) return;
+        
+        // Guardar el estilo original
+        const originalBorder = element.style.border;
+        const originalBoxShadow = element.style.boxShadow;
+        const originalTransition = element.style.transition;
+        
+        // Aplicar resaltado
+        element.style.transition = 'all 0.5s ease';
+        element.style.border = '2px solid #4CAF50';
+        element.style.boxShadow = '0 0 15px rgba(76, 175, 80, 0.5)';
+        
+        // Remover el resaltado después de 3 segundos
+        setTimeout(() => {
+            element.style.border = originalBorder;
+            element.style.boxShadow = originalBoxShadow;
+            element.style.transition = originalTransition;
+        }, 3000);
     }
     
     // Ocultar resultados de búsqueda
