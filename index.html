@@ -37,12 +37,35 @@
       <div id="searchResults" class="search-results"></div>
     </div>
 
-    <ul>
-      <li><a href="#inicio" data-i18n="navInicio">Inicio</a></li>
-      <li><a href="#sobre-mi" data-i18n="navSobreMi">Sobre Mí</a></li>
-      <li><a href="#proyectos" data-i18n="navProyectos">Proyectos</a></li>
-      <li><a href="#contacto" data-i18n="navContacto">Contacto</a></li>
-    </ul>
+    <!-- REEMPLAZA TU <ul> ACTUAL CON ESTO: -->
+<ul>
+    <li><a href="#inicio" data-i18n="navInicio">Inicio</a></li>
+    <li><a href="#sobre-mi" data-i18n="navSobreMi">Sobre Mí</a></li>
+    <li><a href="#proyectos" data-i18n="navProyectos">Proyectos</a></li>
+    <li><a href="#contacto" data-i18n="navContacto">Contacto</a></li>
+    
+    <!-- Submenú "Más" DESPUÉS de Contacto -->
+    <li class="nav-more">
+        <a href="javascript:void(0)" class="more-toggle">
+            <span data-i18n="navMas">Más</span>
+            <i class="fas fa-chevron-down more-arrow"></i>
+        </a>
+        <div class="more-dropdown">
+            <a href="#marca-personal" data-i18n="navMarca">
+                <i class="fas fa-star"></i> Marca Personal
+            </a>
+            <a href="#premios" data-i18n="navPremios">
+                <i class="fas fa-trophy"></i> Premios
+            </a>
+            <a href="#intereses" data-i18n="navIntereses">
+                <i class="fas fa-heart"></i> Intereses
+            </a>
+            <a href="#testimonios" data-i18n="navTestimonios">
+                <i class="fas fa-comment"></i> Testimonios
+            </a>
+        </div>
+    </li>
+</ul>
 
     <div class="nav-buttons">
       <button id="darkModeToggle" class="translate-btn dark-mode-btn">

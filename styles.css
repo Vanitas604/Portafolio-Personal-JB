@@ -301,6 +301,158 @@ nav ul li a:hover::after {
     }
 }
 
+/* ===== SUBMENÚ "MÁS" - MÍNIMO Y COMPATIBLE ===== */
+
+/* Contenedor principal - Mismo estilo que otros li */
+.nav-more {
+    position: relative;
+    display: inline-block;
+}
+
+/* Enlace "Más" - IDÉNTICO a los otros enlaces */
+.more-toggle {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 6px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Línea inferior igual que otros enlaces */
+.more-toggle::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: #e63946;
+    transition: width 0.3s ease;
+}
+
+.nav-more:hover .more-toggle::after {
+    width: 100%;
+}
+
+/* Flechita pequeña */
+.more-arrow {
+    font-size: 0.7rem;
+    transition: transform 0.3s ease;
+}
+
+/* Dropdown - Simple y discreto */
+.more-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background: white;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    min-width: 180px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    padding: 8px 0;
+    border: 1px solid #eee;
+}
+
+/* Mostrar al hover */
+.nav-more:hover .more-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.nav-more:hover .more-arrow {
+    transform: rotate(180deg);
+}
+
+/* Enlaces del dropdown */
+.more-dropdown a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.3s ease;
+}
+
+.more-dropdown a:hover {
+    background: #f8f9fa;
+    color: #e63946;
+}
+
+.more-dropdown a i {
+    width: 16px;
+    text-align: center;
+    font-size: 0.9rem;
+}
+
+/* ===== MODO OSCURO ===== */
+.dark-mode .more-toggle {
+    color: #e0e0e0;
+}
+
+.dark-mode .more-toggle:hover {
+    color: #ff6b6b;
+}
+
+.dark-mode .more-dropdown {
+    background: #1a1a2e;
+    border: 1px solid #333;
+}
+
+.dark-mode .more-dropdown a {
+    color: #e0e0e0;
+}
+
+.dark-mode .more-dropdown a:hover {
+    background: #2d3047;
+    color: #ff6b6b;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .nav-more {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .more-dropdown {
+        position: static;
+        opacity: 1;
+        visibility: visible;
+        transform: none;
+        box-shadow: none;
+        border: none;
+        background: transparent;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+        margin-top: 5px;
+    }
+    
+    .nav-more:hover .more-dropdown,
+    .nav-more.active .more-dropdown {
+        max-height: 300px;
+    }
+    
+    .more-dropdown a {
+        padding: 8px 15px;
+        justify-content: center;
+    }
+}
+
 /* Hero Section */
 .hero {
     padding-top: 150px;
@@ -3321,3 +3473,4 @@ body.page-loaded {
         font-size: 1.5rem;
     }
 }
+

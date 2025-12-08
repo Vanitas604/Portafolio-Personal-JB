@@ -1821,3 +1821,144 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar
     initializeSearchContent();
 });
+
+// ===== SUBMENÚ SIMPLE - NO AFECTA NADA MÁS =====
+
+document.addEventListener('DOMContentLoaded', function() {
+    
+    // Solo inicializar si existe el submenú
+    const navMore = document.querySelector('.nav-more');
+    if (!navMore) return;
+    
+    const moreToggle = navMore.querySelector('.more-toggle');
+    const moreDropdown = navMore.querySelector('.more-dropdown');
+    const moreArrow = navMore.querySelector('.more-arrow');
+    
+    // Para desktop: hover
+    if (window.innerWidth > 768) {
+        let hoverTimeout;
+        
+        navMore.addEventListener('mouseenter', function() {
+            clearTimeout(hoverTimeout);
+            moreDropdown.style.opacity = '1';
+            moreDropdown.style.visibility = 'visible';
+            moreDropdown.style.transform = 'translateY(0)';
+            if (moreArrow) moreArrow.style.transform = 'rotate(180deg)';
+        });
+        
+        navMore.addEventListener('mouseleave', function() {
+            hoverTimeout = setTimeout(function() {
+                moreDropdown.style.opacity = '0';
+                moreDropdown.style.visibility = 'hidden';
+                moreDropdown.style.transform = 'translateY(10px)';
+                if (moreArrow) moreArrow.style.transform = '';
+            }, 200);
+        });
+        
+        moreDropdown.addEventListener('mouseenter', function() {
+            clearTimeout(hoverTimeout);
+        });
+        
+        moreDropdown.addEventListener('mouseleave', function() {
+            hoverTimeout = setTimeout(function() {
+                moreDropdown.style.opacity = '0';
+                moreDropdown.style.visibility = 'hidden';
+                moreDropdown.style.transform = 'translateY(10px)';
+                if (moreArrow) moreArrow.style.transform = '';
+            }, 150);
+        });
+    }
+    
+    // Para móvil: click
+    moreToggle.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const isActive = navMore.classList.contains('active');
+            
+            if (!isActive) {
+                navMore.classList.add('active');
+                if (moreArrow) moreArrow.style.transform = 'rotate(180deg)';
+            } else {
+                navMore.classList.remove('active');
+                if (moreArrow) moreArrow.style.transform = '';
+            }
+        }
+    });
+    
+    // Navegación suave
+    const dropdownLinks = moreDropdown.querySelectorAll('a');
+    dropdownLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href').substring(1);
+            
+            // Cerrar dropdown
+            if (window.innerWidth > 768) {
+                moreDropdown.style.opacity = '0';
+                moreDropdown.style.visibility = 'hidden';
+                moreDropdown.style.transform = 'translateY(10px)';
+                if (moreArrow) moreArrow.style.transform = '';
+            } else {
+                navMore.classList.remove('active');
+                if (moreArrow) moreArrow.style.transform = '';
+            }
+            
+            // Desplazamiento suave
+            setTimeout(() => {
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    const navHeight = document.querySelector('nav').offsetHeight || 80;
+                    const targetPosition = targetElement.offsetTop - navHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }, 300);
+        });
+    });
+    
+    // Traducción simple
+    function updateMoreText() {
+        const isEnglish = document.documentElement.lang === 'en';
+        
+        if (isEnglish) {
+            // Textos en inglés
+            moreToggle.querySelector('span').textContent = 'More';
+            
+            const texts = ['Personal Brand', 'Awards', 'Interests', 'Testimonials'];
+            dropdownLinks.forEach((link, index) => {
+                const icon = link.querySelector('i').cloneNode(true);
+                link.innerHTML = '';
+                link.appendChild(icon);
+                link.appendChild(document.createTextNode(' ' + texts[index]));
+            });
+        } else {
+            // Textos en español
+            moreToggle.querySelector('span').textContent = 'Más';
+            
+            const texts = ['Marca Personal', 'Premios', 'Intereses', 'Testimonios'];
+            dropdownLinks.forEach((link, index) => {
+                const icon = link.querySelector('i').cloneNode(true);
+                link.innerHTML = '';
+                link.appendChild(icon);
+                link.appendChild(document.createTextNode(' ' + texts[index]));
+            });
+        }
+    }
+    
+    // Integrar con tu botón de traducción
+    const translateBtn = document.getElementById('translateBtn');
+    if (translateBtn) {
+        translateBtn.addEventListener('click', function() {
+            setTimeout(updateMoreText, 100);
+        });
+    }
+    
+    // Inicializar
+    updateMoreText();
+});
