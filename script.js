@@ -1067,3 +1067,471 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar
     updateTestimoniosCarrusel();
 });
+
+// ===== FUNCIONALIDAD DE BÚSQUEDA CON RESULTADOS EN PÁGINA =====
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const clearSearchBtn = document.getElementById('clearSearch');
+    const searchResults = document.getElementById('searchResults');
+    const searchResultsSection = document.getElementById('search-results-section');
+    const searchResultsContainer = document.getElementById('searchResultsContainer');
+    const noSearchResults = document.getElementById('noSearchResults');
+    const searchResultsTitle = document.getElementById('searchResultsTitle');
+    const closeSearchResults = document.getElementById('closeSearchResults');
+    
+    let searchTimeout;
+    let allContent = [];
+    let currentQuery = '';
+    
+    // Inicializar contenido buscable
+    function initializeSearchContent() {
+        allContent = [];
+        
+        // Sección Inicio
+        const heroTitle = document.querySelector('.hero h1');
+        const heroAreas = document.querySelector('.hero-areas');
+        if (heroTitle) {
+            allContent.push({
+                id: 'inicio',
+                title: 'Inicio',
+                content: heroTitle.textContent,
+                icon: 'fas fa-home',
+                category: 'Inicio',
+                section: 'inicio',
+                sectionName: 'Inicio'
+            });
+        }
+        if (heroAreas) {
+            allContent.push({
+                id: 'areas-interes',
+                title: 'Áreas de Interés',
+                content: heroAreas.textContent,
+                icon: 'fas fa-bullseye',
+                category: 'Inicio',
+                section: 'inicio',
+                sectionName: 'Inicio'
+            });
+        }
+        
+        // Sección Sobre Mí
+        const aboutTexts = document.querySelectorAll('.about-text p');
+        aboutTexts.forEach((text, index) => {
+            if (text.textContent.trim()) {
+                allContent.push({
+                    id: `sobre-mi-${index}`,
+                    title: 'Sobre Mí',
+                    content: text.textContent,
+                    icon: 'fas fa-user',
+                    category: 'Sobre Mí',
+                    section: 'sobre-mi',
+                    sectionName: 'Sobre Mí'
+                });
+            }
+        });
+        
+        // Habilidades
+        const skillsItems = document.querySelectorAll('.skills ul li');
+        skillsItems.forEach((item, index) => {
+            allContent.push({
+                id: `skill-${index}`,
+                title: 'Habilidades',
+                content: item.textContent,
+                icon: 'fas fa-code',
+                category: 'Habilidades',
+                section: 'sobre-mi',
+                sectionName: 'Sobre Mí'
+            });
+        });
+        
+        // Lenguajes de programación
+        const languages = document.querySelectorAll('.skill-card h3');
+        languages.forEach((lang, index) => {
+            allContent.push({
+                id: `language-${index}`,
+                title: 'Lenguajes',
+                content: lang.textContent,
+                icon: 'fas fa-laptop-code',
+                category: 'Tecnologías',
+                section: 'sobre-mi',
+                sectionName: 'Sobre Mí'
+            });
+        });
+        
+        // Proyectos
+        const projects = document.querySelectorAll('.project-card');
+        projects.forEach((project, index) => {
+            const title = project.querySelector('h3');
+            const desc = project.querySelector('p');
+            const languages = project.getAttribute('data-languages');
+            
+            if (title && desc) {
+                allContent.push({
+                    id: `project-${index}`,
+                    title: title.textContent,
+                    content: desc.textContent,
+                    languages: languages,
+                    icon: 'fas fa-project-diagram',
+                    category: 'Proyectos',
+                    section: 'proyectos',
+                    sectionName: 'Proyectos',
+                    projectId: project.getAttribute('data-project-id')
+                });
+            }
+        });
+        
+        // Premios
+        const premios = document.querySelectorAll('.premio-card');
+        premios.forEach((premio, index) => {
+            const desc = premio.querySelector('.premio-desc');
+            if (desc) {
+                allContent.push({
+                    id: `premio-${index}`,
+                    title: 'Premio',
+                    content: desc.textContent,
+                    icon: 'fas fa-trophy',
+                    category: 'Premios',
+                    section: 'premios',
+                    sectionName: 'Premios'
+                });
+            }
+        });
+        
+        // Intereses
+        const intereses = document.querySelectorAll('.interes-card');
+        intereses.forEach((interes, index) => {
+            const title = interes.querySelector('h3');
+            const desc = interes.querySelector('.interes-desc');
+            if (title && desc) {
+                allContent.push({
+                    id: `interes-${index}`,
+                    title: title.textContent,
+                    content: desc.textContent,
+                    icon: 'fas fa-heart',
+                    category: 'Intereses',
+                    section: 'intereses',
+                    sectionName: 'Intereses'
+                });
+            }
+        });
+        
+        // Testimonios
+        const testimonios = document.querySelectorAll('.testimonio-card');
+        testimonios.forEach((testimonio, index) => {
+            const name = testimonio.querySelector('h3');
+            const text = testimonio.querySelector('.testimonio-texto');
+            if (name && text) {
+                allContent.push({
+                    id: `testimonio-${index}`,
+                    title: name.textContent,
+                    content: text.textContent,
+                    icon: 'fas fa-quote-left',
+                    category: 'Testimonios',
+                    section: 'testimonios',
+                    sectionName: 'Testimonios'
+                });
+            }
+        });
+        
+        // Contacto
+        const contactInfo = document.querySelector('.contact-info');
+        if (contactInfo) {
+            const contactText = contactInfo.querySelector('p');
+            const contactItems = contactInfo.querySelectorAll('.contact-item p');
+            
+            if (contactText) {
+                allContent.push({
+                    id: 'contacto-info',
+                    title: 'Contacto',
+                    content: contactText.textContent,
+                    icon: 'fas fa-envelope',
+                    category: 'Contacto',
+                    section: 'contacto',
+                    sectionName: 'Contacto'
+                });
+            }
+            
+            contactItems.forEach((item, index) => {
+                allContent.push({
+                    id: `contact-item-${index}`,
+                    title: 'Información de Contacto',
+                    content: item.textContent,
+                    icon: 'fas fa-address-card',
+                    category: 'Contacto',
+                    section: 'contacto',
+                    sectionName: 'Contacto'
+                });
+            });
+        }
+    }
+    
+    // Buscar contenido
+    function searchContent(query) {
+        if (!query.trim()) {
+            return [];
+        }
+        
+        const searchTerms = query.toLowerCase().split(' ').filter(term => term.length > 0);
+        const results = [];
+        
+        allContent.forEach(item => {
+            const content = item.content.toLowerCase();
+            const title = item.title.toLowerCase();
+            
+            // Verificar si alguno de los términos de búsqueda coincide
+            const matches = searchTerms.some(term => 
+                content.includes(term) || title.includes(term)
+            );
+            
+            if (matches) {
+                // Calcular relevancia (más términos coincidentes = mayor relevancia)
+                let relevance = 0;
+                searchTerms.forEach(term => {
+                    if (title.includes(term)) relevance += 2; // Título tiene más peso
+                    if (content.includes(term)) relevance += 1;
+                });
+                
+                results.push({
+                    ...item,
+                    relevance
+                });
+            }
+        });
+        
+        // Ordenar por relevancia
+        return results.sort((a, b) => b.relevance - a.relevance);
+    }
+    
+    // Resaltar texto en resultados
+    function highlightText(text, query) {
+        if (!query.trim()) return text;
+        
+        const searchTerms = query.toLowerCase().split(' ').filter(term => term.length > 0);
+        let highlighted = text;
+        
+        searchTerms.forEach(term => {
+            const regex = new RegExp(`(${term})`, 'gi');
+            highlighted = highlighted.replace(regex, '<span class="search-highlight">$1</span>');
+        });
+        
+        return highlighted;
+    }
+    
+    // Mostrar resultados en tiempo real (dropdown)
+    function showRealTimeResults(results, query) {
+        searchResults.innerHTML = '';
+        
+        if (results.length === 0 || !query.trim()) {
+            searchResults.classList.remove('active');
+            return;
+        }
+        
+        // Mostrar solo los primeros 5 resultados en tiempo real
+        const limitedResults = results.slice(0, 5);
+        
+        limitedResults.forEach(result => {
+            const resultElement = document.createElement('div');
+            resultElement.className = 'search-result-item';
+            resultElement.innerHTML = `
+                <div class="search-result-title">
+                    <i class="${result.icon}"></i>
+                    ${highlightText(result.title, query)}
+                </div>
+                <div class="search-result-snippet">
+                    ${highlightText(result.content.substring(0, 100), query)}...
+                </div>
+                <div class="search-result-category">${result.category}</div>
+            `;
+            
+            resultElement.addEventListener('click', () => {
+                navigateToResult(result);
+                hideSearchResults();
+            });
+            
+            searchResults.appendChild(resultElement);
+        });
+        
+        searchResults.classList.add('active');
+    }
+    
+    // Mostrar resultados en página
+    function showPageResults(results, query) {
+        searchResultsContainer.innerHTML = '';
+        currentQuery = query;
+        
+        if (results.length === 0) {
+            noSearchResults.style.display = 'block';
+            searchResultsContainer.style.display = 'none';
+            searchResultsTitle.textContent = `No hay resultados para: "${query}"`;
+        } else {
+            noSearchResults.style.display = 'none';
+            searchResultsContainer.style.display = 'grid';
+            searchResultsTitle.textContent = `${results.length} resultado${results.length !== 1 ? 's' : ''} para: "${query}"`;
+            
+            results.forEach((result, index) => {
+                const resultElement = document.createElement('div');
+                resultElement.className = 'search-result-card';
+                resultElement.setAttribute('data-index', index);
+                resultElement.innerHTML = `
+                    <div class="search-result-card-header">
+                        <div class="search-result-card-icon">
+                            <i class="${result.icon}"></i>
+                        </div>
+                        <div class="search-result-card-title">
+                            <h3>${highlightText(result.title, query)}</h3>
+                            <span class="search-result-card-category">${result.category}</span>
+                        </div>
+                    </div>
+                    <div class="search-result-card-content">
+                        ${highlightText(result.content.substring(0, 150), query)}...
+                    </div>
+                    <div class="search-result-card-footer">
+                        <span class="search-result-card-section">
+                            <i class="fas fa-folder"></i> ${result.sectionName}
+                        </span>
+                        <a href="#${result.section}" class="search-result-card-link" data-result-id="${result.id}">
+                            Ir a sección <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                `;
+                
+                resultElement.addEventListener('click', (e) => {
+                    if (!e.target.closest('.search-result-card-link')) {
+                        navigateToResult(result);
+                    }
+                });
+                
+                // Event listener para el enlace
+                const link = resultElement.querySelector('.search-result-card-link');
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    navigateToResult(result);
+                });
+                
+                searchResultsContainer.appendChild(resultElement);
+            });
+        }
+        
+        // Mostrar la sección de resultados
+        searchResultsSection.style.display = 'block';
+        
+        // Desplazarse a la sección de resultados
+        setTimeout(() => {
+            searchResultsSection.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+    }
+    
+    // Navegar al resultado
+    function navigateToResult(result) {
+        // Ocultar resultados de búsqueda
+        hideSearchResults();
+        
+        // Navegar a la sección
+        const section = document.getElementById(result.section);
+        if (section) {
+            // Cerrar todos los modales abiertos primero
+            const projectModal = document.getElementById('projectModal');
+            const diplomaModal = document.getElementById('diplomaModal');
+            
+            if (projectModal) projectModal.style.display = 'none';
+            if (diplomaModal) diplomaModal.style.display = 'none';
+            
+            // Desplazarse a la sección
+            section.scrollIntoView({ behavior: 'smooth' });
+            
+            // Si es un proyecto, abrir su modal
+            if (result.projectId) {
+                setTimeout(() => {
+                    const projectCard = document.querySelector(`[data-project-id="${result.projectId}"]`);
+                    if (projectCard) {
+                        const detailsBtn = projectCard.querySelector('.btn-details');
+                        if (detailsBtn) detailsBtn.click();
+                    }
+                }, 500);
+            }
+            
+            // Resaltar el elemento temporalmente
+            setTimeout(() => {
+                const element = document.getElementById(result.id);
+                if (element) {
+                    const originalBg = element.style.backgroundColor;
+                    element.style.backgroundColor = 'rgba(255, 235, 59, 0.3)';
+                    element.style.transition = 'background-color 0.3s';
+                    setTimeout(() => {
+                        element.style.backgroundColor = originalBg;
+                    }, 2000);
+                }
+            }, 300);
+        }
+    }
+    
+    // Ocultar resultados de búsqueda
+    function hideSearchResults() {
+        searchResultsSection.style.display = 'none';
+        searchResults.classList.remove('active');
+        searchInput.value = '';
+        clearSearchBtn.classList.remove('visible');
+        searchInput.blur();
+    }
+    
+    // Event Listeners
+    searchInput.addEventListener('input', function() {
+        const query = this.value;
+        
+        // Mostrar/ocultar botón de limpiar
+        if (query.trim()) {
+            clearSearchBtn.classList.add('visible');
+        } else {
+            clearSearchBtn.classList.remove('visible');
+            searchResults.classList.remove('active');
+        }
+        
+        // Debounce para búsqueda en tiempo real
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            if (query.trim().length >= 2) {
+                const results = searchContent(query);
+                showRealTimeResults(results, query);
+            } else {
+                searchResults.classList.remove('active');
+            }
+        }, 300);
+    });
+    
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            const query = this.value.trim();
+            if (query) {
+                const results = searchContent(query);
+                showPageResults(results, query);
+                searchResults.classList.remove('active');
+            }
+        }
+    });
+    
+    searchInput.addEventListener('focus', function() {
+        if (this.value.trim().length >= 2) {
+            const results = searchContent(this.value);
+            showRealTimeResults(results, this.value);
+        }
+    });
+    
+    document.addEventListener('click', function(e) {
+        if (!searchResults.contains(e.target) && !searchInput.contains(e.target)) {
+            searchResults.classList.remove('active');
+        }
+    });
+    
+    clearSearchBtn.addEventListener('click', function() {
+        searchInput.value = '';
+        searchInput.focus();
+        searchResults.classList.remove('active');
+        clearSearchBtn.classList.remove('visible');
+        hideSearchResults();
+    });
+    
+    closeSearchResults.addEventListener('click', hideSearchResults);
+    
+    // Inicializar
+    initializeSearchContent();
+});

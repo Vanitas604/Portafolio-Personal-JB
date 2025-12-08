@@ -18,6 +18,25 @@
       <h2 data-i18n="logo">Mi<span>Portafolio</span></h2>
     </div>
 
+    <!-- Barra de búsqueda -->
+    <div class="search-container">
+      <div class="search-wrapper">
+        <i class="fas fa-search search-icon"></i>
+        <input 
+          type="text" 
+          id="searchInput" 
+          class="search-input" 
+          placeholder="Buscar en el portafolio..." 
+          aria-label="Buscar contenido"
+          data-i18n-placeholder="searchPlaceholder"
+        />
+        <button id="clearSearch" class="clear-search-btn" aria-label="Limpiar búsqueda">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div id="searchResults" class="search-results"></div>
+    </div>
+
     <ul>
       <li><a href="#inicio" data-i18n="navInicio">Inicio</a></li>
       <li><a href="#sobre-mi" data-i18n="navSobreMi">Sobre Mí</a></li>
@@ -38,6 +57,33 @@
     </div>
   </div>
 </nav>
+
+<!-- Sección de resultados de búsqueda (se mostrará dinámicamente) -->
+<section id="search-results-section" class="search-results-section" style="display: none;">
+  <div class="container">
+    <div class="search-results-header">
+      <h2 class="section-title">
+        <i class="fas fa-search"></i> 
+        <span id="searchResultsTitle">Resultados de Búsqueda</span>
+      </h2>
+      <button id="closeSearchResults" class="btn close-results-btn">
+        <i class="fas fa-times"></i> Cerrar resultados
+      </button>
+    </div>
+    
+    <div id="searchResultsContainer" class="search-results-grid">
+      <!-- Los resultados se insertarán aquí -->
+    </div>
+    
+    <div id="noSearchResults" class="no-search-results" style="display: none;">
+      <div class="no-results-content">
+        <i class="fas fa-search"></i>
+        <h3>No se encontraron resultados</h3>
+        <p>Intenta con otras palabras clave o verifica la ortografía.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
     <!-- Sección de Inicio -->
 <section id="inicio" class="hero">
