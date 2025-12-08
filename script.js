@@ -1083,17 +1083,26 @@ document.addEventListener('DOMContentLoaded', function() {
     let allContent = [];
     let currentQuery = '';
     
-    // Inicializar contenido buscable
+    // ===== OCULTAR PERMANENTEMENTE EL BOTÓN DE LIMPIAR =====
+    if (clearSearchBtn) {
+        clearSearchBtn.style.display = 'none';
+        clearSearchBtn.style.visibility = 'hidden';
+        clearSearchBtn.disabled = true;
+    }
+    
+    // Inicializar contenido buscable (COMPLETO)
     function initializeSearchContent() {
         allContent = [];
         
-        // Sección Inicio
-        const heroTitle = document.querySelector('.hero h1');
-        const heroAreas = document.querySelector('.hero-areas');
+        // ===== 1. SECCIÓN INICIO =====
+        const heroTitle = document.querySelector('.hero-content h1');
+        const heroSubtitle = document.querySelector('.hero-areas h2');
+        const heroDescription = document.querySelector('.hero-areas');
+        
         if (heroTitle) {
             allContent.push({
-                id: 'inicio',
-                title: 'Inicio',
+                id: 'inicio-titulo',
+                title: 'Inicio - Título',
                 content: heroTitle.textContent,
                 icon: 'fas fa-home',
                 category: 'Inicio',
@@ -1101,11 +1110,25 @@ document.addEventListener('DOMContentLoaded', function() {
                 sectionName: 'Inicio'
             });
         }
-        if (heroAreas) {
+        
+        if (heroSubtitle) {
+            allContent.push({
+                id: 'inicio-subtitulo',
+                title: 'Inicio - Subtítulo',
+                content: heroSubtitle.textContent,
+                icon: 'fas fa-star',
+                category: 'Inicio',
+                section: 'inicio',
+                sectionName: 'Inicio'
+            });
+        }
+        
+        if (heroDescription) {
+            const areasText = heroDescription.textContent.replace('Áreas de interés:', '').trim();
             allContent.push({
                 id: 'areas-interes',
                 title: 'Áreas de Interés',
-                content: heroAreas.textContent,
+                content: areasText,
                 icon: 'fas fa-bullseye',
                 category: 'Inicio',
                 section: 'inicio',
@@ -1113,15 +1136,29 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        // Sección Sobre Mí
+        // ===== 2. SECCIÓN SOBRE MÍ =====
+        const aboutTitle = document.querySelector('#sobre-mi .section-title');
         const aboutTexts = document.querySelectorAll('.about-text p');
+        
+        if (aboutTitle) {
+            allContent.push({
+                id: 'sobre-mi-titulo',
+                title: 'Sobre Mí - Título',
+                content: aboutTitle.textContent,
+                icon: 'fas fa-user',
+                category: 'Sobre Mí',
+                section: 'sobre-mi',
+                sectionName: 'Sobre Mí'
+            });
+        }
+        
         aboutTexts.forEach((text, index) => {
-            if (text.textContent.trim()) {
+            if (text.textContent.trim() && !text.querySelector('a')) {
                 allContent.push({
-                    id: `sobre-mi-${index}`,
-                    title: 'Sobre Mí',
+                    id: `sobre-mi-texto-${index}`,
+                    title: 'Sobre Mí - Descripción',
                     content: text.textContent,
-                    icon: 'fas fa-user',
+                    icon: 'fas fa-file-alt',
                     category: 'Sobre Mí',
                     section: 'sobre-mi',
                     sectionName: 'Sobre Mí'
@@ -1129,139 +1166,308 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
         
-        // Habilidades
-        const skillsItems = document.querySelectorAll('.skills ul li');
-        skillsItems.forEach((item, index) => {
+        // ===== 3. HABILIDADES =====
+        const skillsTitle = document.querySelector('.skills h3');
+        const skillsLists = document.querySelectorAll('.skills ul');
+        
+        if (skillsTitle) {
             allContent.push({
-                id: `skill-${index}`,
-                title: 'Habilidades',
-                content: item.textContent,
+                id: 'habilidades-titulo',
+                title: skillsTitle.textContent,
+                content: skillsTitle.textContent,
                 icon: 'fas fa-code',
                 category: 'Habilidades',
                 section: 'sobre-mi',
                 sectionName: 'Sobre Mí'
             });
+        }
+        
+        skillsLists.forEach((list, listIndex) => {
+            const items = list.querySelectorAll('li');
+            items.forEach((item, itemIndex) => {
+                allContent.push({
+                    id: `habilidad-${listIndex}-${itemIndex}`,
+                    title: listIndex === 0 ? 'Habilidad Fuerte' : 'Habilidad Blanda',
+                    content: item.textContent,
+                    icon: listIndex === 0 ? 'fas fa-check-circle' : 'fas fa-users',
+                    category: 'Habilidades',
+                    section: 'sobre-mi',
+                    sectionName: 'Sobre Mí'
+                });
+            });
         });
         
-        // Lenguajes de programación
-        const languages = document.querySelectorAll('.skill-card h3');
-        languages.forEach((lang, index) => {
+        // ===== 4. LENGUAJES DE PROGRAMACIÓN =====
+        const languagesTitle = document.querySelector('.habilidad-titulo');
+        const languageCards = document.querySelectorAll('.skill-card h3');
+        
+        if (languagesTitle) {
             allContent.push({
-                id: `language-${index}`,
-                title: 'Lenguajes',
-                content: lang.textContent,
+                id: 'lenguajes-titulo',
+                title: languagesTitle.textContent,
+                content: languagesTitle.textContent,
                 icon: 'fas fa-laptop-code',
+                category: 'Tecnologías',
+                section: 'sobre-mi',
+                sectionName: 'Sobre Mí'
+            });
+        }
+        
+        languageCards.forEach((lang, index) => {
+            allContent.push({
+                id: `lenguaje-${index}`,
+                title: 'Lenguaje de Programación',
+                content: lang.textContent,
+                icon: 'fas fa-code',
                 category: 'Tecnologías',
                 section: 'sobre-mi',
                 sectionName: 'Sobre Mí'
             });
         });
         
-        // Proyectos
-        const projects = document.querySelectorAll('.project-card');
-        projects.forEach((project, index) => {
+        // ===== 5. MARCA PERSONAL =====
+        const marcaTitle = document.querySelector('#marca-personal .section-title');
+        const marcaFrase = document.querySelector('.marca-texto .frase');
+        const marcaAutor = document.querySelector('.marca-texto .autor');
+        
+        if (marcaTitle) {
+            allContent.push({
+                id: 'marca-titulo',
+                title: 'Marca Personal - Título',
+                content: marcaTitle.textContent,
+                icon: 'fas fa-certificate',
+                category: 'Marca Personal',
+                section: 'marca-personal',
+                sectionName: 'Marca Personal'
+            });
+        }
+        
+        if (marcaFrase) {
+            allContent.push({
+                id: 'marca-frase',
+                title: 'Frase Personal',
+                content: marcaFrase.textContent,
+                icon: 'fas fa-quote-left',
+                category: 'Marca Personal',
+                section: 'marca-personal',
+                sectionName: 'Marca Personal'
+            });
+        }
+        
+        if (marcaAutor) {
+            allContent.push({
+                id: 'marca-autor',
+                title: 'Autor de la Frase',
+                content: marcaAutor.textContent,
+                icon: 'fas fa-user-tag',
+                category: 'Marca Personal',
+                section: 'marca-personal',
+                sectionName: 'Marca Personal'
+            });
+        }
+        
+        // ===== 6. PREMIOS Y RECONOCIMIENTOS =====
+        const premiosTitle = document.querySelector('#premios .section-title');
+        const premioCards = document.querySelectorAll('.premio-card');
+        
+        if (premiosTitle) {
+            allContent.push({
+                id: 'premios-titulo',
+                title: 'Premios y Reconocimientos - Título',
+                content: premiosTitle.textContent,
+                icon: 'fas fa-trophy',
+                category: 'Premios',
+                section: 'premios',
+                sectionName: 'Premios y Reconocimientos'
+            });
+        }
+        
+        premioCards.forEach((premio, index) => {
+            const desc = premio.querySelector('.premio-desc');
+            if (desc) {
+                allContent.push({
+                    id: `premio-${index}`,
+                    title: 'Premio/Reconocimiento',
+                    content: desc.textContent,
+                    icon: 'fas fa-award',
+                    category: 'Premios',
+                    section: 'premios',
+                    sectionName: 'Premios y Reconocimientos',
+                    diplomaIndex: index
+                });
+            }
+        });
+        
+        // ===== 7. MIS INTERESES =====
+        const interesesTitle = document.querySelector('#intereses .section-title');
+        const interesCards = document.querySelectorAll('.interes-card');
+        
+        if (interesesTitle) {
+            allContent.push({
+                id: 'intereses-titulo',
+                title: 'Mis Intereses - Título',
+                content: interesesTitle.textContent,
+                icon: 'fas fa-heart',
+                category: 'Intereses',
+                section: 'intereses',
+                sectionName: 'Mis Intereses'
+            });
+        }
+        
+        interesCards.forEach((interes, index) => {
+            const title = interes.querySelector('h3');
+            const desc = interes.querySelector('.interes-desc');
+            
+            if (title && desc) {
+                allContent.push({
+                    id: `interes-${index}`,
+                    title: title.textContent,
+                    content: desc.textContent,
+                    icon: 'fas fa-star',
+                    category: 'Intereses',
+                    section: 'intereses',
+                    sectionName: 'Mis Intereses',
+                    interesIndex: index
+                });
+            }
+        });
+        
+        // ===== 8. TESTIMONIOS Y RESEÑAS =====
+        const testimoniosTitle = document.querySelector('#testimonios .section-title');
+        const testimonioCards = document.querySelectorAll('.testimonio-card');
+        
+        if (testimoniosTitle) {
+            allContent.push({
+                id: 'testimonios-titulo',
+                title: 'Testimonios y Reseñas - Título',
+                content: testimoniosTitle.textContent,
+                icon: 'fas fa-quote-left',
+                category: 'Testimonios',
+                section: 'testimonios',
+                sectionName: 'Testimonios y Reseñas'
+            });
+        }
+        
+        testimonioCards.forEach((testimonio, index) => {
+            const name = testimonio.querySelector('h3');
+            const cargo = testimonio.querySelector('.testimonio-cargo');
+            const texto = testimonio.querySelector('.testimonio-texto');
+            
+            if (name && texto) {
+                allContent.push({
+                    id: `testimonio-${index}`,
+                    title: name.textContent + (cargo ? ` - ${cargo.textContent}` : ''),
+                    content: texto.textContent,
+                    icon: 'fas fa-comment',
+                    category: 'Testimonios',
+                    section: 'testimonios',
+                    sectionName: 'Testimonios y Reseñas',
+                    testimonioIndex: index
+                });
+            }
+        });
+        
+        // ===== 9. PROYECTOS =====
+        const proyectosTitle = document.querySelector('#proyectos .section-title');
+        const projectCards = document.querySelectorAll('.project-card');
+        
+        if (proyectosTitle) {
+            allContent.push({
+                id: 'proyectos-titulo',
+                title: 'Mis Proyectos - Título',
+                content: proyectosTitle.textContent,
+                icon: 'fas fa-project-diagram',
+                category: 'Proyectos',
+                section: 'proyectos',
+                sectionName: 'Proyectos'
+            });
+        }
+        
+        projectCards.forEach((project, index) => {
             const title = project.querySelector('h3');
             const desc = project.querySelector('p');
             const languages = project.getAttribute('data-languages');
             
             if (title && desc) {
                 allContent.push({
-                    id: `project-${index}`,
+                    id: `proyecto-${index}`,
                     title: title.textContent,
                     content: desc.textContent,
                     languages: languages,
-                    icon: 'fas fa-project-diagram',
+                    icon: 'fas fa-code-branch',
                     category: 'Proyectos',
                     section: 'proyectos',
                     sectionName: 'Proyectos',
-                    projectId: project.getAttribute('data-project-id')
+                    projectId: project.getAttribute('data-project-id'),
+                    fullDescription: project.getAttribute('data-description'),
+                    problem: project.getAttribute('data-problem'),
+                    solution: project.getAttribute('data-solution'),
+                    result: project.getAttribute('data-result')
                 });
             }
         });
         
-        // Premios
-        const premios = document.querySelectorAll('.premio-card');
-        premios.forEach((premio, index) => {
-            const desc = premio.querySelector('.premio-desc');
-            if (desc) {
-                allContent.push({
-                    id: `premio-${index}`,
-                    title: 'Premio',
-                    content: desc.textContent,
-                    icon: 'fas fa-trophy',
-                    category: 'Premios',
-                    section: 'premios',
-                    sectionName: 'Premios'
-                });
-            }
-        });
+        // ===== 10. CONTACTO =====
+        const contactoTitle = document.querySelector('#contacto .section-title');
+        const contactoInfo = document.querySelector('.contact-info');
         
-        // Intereses
-        const intereses = document.querySelectorAll('.interes-card');
-        intereses.forEach((interes, index) => {
-            const title = interes.querySelector('h3');
-            const desc = interes.querySelector('.interes-desc');
-            if (title && desc) {
-                allContent.push({
-                    id: `interes-${index}`,
-                    title: title.textContent,
-                    content: desc.textContent,
-                    icon: 'fas fa-heart',
-                    category: 'Intereses',
-                    section: 'intereses',
-                    sectionName: 'Intereses'
-                });
-            }
-        });
+        if (contactoTitle) {
+            allContent.push({
+                id: 'contacto-titulo',
+                title: 'Contacto - Título',
+                content: contactoTitle.textContent,
+                icon: 'fas fa-envelope',
+                category: 'Contacto',
+                section: 'contacto',
+                sectionName: 'Contacto'
+            });
+        }
         
-        // Testimonios
-        const testimonios = document.querySelectorAll('.testimonio-card');
-        testimonios.forEach((testimonio, index) => {
-            const name = testimonio.querySelector('h3');
-            const text = testimonio.querySelector('.testimonio-texto');
-            if (name && text) {
-                allContent.push({
-                    id: `testimonio-${index}`,
-                    title: name.textContent,
-                    content: text.textContent,
-                    icon: 'fas fa-quote-left',
-                    category: 'Testimonios',
-                    section: 'testimonios',
-                    sectionName: 'Testimonios'
-                });
-            }
-        });
-        
-        // Contacto
-        const contactInfo = document.querySelector('.contact-info');
-        if (contactInfo) {
-            const contactText = contactInfo.querySelector('p');
-            const contactItems = contactInfo.querySelectorAll('.contact-item p');
+        if (contactoInfo) {
+            const contactoTexto = contactoInfo.querySelector('p');
+            const contactoItems = contactoInfo.querySelectorAll('.contact-item p');
             
-            if (contactText) {
+            if (contactoTexto) {
                 allContent.push({
                     id: 'contacto-info',
-                    title: 'Contacto',
-                    content: contactText.textContent,
-                    icon: 'fas fa-envelope',
+                    title: 'Información de Contacto',
+                    content: contactoTexto.textContent,
+                    icon: 'fas fa-address-card',
                     category: 'Contacto',
                     section: 'contacto',
                     sectionName: 'Contacto'
                 });
             }
             
-            contactItems.forEach((item, index) => {
+            contactoItems.forEach((item, index) => {
                 allContent.push({
                     id: `contact-item-${index}`,
-                    title: 'Información de Contacto',
+                    title: 'Detalle de Contacto',
                     content: item.textContent,
-                    icon: 'fas fa-address-card',
+                    icon: 'fas fa-phone-alt',
+                    category: 'Contacto',
+                    section: 'contacto',
+                    sectionName: 'Contacto'
+                });
+            });
+            
+            // Redes sociales
+            const socialLinks = contactoInfo.querySelectorAll('.social-links a');
+            socialLinks.forEach((link, index) => {
+                const platform = link.querySelector('i').className.includes('linkedin') ? 'LinkedIn' : 'GitHub';
+                allContent.push({
+                    id: `social-${index}`,
+                    title: `Red Social - ${platform}`,
+                    content: link.href,
+                    icon: 'fas fa-share-alt',
                     category: 'Contacto',
                     section: 'contacto',
                     sectionName: 'Contacto'
                 });
             });
         }
+        
+        console.log(`✅ Sistema de búsqueda inicializado. ${allContent.length} elementos cargados para búsqueda.`);
     }
     
     // Buscar contenido
@@ -1274,20 +1480,27 @@ document.addEventListener('DOMContentLoaded', function() {
         const results = [];
         
         allContent.forEach(item => {
-            const content = item.content.toLowerCase();
-            const title = item.title.toLowerCase();
+            const content = item.content ? item.content.toLowerCase() : '';
+            const title = item.title ? item.title.toLowerCase() : '';
+            const category = item.category ? item.category.toLowerCase() : '';
+            const languages = item.languages ? item.languages.toLowerCase() : '';
             
             // Verificar si alguno de los términos de búsqueda coincide
             const matches = searchTerms.some(term => 
-                content.includes(term) || title.includes(term)
+                content.includes(term) || 
+                title.includes(term) || 
+                category.includes(term) ||
+                languages.includes(term)
             );
             
             if (matches) {
-                // Calcular relevancia (más términos coincidentes = mayor relevancia)
+                // Calcular relevancia
                 let relevance = 0;
                 searchTerms.forEach(term => {
-                    if (title.includes(term)) relevance += 2; // Título tiene más peso
+                    if (title.includes(term)) relevance += 3;
+                    if (category.includes(term)) relevance += 2;
                     if (content.includes(term)) relevance += 1;
+                    if (languages && languages.includes(term)) relevance += 2;
                 });
                 
                 results.push({
@@ -1331,15 +1544,24 @@ document.addEventListener('DOMContentLoaded', function() {
         limitedResults.forEach(result => {
             const resultElement = document.createElement('div');
             resultElement.className = 'search-result-item';
+            
+            // Preparar snippet
+            let snippet = result.content.substring(0, 80);
+            if (result.content.length > 80) snippet += '...';
+            
             resultElement.innerHTML = `
-                <div class="search-result-title">
+                <div class="search-result-header">
                     <i class="${result.icon}"></i>
-                    ${highlightText(result.title, query)}
+                    <div class="search-result-info">
+                        <div class="search-result-title">
+                            ${highlightText(result.title, query)}
+                        </div>
+                        <div class="search-result-category">${result.category}</div>
+                    </div>
                 </div>
                 <div class="search-result-snippet">
-                    ${highlightText(result.content.substring(0, 100), query)}...
+                    ${highlightText(snippet, query)}
                 </div>
-                <div class="search-result-category">${result.category}</div>
             `;
             
             resultElement.addEventListener('click', () => {
@@ -1371,6 +1593,18 @@ document.addEventListener('DOMContentLoaded', function() {
                 const resultElement = document.createElement('div');
                 resultElement.className = 'search-result-card';
                 resultElement.setAttribute('data-index', index);
+                
+                // Preparar contenido
+                let contentSnippet = result.content.substring(0, 120);
+                if (result.content.length > 120) contentSnippet += '...';
+                
+                // Tecnologías si las hay
+                const techHTML = result.languages ? 
+                    `<div class="search-result-tech">
+                        <i class="fas fa-tools"></i>
+                        <span>${JSON.parse(result.languages).join(', ')}</span>
+                    </div>` : '';
+                
                 resultElement.innerHTML = `
                     <div class="search-result-card-header">
                         <div class="search-result-card-icon">
@@ -1382,8 +1616,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         </div>
                     </div>
                     <div class="search-result-card-content">
-                        ${highlightText(result.content.substring(0, 150), query)}...
+                        ${highlightText(contentSnippet, query)}
                     </div>
+                    ${techHTML}
                     <div class="search-result-card-footer">
                         <span class="search-result-card-section">
                             <i class="fas fa-folder"></i> ${result.sectionName}
@@ -1402,11 +1637,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Event listener para el enlace
                 const link = resultElement.querySelector('.search-result-card-link');
-                link.addEventListener('click', (e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    navigateToResult(result);
-                });
+                if (link) {
+                    link.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        navigateToResult(result);
+                    });
+                }
                 
                 searchResultsContainer.appendChild(resultElement);
             });
@@ -1450,6 +1687,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 }, 500);
             }
             
+            // Si es un premio, abrir el modal del diploma
+            if (typeof result.diplomaIndex !== 'undefined') {
+                setTimeout(() => {
+                    const diplomaBtn = document.querySelector(`.ver-diploma-btn[data-index="${result.diplomaIndex}"]`);
+                    if (diplomaBtn) diplomaBtn.click();
+                }, 500);
+            }
+            
             // Resaltar el elemento temporalmente
             setTimeout(() => {
                 const element = document.getElementById(result.id);
@@ -1470,21 +1715,12 @@ document.addEventListener('DOMContentLoaded', function() {
         searchResultsSection.style.display = 'none';
         searchResults.classList.remove('active');
         searchInput.value = '';
-        clearSearchBtn.classList.remove('visible');
         searchInput.blur();
     }
     
     // Event Listeners
     searchInput.addEventListener('input', function() {
         const query = this.value;
-        
-        // Mostrar/ocultar botón de limpiar
-        if (query.trim()) {
-            clearSearchBtn.classList.add('visible');
-        } else {
-            clearSearchBtn.classList.remove('visible');
-            searchResults.classList.remove('active');
-        }
         
         // Debounce para búsqueda en tiempo real
         clearTimeout(searchTimeout);
@@ -1520,14 +1756,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!searchResults.contains(e.target) && !searchInput.contains(e.target)) {
             searchResults.classList.remove('active');
         }
-    });
-    
-    clearSearchBtn.addEventListener('click', function() {
-        searchInput.value = '';
-        searchInput.focus();
-        searchResults.classList.remove('active');
-        clearSearchBtn.classList.remove('visible');
-        hideSearchResults();
     });
     
     closeSearchResults.addEventListener('click', hideSearchResults);

@@ -76,7 +76,6 @@ nav {
     z-index: 1000;
 }
 
-/* CONTENEDOR PRINCIPAL - COMPACTO */
 nav .container {
     display: flex;
     justify-content: space-between;
@@ -86,7 +85,6 @@ nav .container {
     margin: 0 auto;
 }
 
-/* LOGO - Compacto */
 .logo {
     display: flex;
     align-items: center;
@@ -103,7 +101,7 @@ nav .container {
     color: transparent;
 }
 
-/* BARRA DE BÚSQUEDA - Compacta con icono a la DERECHA */
+/* BARRA DE BÚSQUEDA - Sin "X" */
 .search-container {
     flex: 0 1 250px;
     margin: 0 15px;
@@ -115,7 +113,6 @@ nav .container {
     align-items: center;
 }
 
-/* ICONO DE BÚSQUEDA A LA DERECHA */
 .search-icon {
     position: absolute;
     right: 12px;
@@ -126,11 +123,26 @@ nav .container {
 
 .search-input {
     width: 100%;
-    padding: 8px 35px 8px 15px; /* Más padding derecho para el icono */
+    padding: 8px 35px 8px 15px;
     border: 1px solid #ddd;
     border-radius: 20px;
     font-size: 0.9rem;
     transition: all 0.3s ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+/* QUITAR LA "X" DEL INPUT */
+.search-input::-webkit-search-cancel-button,
+.search-input::-ms-clear,
+.search-input::-webkit-clear-button {
+    display: none !important;
+    -webkit-appearance: none !important;
+    appearance: none !important;
+    opacity: 0 !important;
+    width: 0 !important;
+    height: 0 !important;
 }
 
 .search-input:focus {
@@ -139,12 +151,10 @@ nav .container {
     box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.1);
 }
 
-/* Botón de limpiar OCULTO */
 .clear-search-btn {
     display: none;
 }
 
-/* MENÚ - Compacto y alineado */
 nav ul {
     display: flex;
     list-style: none;
@@ -169,7 +179,6 @@ nav ul li a:hover {
     color: #e63946;
 }
 
-/* Subrayado al hover */
 nav ul li a::after {
     content: '';
     position: absolute;
@@ -185,7 +194,6 @@ nav ul li a:hover::after {
     width: 100%;
 }
 
-/* LOGO IMG - Compacto */
 .logo-img {
     width: 38px;
     height: 38px;
@@ -196,12 +204,10 @@ nav ul li a:hover::after {
     transition: border 0.3s ease;
 }
 
-/* Versión para modo oscuro */
 .dark-mode .logo-img {
     border: 2px solid #fff;
 }
 
-/* BOTONES - Compactos y juntos */
 .nav-buttons {
     display: flex;
     gap: 10px;
@@ -229,7 +235,6 @@ nav ul li a:hover::after {
     box-shadow: 0 3px 8px rgba(230, 57, 70, 0.2);
 }
 
-/* Botón modo oscuro específico */
 .dark-mode-btn {
     background: linear-gradient(90deg, #1d3557 0%, #457b9d 100%);
 }
@@ -238,7 +243,6 @@ nav ul li a:hover::after {
     box-shadow: 0 3px 8px rgba(29, 53, 87, 0.2);
 }
 
-/* Iconos más pequeños */
 .translate-btn i {
     font-size: 0.9rem;
 }
@@ -247,7 +251,6 @@ nav ul li a:hover::after {
     font-size: 1rem;
 }
 
-/* RESPONSIVE para pantallas medianas */
 @media (max-width: 1024px) {
     nav .container {
         padding: 12px 15px;
@@ -273,18 +276,17 @@ nav ul li a:hover::after {
     }
 }
 
-/* RESPONSIVE para móviles */
 @media (max-width: 768px) {
     .logo h2 span {
-        display: none; /* Solo muestra "Mi" en móvil */
+        display: none;
     }
     
     .search-container {
-        display: none; /* Oculta búsqueda en móvil */
+        display: none;
     }
     
     .dark-mode-text, .lang-text {
-        display: none; /* Solo iconos en móvil */
+        display: none;
     }
     
     .translate-btn {
