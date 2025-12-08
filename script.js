@@ -1764,98 +1764,92 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeSearchContent();
 });
 
-// ===== RESPONSIVE MOBILE FUNCTIONS =====
-
-// 1. Menú hamburguesa
-function initMobileMenu() {
-    // Solo si estamos en móvil
-    if (window.innerWidth <= 768) {
-        // Crear botón hamburguesa
-        const menuToggle = document.createElement('button');
-        menuToggle.className = 'menu-toggle';
-        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-        menuToggle.setAttribute('aria-label', 'Menú de navegación');
-        
-        // Insertar después del logo
-        const logo = document.querySelector('.logo');
-        if (logo) {
-            logo.appendChild(menuToggle);
-            
-            const navMenu = document.querySelector('nav ul');
-            
-            // Toggle del menú
-            menuToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                navMenu.classList.toggle('active');
-                menuToggle.innerHTML = navMenu.classList.contains('active') 
-                    ? '<i class="fas fa-times"></i>' 
-                    : '<i class="fas fa-bars"></i>';
-            });
-            
-            // Cerrar menú al hacer clic en un enlace
-            const navLinks = document.querySelectorAll('nav ul li a');
-            navLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    navMenu.classList.remove('active');
-                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                });
-            });
-            
-            // Cerrar menú al hacer clic fuera
-            document.addEventListener('click', function(e) {
-                if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
-                    navMenu.classList.remove('active');
-                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-            });
-        }
-    }
-}
-
-// 2. Optimizar para redimensionamiento
-function handleResize() {
-    const width = window.innerWidth;
+// ===== MENÚ HAMBURGUESA =====
+document.addEventListener('DOMContentLoaded', function() {
+    // 1. Crear botón hamburguesa
+    const menuToggle = document.createElement('button');
+    menuToggle.className = 'menu-toggle';
+    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+    menuToggle.setAttribute('aria-label', 'Abrir menú');
     
-    // Mostrar/ocultar menú hamburguesa
-    const menuToggle = document.querySelector('.menu-toggle');
+    // 2. Insertar en el logo
+    const logo = document.querySelector('.logo');
+    if (logo) {
+        logo.appendChild(menuToggle);
+    }
+    
+    // 3. Obtener el menú
     const navMenu = document.querySelector('nav ul');
     
-    if (width <= 768) {
-        // Móvil: asegurar menú hamburguesa
-        if (!menuToggle) {
-            initMobileMenu();
-        }
-        if (navMenu) {
-            navMenu.style.display = 'none';
-        }
-    } else {
-        // Desktop: mostrar menú normal
-        if (menuToggle) {
-            menuToggle.remove();
-        }
-        if (navMenu) {
-            navMenu.style.display = 'flex';
-            navMenu.classList.remove('active');
+    // 4. Función para mostrar/ocultar menú
+    function toggleMenu() {
+        navMenu.classList.toggle('active');
+        
+        // Cambiar ícono
+        const icon = menuToggle.querySelector('i');
+        if (navMenu.classList.contains('active')) {
+            icon.className = 'fas fa-times';
+            document.body.style.overflow = 'hidden'; // Prevenir scroll
+        } else {
+            icon.className = 'fas fa-bars';
+            document.body.style.overflow = ''; // Restaurar scroll
         }
     }
-}
-
-// 3. Inicializar cuando se carga la página
-document.addEventListener('DOMContentLoaded', function() {
-    // Tu código existente de búsqueda aquí...
     
-    // Inicializar responsive
-    handleResize();
+    // 5. Event listener para el botón
+    if (menuToggle && navMenu) {
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation();
+            toggleMenu();
+        });
+        
+        // 6. Cerrar menú al hacer clic en un enlace
+        const navLinks = document.querySelectorAll('nav ul li a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                menuToggle.querySelector('i').className = 'fas fa-bars';
+                document.body.style.overflow = '';
+            });
+        });
+        
+        // 7. Cerrar menú al hacer clic fuera
+        document.addEventListener('click', function(e) {
+            if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                navMenu.classList.remove('active');
+                menuToggle.querySelector('i').className = 'fas fa-bars';
+                document.body.style.overflow = '';
+            }
+        });
+        
+        // 8. Cerrar menú al presionar Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+                menuToggle.querySelector('i').className = 'fas fa-bars';
+                document.body.style.overflow = '';
+            }
+        });
+    }
     
-    // Escuchar cambios de tamaño
+    // 9. Ajustar menú en redimensionamiento
+    function handleResize() {
+        if (window.innerWidth > 768 && navMenu) {
+            navMenu.classList.remove('active');
+            navMenu.style.display = 'flex';
+            if (menuToggle) {
+                menuToggle.querySelector('i').className = 'fas fa-bars';
+            }
+            document.body.style.overflow = '';
+        }
+    }
+    
     window.addEventListener('resize', handleResize);
     
-    // Prevenir zoom en inputs en iOS
-    document.querySelectorAll('input, textarea, select').forEach(el => {
-        el.addEventListener('focus', function() {
-            setTimeout(() => {
-                this.scrollIntoView({ behavior: 'smooth', block: 'center' });
-            }, 300);
-        });
-    });
+    // 10. Inicializar menú según tamaño actual
+    if (window.innerWidth <= 768 && menuToggle) {
+        menuToggle.style.display = 'block';
+    } else if (menuToggle) {
+        menuToggle.style.display = 'none';
+    }
 });
