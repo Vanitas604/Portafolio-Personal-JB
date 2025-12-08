@@ -306,72 +306,92 @@ nav ul li a:hover::after {
     position: absolute;
     top: 100%;
     right: 0;
-    background: white; /* MODO CLARO: blanco */
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    min-width: 180px;
+    background: #ffffff; /* BLANCO PURO pero suave */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Sombra más suave */
+    border-radius: 10px; /* Bordes más redondeados */
+    min-width: 200px; /* Un poco más ancho */
     opacity: 0;
     visibility: hidden;
     transform: translateY(10px);
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transición más suave */
     z-index: 1000;
-    padding: 8px 0;
-    border: 1px solid #eee;
+    padding: 10px 0; /* Más padding */
+    border: 1px solid #f0f0f0; /* Borde más suave */
 }
 
 /* Mostrar al hover */
 .nav-more:hover .more-dropdown {
     opacity: 1;
     visibility: visible;
-    transform: translateY(0);
+    transform: translateY(5px); /* Menos desplazamiento */
 }
 
 .nav-more:hover .more-arrow {
     transform: rotate(180deg);
 }
 
-/* Enlaces del dropdown - MODO CLARO */
+/* Enlaces del dropdown - MODO CLARO (COLORES MÁS SUAVES) */
 .more-dropdown a {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px 15px;
-    color: #000000; /* MODO CLARO: negro - SIN !important */
+    gap: 12px; /* Más espacio entre icono y texto */
+    padding: 12px 20px; /* Más padding */
+    color: #444444; /* GRIS OSCURO SUAVE en lugar de negro puro */
     text-decoration: none;
-    font-size: 0.85rem;
-    transition: all 0.3s ease;
+    font-size: 0.9rem; /* Un poco más grande */
+    font-weight: 500; /* Texto un poco más grueso */
+    transition: all 0.25s ease;
+    border-radius: 6px; /* Bordes redondeados en los items */
+    margin: 0 8px; /* Margen lateral */
+    width: calc(100% - 16px); /* Ancho completo menos margen */
 }
 
 .more-dropdown a:hover {
-    background: #f8f9fa;
-    color: #e63946;
+    background: linear-gradient(90deg, rgba(230, 57, 70, 0.08) 0%, rgba(255, 107, 107, 0.08) 100%);
+    color: #e63946; /* Rojo al hacer hover */
+    transform: translateX(4px); /* Pequeño desplazamiento a la derecha */
 }
 
 .more-dropdown a i {
-    width: 16px;
+    width: 18px; /* Iconos un poco más grandes */
     text-align: center;
-    font-size: 0.9rem;
-    color: #e63946;
+    font-size: 1rem;
+    color: #e63946; /* Rojo para iconos */
+    transition: transform 0.3s ease;
 }
 
-/* ===== MODO OSCURO - ESTO ES LO QUE CAMBIA LOS COLORES ===== */
+.more-dropdown a:hover i {
+    transform: scale(1.1); /* Icono crece ligeramente al hover */
+}
+
+/* ===== MODO OSCURO - COLORES SUAVES Y ELEGANTES ===== */
 body.dark-mode .nav-more .more-dropdown {
-    background: #000000 !important; /* NEGRO en modo oscuro */
-    border: 1px solid #444 !important;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5) !important;
+    background: #1e1e2e !important; /* AZUL OSCURO ELEGANTE (no negro puro) */
+    border: 1px solid #2d3748 !important; /* Borde gris azulado */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25) !important; /* Sombra más pronunciada */
 }
 
 body.dark-mode .nav-more .more-dropdown a {
-    color: #ffffff !important; /* BLANCO en modo oscuro */
+    color: #e2e8f0 !important; /* GRIS CLARO SUAVE (no blanco puro) */
 }
 
 body.dark-mode .nav-more .more-dropdown a:hover {
-    background: #333333 !important;
-    color: #ff6b6b !important;
+    background: linear-gradient(90deg, rgba(230, 57, 70, 0.15) 0%, rgba(255, 107, 107, 0.15) 100%) !important;
+    color: #ff6b6b !important; /* Rojo más claro en hover */
+    transform: translateX(4px) !important;
 }
 
 body.dark-mode .nav-more .more-dropdown a i {
-    color: #e63946 !important; /* Iconos rojos */
+    color: #ff6b6b !important; /* Rojo claro para iconos en modo oscuro */
+}
+
+/* Separador entre items (opcional, más elegante) */
+.more-dropdown a:not(:last-child) {
+    border-bottom: 1px solid #f5f5f5;
+}
+
+body.dark-mode .nav-more .more-dropdown a:not(:last-child) {
+    border-bottom: 1px solid #2d3748 !important;
 }
 
 /* ===== AJUSTE PARA ALINEAR "MÁS" CON LOS DEMÁS ===== */
