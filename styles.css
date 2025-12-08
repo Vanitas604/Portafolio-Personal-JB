@@ -330,13 +330,13 @@ nav ul li a:hover::after {
     transform: rotate(180deg);
 }
 
-/* Enlaces del dropdown */
+/* Enlaces del dropdown - CAMBIO: COLOR NEGRO */
 .more-dropdown a {
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 10px 15px;
-    color: #333;
+    color: #000000; /* CAMBIO: Color negro como solicitaste */
     text-decoration: none;
     font-size: 0.85rem;
     transition: all 0.3s ease;
@@ -368,12 +368,24 @@ nav ul li a:hover::after {
 }
 
 .dark-mode .more-dropdown a {
-    color: #e0e0e0;
+    color: #ffffff; /* Blanco en modo oscuro para buena visibilidad */
 }
 
 .dark-mode .more-dropdown a:hover {
     background: #2d3047;
     color: #ff6b6b;
+}
+
+/* ===== AJUSTE PARA ALINEAR "MÁS" CON LOS DEMÁS ===== */
+/* Solo este pequeño ajuste para alinear verticalmente */
+nav ul li {
+    display: flex;
+    align-items: center;
+}
+
+.nav-more {
+    display: flex;
+    align-items: center;
 }
 
 /* ===== RESPONSIVE ===== */
