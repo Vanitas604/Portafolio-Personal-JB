@@ -2404,6 +2404,26 @@ body.page-loaded {
     color: #d0d0d0;
 }
 
+/* Comillas de cierre - estilo igual a las iniciales */
+.comillas-fin {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #e63946 0%, #ff6b6b 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(230, 57, 70, 0.3);
+    margin-top: 15px;        /* Más cerca del texto */
+    margin-left: auto;       /* Alineación a la derecha */
+    margin-right: 0;
+}
+
+.comillas-fin i {
+    color: white;
+    font-size: 16px;
+}
+
 /* Botones del carrusel */
 .carrusel-testimonio-btn {
     position: absolute;
