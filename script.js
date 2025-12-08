@@ -1763,3 +1763,99 @@ document.addEventListener('DOMContentLoaded', function() {
     // Inicializar
     initializeSearchContent();
 });
+
+// ===== RESPONSIVE MOBILE FUNCTIONS =====
+
+// 1. Menú hamburguesa
+function initMobileMenu() {
+    // Solo si estamos en móvil
+    if (window.innerWidth <= 768) {
+        // Crear botón hamburguesa
+        const menuToggle = document.createElement('button');
+        menuToggle.className = 'menu-toggle';
+        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        menuToggle.setAttribute('aria-label', 'Menú de navegación');
+        
+        // Insertar después del logo
+        const logo = document.querySelector('.logo');
+        if (logo) {
+            logo.appendChild(menuToggle);
+            
+            const navMenu = document.querySelector('nav ul');
+            
+            // Toggle del menú
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                navMenu.classList.toggle('active');
+                menuToggle.innerHTML = navMenu.classList.contains('active') 
+                    ? '<i class="fas fa-times"></i>' 
+                    : '<i class="fas fa-bars"></i>';
+            });
+            
+            // Cerrar menú al hacer clic en un enlace
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    navMenu.classList.remove('active');
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                });
+            });
+            
+            // Cerrar menú al hacer clic fuera
+            document.addEventListener('click', function(e) {
+                if (!menuToggle.contains(e.target) && !navMenu.contains(e.target)) {
+                    navMenu.classList.remove('active');
+                    menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+                }
+            });
+        }
+    }
+}
+
+// 2. Optimizar para redimensionamiento
+function handleResize() {
+    const width = window.innerWidth;
+    
+    // Mostrar/ocultar menú hamburguesa
+    const menuToggle = document.querySelector('.menu-toggle');
+    const navMenu = document.querySelector('nav ul');
+    
+    if (width <= 768) {
+        // Móvil: asegurar menú hamburguesa
+        if (!menuToggle) {
+            initMobileMenu();
+        }
+        if (navMenu) {
+            navMenu.style.display = 'none';
+        }
+    } else {
+        // Desktop: mostrar menú normal
+        if (menuToggle) {
+            menuToggle.remove();
+        }
+        if (navMenu) {
+            navMenu.style.display = 'flex';
+            navMenu.classList.remove('active');
+        }
+    }
+}
+
+// 3. Inicializar cuando se carga la página
+document.addEventListener('DOMContentLoaded', function() {
+    // Tu código existente de búsqueda aquí...
+    
+    // Inicializar responsive
+    handleResize();
+    
+    // Escuchar cambios de tamaño
+    window.addEventListener('resize', handleResize);
+    
+    // Prevenir zoom en inputs en iOS
+    document.querySelectorAll('input, textarea, select').forEach(el => {
+        el.addEventListener('focus', function() {
+            setTimeout(() => {
+                this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
+        });
+    });
+});
