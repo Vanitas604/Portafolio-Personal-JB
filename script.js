@@ -65,7 +65,40 @@ const translations = {
         marcaPersonalFrase: "“Una mente curiosa, un corazón empático y un espíritu que nunca deja de evolucionar.”",
         marcaPersonalAutor: "- Jennifer Baires",
         // Modo oscuro
-        darkModeText: "Modo Oscuro"
+        darkModeText: "Modo Oscuro",
+        
+        // === TRADUCCIONES COMPLETAS PARA EL MODAL DE PROYECTOS ===
+        // Proyecto 1: Adopta a un amigo
+        proj1Title: "Adopta a un amigo",
+        proj1Role: "Desarrollador Full Stack y Scrum Master",
+        proj1Description: "Plataforma web completa para un refugio de animales, enfocada en promover la adopción responsable. Incluye sistema de gestión de mascotas, formularios de adopción y panel administrativo.",
+        proj1Problem: "Los refugios de animales enfrentaban dificultades para gestionar adopciones de manera eficiente, con procesos manuales que causaban demoras y falta de seguimiento en las solicitudes.",
+        proj1Solution: "Sistema de registro de usuarios|Catálogo de animales disponibles para adopción|Filtros por tipo, tamaño y edad del animal|Formulario de solicitud de adopción|Panel administrativo para el refugio",
+        proj1Result: "El sistema aumentó las adopciones en un 40%, redujo el tiempo de procesamiento de solicitudes de 5 días a 24 horas, y mejoró significativamente la experiencia tanto para adoptantes como para el personal del refugio.",
+        
+        // Proyecto 2: Artesanías Software
+        proj2Title: "Software Empresarial Artesanías Conchita",
+        proj2Role: "Scrum Master",
+        proj2Description: "Prototipo de software empresarial que permite llevar el control completo de facturación, inventario, clientes y proveedores de la empresa Artesanías Conchita.",
+        proj2Problem: "La empresa Artesanías Conchita gestionaba sus procesos de facturación e inventario de manera manual, lo que generaba errores, pérdida de información y dificultades para acceder a datos históricos.",
+        proj2Solution: "Sistema de facturación automatizado|Control de inventario en tiempo real|Gestión centralizada de clientes y proveedores|Reportes y estadísticas de ventas|Copia de seguridad automática de datos",
+        proj2Result: "Reducción del 80% en errores de facturación, optimización del 60% en tiempo de gestión de inventario y acceso inmediato a reportes financieros.",
+        
+        // Proyecto 3: Artesanías Web
+        proj3Title: "Sitio Web de Artesanías Conchita",
+        proj3Role: "Scrum Master, Desarrollador Full Stack y Diseñador Web",
+        proj3Description: "Sitio web informativo y catálogo en línea que muestra los productos artesanales de la empresa, con diseño responsive y optimizado para SEO.",
+        proj3Problem: "La empresa no tenía presencia digital, lo que limitaba su alcance a clientes potenciales y dificultaba la difusión de sus productos artesanales a un mercado más amplio.",
+        proj3Solution: "Diseño web responsive adaptado a todos los dispositivos|Catálogo digital de productos organizado por categorías|Optimización SEO para mejor posicionamiento|Formulario de contacto integrado|Galería de imágenes de alta calidad",
+        proj3Result: "Aumento del 200% en visibilidad en línea, generación de leads calificados y establecimiento de presencia digital profesional para la empresa.",
+        
+        // Proyecto 4: Task Planner
+        proj4Title: "Task Planner",
+        proj4Role: "Scrum Master y Desarrollador Full Stack",
+        proj4Description: "Aplicación móvil para organizar tareas diarias, con sistema de recordatorios, categorías, prioridades y almacenamiento local para una mejor gestión del tiempo.",
+        proj4Problem: "Los usuarios necesitaban una herramienta eficiente para organizar sus tareas diarias, ya que las aplicaciones existentes no ofrecían una experiencia intuitiva ni características de personalización adecuadas.",
+        proj4Solution: "Interfaz intuitiva y fácil de usar|Sistema de categorías y etiquetas personalizables|Recordatorios y notificaciones push|Sincronización offline con SQLite|Filtros por prioridad y fecha de vencimiento",
+        proj4Result: "Mejora del 75% en la productividad de los usuarios, reducción del estrés en la organización de tareas y alta calificación en Google Play Store (4.5/5)."
     },
     en: {
         logo: "MyPortfolio",
@@ -165,11 +198,7 @@ const translations = {
     }
 };
 
-// ==============================
-// Traducciones para el modal de proyectos
-// ==============================
-// Estado actual del idioma
-// ==============================
+// Idioma inicial
 let currentLang = 'es';
 
 // ==============================
@@ -843,115 +872,6 @@ function updateActiveInteresCards() {
     }
 }
 
-});
-
-// ===== CARRUSEL DE TESTIMONIOS (SIN AUTO-AVANCE) =====
-document.addEventListener('DOMContentLoaded', function() {
-    const testimoniosTrack = document.querySelector('.testimonios-track');
-    const testimonioCards = document.querySelectorAll('.testimonio-card');
-    const prevTestimonioBtn = document.querySelector('.prev-testimonio-btn');
-    const nextTestimonioBtn = document.querySelector('.next-testimonio-btn');
-    const testimonioIndicadores = document.querySelectorAll('.testimonio-indicador');
-    
-    if (!testimoniosTrack) return;
-    
-    let currentTestimonioIndex = 0;
-    
-    // Actualizar posición del carrusel
-    function updateTestimoniosCarrusel() {
-        const translateX = -(currentTestimonioIndex * 100);
-        testimoniosTrack.style.transform = `translateX(${translateX}%)`;
-        
-        updateTestimonioIndicadores();
-        updateTestimonioButtons();
-    }
-    
-    // Actualizar indicadores
-    function updateTestimonioIndicadores() {
-        testimonioIndicadores.forEach((indicador, index) => {
-            if (index === currentTestimonioIndex) {
-                indicador.classList.add('active');
-            } else {
-                indicador.classList.remove('active');
-            }
-        });
-    }
-    
-    // Actualizar estado de botones
-    function updateTestimonioButtons() {
-        prevTestimonioBtn.disabled = currentTestimonioIndex === 0;
-        nextTestimonioBtn.disabled = currentTestimonioIndex === testimonioCards.length - 1;
-    }
-    
-    // Ir a slide específico
-    function goToTestimonioSlide(index) {
-        currentTestimonioIndex = index;
-        updateTestimoniosCarrusel();
-    }
-    
-    // Siguiente slide
-    function nextTestimonioSlide() {
-        if (currentTestimonioIndex < testimonioCards.length - 1) {
-            currentTestimonioIndex++;
-            updateTestimoniosCarrusel();
-        }
-    }
-    
-    // Slide anterior
-    function prevTestimonioSlide() {
-        if (currentTestimonioIndex > 0) {
-            currentTestimonioIndex--;
-            updateTestimoniosCarrusel();
-        }
-    }
-    
-    // Event Listeners
-    if (prevTestimonioBtn && nextTestimonioBtn) {
-        prevTestimonioBtn.addEventListener('click', prevTestimonioSlide);
-        nextTestimonioBtn.addEventListener('click', nextTestimonioSlide);
-    }
-    
-    // Event listeners para indicadores
-    testimonioIndicadores.forEach(indicador => {
-        indicador.addEventListener('click', () => {
-            const index = parseInt(indicador.getAttribute('data-index'));
-            goToTestimonioSlide(index);
-        });
-    });
-    
-    // Swipe para móviles
-    let startX = 0;
-    let endX = 0;
-    const testimoniosContainer = document.querySelector('.testimonios-container');
-    
-    if (testimoniosContainer) {
-        testimoniosContainer.addEventListener('touchstart', (e) => {
-            startX = e.touches[0].clientX;
-        });
-        
-        testimoniosContainer.addEventListener('touchend', (e) => {
-            endX = e.changedTouches[0].clientX;
-            handleTestimonioSwipe();
-        });
-    }
-    
-    function handleTestimonioSwipe() {
-        const diff = startX - endX;
-        const threshold = 50;
-        
-        if (Math.abs(diff) > threshold) {
-            if (diff > 0) {
-                // Swipe izquierda - siguiente
-                nextTestimonioSlide();
-            } else {
-                // Swipe derecha - anterior
-                prevTestimonioSlide();
-            }
-        }
-    }
-    
-    // Inicializar
-    updateTestimoniosCarrusel();
 });
 
 // ===== CARRUSEL DE TESTIMONIOS (SIN AUTO-AVANCE) =====
