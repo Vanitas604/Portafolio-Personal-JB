@@ -1,8 +1,8 @@
 // =========================
-// script.js – versión mejorada
+// script.js – versión COMPLETA Y CORREGIDA
 // =========================
 
-// Traducciones en Español e Inglés
+// Traducciones COMPLETAS en Español e Inglés
 const translations = {
     es: {
         logo: "MiPortafolio",
@@ -10,13 +10,27 @@ const translations = {
         navSobreMi: "Sobre Mí",
         navProyectos: "Proyectos",
         navContacto: "Contacto",
+        navMas: "Más",
+        navMarca: "Marca Personal",
+        navPremios: "Premios",
+        navIntereses: "Intereses",
+        navTestimonios: "Testimonios",
+        
+        searchPlaceholder: "Buscar",
+        searchResultsTitle: "Resultados de Búsqueda",
+        closeResults: "Cerrar resultados",
+        noResultsFound: "No se encontraron resultados",
+        noResultsText: "Intenta con otras palabras clave o verifica la ortografía.",
+        
         heroTitulo: "Hola, soy <span class='highlight'>Jennifer Yamileth Baires Acosta</span>",
         heroAreas: "<h2>Áreas de interés:</h2> Scrum Master, Desarrollador Web & Diseñador UX/UI",
         heroBtnProyectos: "Ver Mis Proyectos",
         heroBtnCV: "Descargar CV",
+        
         sobreMiTitulo: "Sobre <span>Mí</span>",
         sobreMiTexto1: "Persona optimista, responsable y orientada al progreso, con facilidad para trabajar en equipo, adaptarse a nuevos retos y mantener relaciones interpersonales positivas.",
         sobreMiTexto2: "Mi objetivo es crear experiencias digitales que no solo sean visualmente atractivas, sino también intuitivas y accesibles para todos los usuarios.",
+        
         skillsTitulo: "Habilidades",
         skillsFuertes: "Habilidades Fuertes",
         skillGit: "Conocimientos básicos en Git para control de versiones",
@@ -33,6 +47,59 @@ const translations = {
         softAdaptabilidad: "Adaptabilidad",
         lenguajesTitulo: "Lenguajes de Programación",
         sobreMiBtnCV: "Descargar CV",
+        
+        // MARCA PERSONAL
+        marcaPersonalTitulo: "Marca Personal",
+        marcaPersonalFrase: "“Una mente curiosa, un corazón empático y un espíritu que nunca deja de evolucionar.”",
+        marcaPersonalAutor: "- Jennifer Baires",
+        
+        // PREMIOS Y RECONOCIMIENTOS (CARRUSEL)
+        premiosTitulo: "Premios y Reconocimientos",
+        premio1Titulo: "Talleres de Desarrollo y Seguridad – Universidad Gerardo Barrios",
+        premio1Desc: "Diploma por completar 64 horas de formación en Casos de Prueba, UX/UI, Desarrollo Web, DevOps y Seguridad, dentro del proyecto académico 'Ciclo de vida de software'.",
+        premio2Titulo: "CCNA: Introducción a las Redes – Cisco Networking Academy & Universidad Gerardo Barrios",
+        premio2Desc: "Diploma por completar satisfactoriamente el curso CCNA: Introducción a las Redes, enfocado en fundamentos de redes, arquitectura, protocolos, conectividad y principios esenciales de infraestructura Cisco.",
+        premio3Titulo: "Curso de Maquetación Web con Dreamweaver – OEF de El Salvador",
+        premio3Desc: "Diploma por completar un curso de 48 horas en maquetación de páginas web utilizando Adobe Dreamweaver, enfocado en diseño, estructura y construcción de interfaces web.",
+        premio4Titulo: "Diplomado de Inglés",
+        premio4Desc: "Diploma por completar satisfactoriamente un curso intensivo de inglés de 48 horas, enfocado en habilidades comunicativas y fundamentos del idioma.",
+        premio5Titulo: "Diplomado en Gestión de Riesgo y Cambio Climático – MINED & UNES",
+        premio5Desc: "Diploma otorgado por completar el diplomado en Gestión Integral para la Reducción de Riesgo y Cambio Climático en El Salvador, enfocado en prevención, preparación y educación ambiental.",
+        verDiplomaCompleto: "Ver Diploma Completo",
+        
+        // MIS INTERESES (CARRUSEL)
+        interesesTitulo: "Mis Intereses",
+        interes1Titulo: "Creatividad y Arte",
+        interes1Desc: "Me encanta explorar el arte digital mediante herramientas como Canva, Procreate e ibisPaint. Disfruto crear diseños simples, ilustraciones y elementos visuales inspirados en el estilo anime, combinando creatividad y expresión personal.",
+        interes2Titulo: "Diseño UX/UI",
+        interes2Desc: "Me interesa la investigación de usuarios y la creación de casos de prueba para mejorar la experiencia digital. Busco diseñar interfaces intuitivas, accesibles y centradas en las necesidades reales del usuario.",
+        interes3Titulo: "Desarrollo Personal",
+        interes3Desc: "Me interesa mejorar mi organización y productividad mediante técnicas de gestión del tiempo. También disfruto aprender constantemente a través de cursos gratuitos que fortalecen mis habilidades personales y profesionales.",
+        interes4Titulo: "Mundo Literario / Anime",
+        interes4Desc: "Me inspiran los universos de anime y la creación de personajes originales. Me interesa escribir mini-historias, desarrollar habilidades narrativas y diseñar personajes con poderes y personalidades únicas.",
+        interes5Titulo: "Optimización de Espacios",
+        interes5Desc: "Me gusta diseñar y mejorar mi espacio de estudio, buscando un ambiente funcional, organizado y visualmente agradable que potencie mi concentración, creatividad y desempeño.",
+        interes6Titulo: "Creación de Contenido Tecnológico",
+        interes6Desc: "Me interesa compartir conocimiento con otros estudiantes mediante plantillas, recursos y materiales educativos que faciliten el aprendizaje y fortalezcan habilidades en programación y tecnología.",
+        
+        // TESTIMONIOS Y RESEÑAS (CARRUSEL)
+        testimoniosTitulo: "Testimonios & Reseñas",
+        testimonio1Nombre: "Lic. José Ovidio Ramos",
+        testimonio1Cargo: "Vicedecano de la Facultad de Ciencia y Tecnología, Universidad Gerardo Barrios",
+        testimonio1Texto: "Jennifer Yamileth Baires Acosta es una estudiante responsable y comprometida, con entusiasmo por aprender, creatividad y capacidad de trabajo en equipo, destacando por su perseverancia y potencial para liderar proyectos.",
+        testimonio2Nombre: "Lic. Alexia Marcela Martinez Castro",
+        testimonio2Cargo: "Docente de Inglés Básico, Universidad Gerardo Barrios",
+        testimonio2Texto: "Jennifer es una estudiante responsable y proactiva, con excelente comprensión del inglés. Destaca por su ética, autonomía y capacidad de trabajar en equipo.",
+        testimonio3Nombre: "Ing. Marvin Osmaro Parada Benitez",
+        testimonio3Cargo: "Docente de Programación III, Universidad Gerardo Barrios",
+        testimonio3Texto: "Jennifer Yamileth Baires Acosta es una estudiante responsable, colaboradora y dedicada, con gran capacidad de trabajo en equipo y disposición para enfrentar retos. Su compromiso y habilidades la hacen apta para integrarse y destacar en cualquier entorno profesional.",
+        testimonio4Nombre: "Ing. Herbert René Cordero Henríquez",
+        testimonio4Cargo: "Docente de Fundamentos de Programación, Universidad Gerardo Barrios",
+        testimonio4Texto: "Es una estudiante responsable, dedicada y respetuosa. Trabaja bien en equipo, muestra gran disposición en las actividades académicas y destaca por su carisma, habilidades sociales y pensamiento estratégico. Tiene una actitud positiva y un fuerte deseo de superación, cualidades que le permitirán sobresalir en lo que se proponga.",
+        testimonio5Nombre: "Ing. Timotea Guadalupe Menjivar",
+        testimonio5Cargo: "Docente de Sistemas Operativos, Universidad Gerardo Barrios",
+        testimonio5Texto: "La estudiante Jennifer Yamileth Baires Acosta (USTR012824) destaca por su responsabilidad, compromiso y calidad en sus trabajos. Es organizada, disciplinada y mantiene una ética académica sólida. Además, muestra una actitud proactiva, siempre buscando aprender, mejorar y aportar soluciones creativas a los retos técnicos de su carrera.",
+        
         proyectosTitulo: "Mis <span>Proyectos</span>",
         proj1Titulo: "Adopta a un amigo",
         proj1Desc: "Plataforma web para un refugio de animales, enfocada en promover la adopción responsable de mascotas.",
@@ -46,59 +113,24 @@ const translations = {
         proj4Titulo: "Task Planner",
         proj4Desc: "Aplicación móvil para organizar tareas, con almacenamiento local y filtros para una mejor gestión del tiempo.",
         proj4Btn: "Ver en GitHub",
+        verMas: "Ver más",
+        
+        // MODAL DE PROYECTOS
+        modalLenguajes: "Lenguajes de Programación",
+        modalRol: "Mi Rol",
+        modalDescripcion: "Descripción",
+        modalProblema: "PROBLEMA",
+        modalSolucion: "SOLUCIÓN",
+        modalResultado: "RESULTADO",
+        modalGaleria: "Galería del Proyecto",
+        modalVerGitHub: "Ver en GitHub",
+        
         contactoTitulo: "Contácta<span>me</span>",
         contactoSubtitulo: "Ponte en contacto",
         contactoTexto: "Si estás interesado en trabajar conmigo, no dudes en contactarme.",
         
-        // NUEVAS TRADUCCIONES PARA EL MODAL
-        modalLenguajes: "Lenguajes de Programación",
-        modalRol: "Mi Rol",
-        modalDescripcion: "Descripción",
-        modalGaleria: "Galería del Proyecto",
-        modalVerGitHub: "Ver en GitHub",
-        // Títulos del modal (nuevos)
-        modalProblema: "PROBLEMA",
-        modalSolucion: "SOLUCIÓN", 
-        modalResultado: "RESULTADO",
-        // Marca Personal (nuevo)
-        marcaPersonalTitulo: "Marca Personal",
-        marcaPersonalFrase: "“Una mente curiosa, un corazón empático y un espíritu que nunca deja de evolucionar.”",
-        marcaPersonalAutor: "- Jennifer Baires",
-        // Modo oscuro
         darkModeText: "Modo Oscuro",
-        
-        // === TRADUCCIONES COMPLETAS PARA EL MODAL DE PROYECTOS ===
-        // Proyecto 1: Adopta a un amigo
-        proj1Title: "Adopta a un amigo",
-        proj1Role: "Desarrollador Full Stack y Scrum Master",
-        proj1Description: "Plataforma web completa para un refugio de animales, enfocada en promover la adopción responsable. Incluye sistema de gestión de mascotas, formularios de adopción y panel administrativo.",
-        proj1Problem: "Los refugios de animales enfrentaban dificultades para gestionar adopciones de manera eficiente, con procesos manuales que causaban demoras y falta de seguimiento en las solicitudes.",
-        proj1Solution: "Sistema de registro de usuarios|Catálogo de animales disponibles para adopción|Filtros por tipo, tamaño y edad del animal|Formulario de solicitud de adopción|Panel administrativo para el refugio",
-        proj1Result: "El sistema aumentó las adopciones en un 40%, redujo el tiempo de procesamiento de solicitudes de 5 días a 24 horas, y mejoró significativamente la experiencia tanto para adoptantes como para el personal del refugio.",
-        
-        // Proyecto 2: Artesanías Software
-        proj2Title: "Software Empresarial Artesanías Conchita",
-        proj2Role: "Scrum Master",
-        proj2Description: "Prototipo de software empresarial que permite llevar el control completo de facturación, inventario, clientes y proveedores de la empresa Artesanías Conchita.",
-        proj2Problem: "La empresa Artesanías Conchita gestionaba sus procesos de facturación e inventario de manera manual, lo que generaba errores, pérdida de información y dificultades para acceder a datos históricos.",
-        proj2Solution: "Sistema de facturación automatizado|Control de inventario en tiempo real|Gestión centralizada de clientes y proveedores|Reportes y estadísticas de ventas|Copia de seguridad automática de datos",
-        proj2Result: "Reducción del 80% en errores de facturación, optimización del 60% en tiempo de gestión de inventario y acceso inmediato a reportes financieros.",
-        
-        // Proyecto 3: Artesanías Web
-        proj3Title: "Sitio Web de Artesanías Conchita",
-        proj3Role: "Scrum Master, Desarrollador Full Stack y Diseñador Web",
-        proj3Description: "Sitio web informativo y catálogo en línea que muestra los productos artesanales de la empresa, con diseño responsive y optimizado para SEO.",
-        proj3Problem: "La empresa no tenía presencia digital, lo que limitaba su alcance a clientes potenciales y dificultaba la difusión de sus productos artesanales a un mercado más amplio.",
-        proj3Solution: "Diseño web responsive adaptado a todos los dispositivos|Catálogo digital de productos organizado por categorías|Optimización SEO para mejor posicionamiento|Formulario de contacto integrado|Galería de imágenes de alta calidad",
-        proj3Result: "Aumento del 200% en visibilidad en línea, generación de leads calificados y establecimiento de presencia digital profesional para la empresa.",
-        
-        // Proyecto 4: Task Planner
-        proj4Title: "Task Planner",
-        proj4Role: "Scrum Master y Desarrollador Full Stack",
-        proj4Description: "Aplicación móvil para organizar tareas diarias, con sistema de recordatorios, categorías, prioridades y almacenamiento local para una mejor gestión del tiempo.",
-        proj4Problem: "Los usuarios necesitaban una herramienta eficiente para organizar sus tareas diarias, ya que las aplicaciones existentes no ofrecían una experiencia intuitiva ni características de personalización adecuadas.",
-        proj4Solution: "Interfaz intuitiva y fácil de usar|Sistema de categorías y etiquetas personalizables|Recordatorios y notificaciones push|Sincronización offline con SQLite|Filtros por prioridad y fecha de vencimiento",
-        proj4Result: "Mejora del 75% en la productividad de los usuarios, reducción del estrés en la organización de tareas y alta calificación en Google Play Store (4.5/5)."
+        modoClaro: "Modo Claro"
     },
     en: {
         logo: "MyPortfolio",
@@ -106,13 +138,27 @@ const translations = {
         navSobreMi: "About Me",
         navProyectos: "Projects",
         navContacto: "Contact",
-        heroTitulo: "Hi, I'm <span class='highlight'>Jennifer Yamileth Baires Acosta</span>",
+        navMas: "More",
+        navMarca: "Personal Brand",
+        navPremios: "Awards",
+        navIntereses: "Interests",
+        navTestimonios: "Testimonials",
+        
+        searchPlaceholder: "Search",
+        searchResultsTitle: "Search Results",
+        closeResults: "Close results",
+        noResultsFound: "No results found",
+        noResultsText: "Try with other keywords or check spelling.",
+        
+        heroTitulo: "Hello, I'm <span class='highlight'>Jennifer Yamileth Baires Acosta</span>",
         heroAreas: "<h2>Areas of interest:</h2> Scrum Master, Web Developer & UX/UI Designer",
         heroBtnProyectos: "View My Projects",
         heroBtnCV: "Download CV",
+        
         sobreMiTitulo: "About <span>Me</span>",
         sobreMiTexto1: "Optimistic, responsible, and progress-oriented person, with ease to work in a team, adapt to new challenges, and maintain positive interpersonal relationships.",
         sobreMiTexto2: "My goal is to create digital experiences that are not only visually appealing but also intuitive and accessible for all users.",
+        
         skillsTitulo: "Skills",
         skillsFuertes: "Hard Skills",
         skillGit: "Basic knowledge in Git for version control",
@@ -129,6 +175,59 @@ const translations = {
         softAdaptabilidad: "Adaptability",
         lenguajesTitulo: "Programming Languages",
         sobreMiBtnCV: "Download CV",
+        
+        // PERSONAL BRAND
+        marcaPersonalTitulo: "Personal Brand",
+        marcaPersonalFrase: "“A curious mind, an empathetic heart, and a spirit that never stops evolving.”",
+        marcaPersonalAutor: "- Jennifer Baires",
+        
+        // AWARDS AND RECOGNITION (CAROUSEL)
+        premiosTitulo: "Awards and Recognition",
+        premio1Titulo: "Development and Security Workshops – Gerardo Barrios University",
+        premio1Desc: "Diploma for completing 64 hours of training in Test Cases, UX/UI, Web Development, DevOps and Security, within the academic project 'Software Life Cycle'.",
+        premio2Titulo: "CCNA: Introduction to Networks – Cisco Networking Academy & Gerardo Barrios University",
+        premio2Desc: "Diploma for successfully completing the CCNA: Introduction to Networks course, focused on network fundamentals, architecture, protocols, connectivity and essential Cisco infrastructure principles.",
+        premio3Titulo: "Web Layout Course with Dreamweaver – OEF of El Salvador",
+        premio3Desc: "Diploma for completing a 48-hour course in web page layout using Adobe Dreamweaver, focused on design, structure and construction of web interfaces.",
+        premio4Titulo: "English Diploma",
+        premio4Desc: "Diploma for successfully completing an intensive 48-hour English course, focused on communication skills and language fundamentals.",
+        premio5Titulo: "Diploma in Risk Management and Climate Change – MINED & UNES",
+        premio5Desc: "Diploma awarded for completing the diploma in Comprehensive Management for Risk Reduction and Climate Change in El Salvador, focused on prevention, preparation and environmental education.",
+        verDiplomaCompleto: "View Full Diploma",
+        
+        // MY INTERESTS (CAROUSEL)
+        interesesTitulo: "My Interests",
+        interes1Titulo: "Creativity and Art",
+        interes1Desc: "I love exploring digital art through tools like Canva, Procreate and ibisPaint. I enjoy creating simple designs, illustrations and visual elements inspired by anime style, combining creativity and personal expression.",
+        interes2Titulo: "UX/UI Design",
+        interes2Desc: "I am interested in user research and the creation of test cases to improve the digital experience. I seek to design intuitive, accessible interfaces focused on the real needs of the user.",
+        interes3Titulo: "Personal Development",
+        interes3Desc: "I am interested in improving my organization and productivity through time management techniques. I also enjoy constantly learning through free courses that strengthen my personal and professional skills.",
+        interes4Titulo: "Literary World / Anime",
+        interes4Desc: "I am inspired by anime universes and the creation of original characters. I am interested in writing mini-stories, developing narrative skills and designing characters with unique powers and personalities.",
+        interes5Titulo: "Space Optimization",
+        interes5Desc: "I like to design and improve my study space, looking for a functional, organized and visually pleasing environment that enhances my concentration, creativity and performance.",
+        interes6Titulo: "Technological Content Creation",
+        interes6Desc: "I am interested in sharing knowledge with other students through templates, resources and educational materials that facilitate learning and strengthen programming and technology skills.",
+        
+        // TESTIMONIALS & REVIEWS (CAROUSEL)
+        testimoniosTitulo: "Testimonials & Reviews",
+        testimonio1Nombre: "Lic. José Ovidio Ramos",
+        testimonio1Cargo: "Vice Dean of the Faculty of Science and Technology, Gerardo Barrios University",
+        testimonio1Texto: "Jennifer Yamileth Baires Acosta is a responsible and committed student, with enthusiasm for learning, creativity and teamwork skills, standing out for her perseverance and potential to lead projects.",
+        testimonio2Nombre: "Lic. Alexia Marcela Martinez Castro",
+        testimonio2Cargo: "Basic English Teacher, Gerardo Barrios University",
+        testimonio2Texto: "Jennifer is a responsible and proactive student, with excellent understanding of English. She stands out for her ethics, autonomy and ability to work in a team.",
+        testimonio3Nombre: "Ing. Marvin Osmaro Parada Benitez",
+        testimonio3Cargo: "Programming III Teacher, Gerardo Barrios University",
+        testimonio3Texto: "Jennifer Yamileth Baires Acosta is a responsible, collaborative and dedicated student, with great teamwork skills and willingness to face challenges. Her commitment and skills make her suitable to integrate and stand out in any professional environment.",
+        testimonio4Nombre: "Ing. Herbert René Cordero Henríquez",
+        testimonio4Cargo: "Programming Fundamentals Teacher, Gerardo Barrios University",
+        testimonio4Texto: "She is a responsible, dedicated and respectful student. She works well in a team, shows great willingness in academic activities and stands out for her charisma, social skills and strategic thinking. She has a positive attitude and a strong desire for improvement, qualities that will allow her to excel in whatever she sets out to do.",
+        testimonio5Nombre: "Ing. Timotea Guadalupe Menjivar",
+        testimonio5Cargo: "Operating Systems Teacher, Gerardo Barrios University",
+        testimonio5Texto: "The student Jennifer Yamileth Baires Acosta (USTR012824) stands out for her responsibility, commitment and quality in her work. She is organized, disciplined and maintains a solid academic ethic. In addition, she shows a proactive attitude, always seeking to learn, improve and contribute creative solutions to the technical challenges of her career.",
+        
         proyectosTitulo: "My <span>Projects</span>",
         proj1Titulo: "Adopt a Friend",
         proj1Desc: "Web platform for an animal shelter, focused on promoting responsible pet adoption.",
@@ -142,59 +241,24 @@ const translations = {
         proj4Titulo: "Task Planner",
         proj4Desc: "Mobile application to organize tasks, with local storage and filters for better time management.",
         proj4Btn: "View on GitHub",
+        verMas: "View more",
+        
+        // PROJECT MODAL
+        modalLenguajes: "Programming Languages",
+        modalRol: "My Role",
+        modalDescripcion: "Description",
+        modalProblema: "PROBLEM",
+        modalSolucion: "SOLUTION",
+        modalResultado: "RESULT",
+        modalGaleria: "Project Gallery",
+        modalVerGitHub: "View on GitHub",
+        
         contactoTitulo: "Contact <span>Me</span>",
         contactoSubtitulo: "Get in touch",
         contactoTexto: "If you are interested in working with me, feel free to contact me.",
         
-        // NUEVAS TRADUCCIONES PARA EL MODAL
-        modalLenguajes: "Programming Languages",
-        modalRol: "My Role",
-        modalDescripcion: "Description",
-        modalGaleria: "Project Gallery",
-        modalVerGitHub: "View on GitHub",
-        // Títulos del modal (nuevos)
-        modalProblema: "PROBLEM",
-        modalSolucion: "SOLUTION",
-        modalResultado: "RESULT",
-        // Marca Personal (nuevo)
-        marcaPersonalTitulo: "Personal Brand",
-        marcaPersonalFrase: "“A curious mind, an empathetic heart, and a spirit that never stops evolving.”",
-        marcaPersonalAutor: "- Jennifer Baires",
-        // Modo oscuro
         darkModeText: "Dark Mode",
-        
-        // === TRADUCCIONES PARA EL MODAL DE PROYECTOS ===
-        // Proyecto 1: Adopta a un amigo
-        proj1Title: "Adopt a Friend",
-        proj1Role: "Full Stack Developer and Scrum Master",
-        proj1Description: "Complete web platform for an animal shelter, focused on promoting responsible adoption. Includes pet management system, adoption forms and administrative panel.",
-        proj1Problem: "Animal shelters faced difficulties in managing adoptions efficiently, with manual processes that caused delays and lack of follow-up on applications.",
-        proj1Solution: "User registration system|Catalog of animals available for adoption|Filters by type, size and age of animal|Adoption application form|Administrative panel for the shelter",
-        proj1Result: "The system increased adoptions by 40%, reduced application processing time from 5 days to 24 hours, and significantly improved the experience for both adopters and shelter staff.",
-
-        // Proyecto 2: Artesanías Software
-        proj2Title: "Business Software Artesanías Conchita",
-        proj2Role: "Scrum Master", 
-        proj2Description: "Business software prototype that allows complete control of billing, inventory, customers and suppliers of the Artesanías Conchita company.",
-        proj2Problem: "The Artesanías Conchita company managed its billing and inventory processes manually, which generated errors, loss of information and difficulties in accessing historical data.",
-        proj2Solution: "Automated billing system|Real-time inventory control|Centralized management of customers and suppliers|Sales reports and statistics|Automatic data backup",
-        proj2Result: "80% reduction in billing errors, 60% optimization in inventory management time and immediate access to financial reports.",
-
-        // Proyecto 3: Artesanías Web
-        proj3Title: "Artesanías Conchita Website",
-        proj3Role: "Scrum Master, Full Stack Developer and Web Designer",
-        proj3Description: "Informative website and online catalog showing the company's artisan products, with responsive design and SEO optimized.",
-        proj3Problem: "The company had no digital presence, which limited its reach to potential customers and made it difficult to disseminate its artisan products to a broader market.",
-        proj3Solution: "Responsive web design adapted to all devices|Digital product catalog organized by categories|SEO optimization for better positioning|Integrated contact form|High quality image gallery",
-        proj3Result: "200% increase in online visibility, generation of qualified leads and establishment of professional digital presence for the company.",
-
-        // Proyecto 4: Task Planner
-        proj4Title: "Task Planner", 
-        proj4Role: "Scrum Master and Full Stack Developer",
-        proj4Description: "Mobile application for organizing daily tasks, with reminder system, categories, priorities and local storage for better time management.",
-        proj4Problem: "Users needed an efficient tool to organize their daily tasks, as existing applications did not offer an intuitive experience or adequate customization features.",
-        proj4Solution: "Intuitive and easy-to-use interface|Customizable categories and tags system|Reminders and push notifications|Offline synchronization with SQLite|Filters by priority and due date",
-        proj4Result: "75% improvement in user productivity, reduction of task organization stress and high rating on Google Play Store (4.5/5)."
+        modoClaro: "Light Mode"
     }
 };
 
@@ -202,52 +266,224 @@ const translations = {
 let currentLang = 'es';
 
 // ==============================
-// Función de traducción mejorada
+// Función de traducción CORREGIDA
 // ==============================
 function translatePage(lang) {
-     currentLang = lang;
+    currentLang = lang;
+    
+    console.log(`🌍 Traduciendo a: ${lang}`);
+    
+    // 1. Traducir elementos con data-i18n (EXCLUYENDO los del carrusel de premios que se manejan manualmente)
     document.querySelectorAll('[data-i18n]').forEach(el => {
-        const key = el.getAttribute('data-i18n');
-        const translation = translations[lang][key];
+        // Excluir elementos dentro del carrusel de premios (los manejamos manualmente)
+        const isInPremiosCarousel = el.closest('.premio-card') || el.closest('.carrusel-track');
+        
+        if (!isInPremiosCarousel) {
+            const key = el.getAttribute('data-i18n');
+            const translation = translations[lang][key];
 
-        if (translation) {
-    if (["heroTitulo", "heroAreas", "proyectosTitulo", "sobreMiTitulo", "contactoTitulo"].includes(key)) {
-        el.innerHTML = translation; // Mantiene HTML en títulos con etiquetas internas
-    } else {
-        // ✅ Si el elemento está dentro de un botón con ícono, solo cambia el texto
-        if (el.tagName === "SPAN" && el.closest(".btn")) {
-            el.textContent = translation;
-        } else {
-            el.textContent = translation;
+            if (translation) {
+                if (["heroTitulo", "heroAreas", "proyectosTitulo", "sobreMiTitulo", "contactoTitulo"].includes(key)) {
+                    el.innerHTML = translation;
+                } else if (el.tagName === "INPUT" || el.tagName === "TEXTAREA") {
+                    el.placeholder = translation;
+                } else if (el.tagName === "SPAN" && el.closest(".btn")) {
+                    el.textContent = translation;
+                } else {
+                    el.textContent = translation;
+                }
+            }
+        }
+    });
+    
+    // 2. Traducir títulos de sección que no tienen data-i18n
+    const sectionTitles = {
+        '#marca-personal .section-title': translations[lang]["marcaPersonalTitulo"],
+        '#premios .section-title': translations[lang]["premiosTitulo"],
+        '#intereses .section-title': translations[lang]["interesesTitulo"],
+        '#testimonios .section-title': translations[lang]["testimoniosTitulo"]
+    };
+    
+    Object.entries(sectionTitles).forEach(([selector, translation]) => {
+        const element = document.querySelector(selector);
+        if (element && translation) {
+            element.textContent = translation;
+        }
+    });
+    
+    // 3. Traducir MARCA PERSONAL (manualmente)
+    const marcaFrase = document.querySelector('.marca-texto .frase');
+    const marcaAutor = document.querySelector('.marca-texto .autor');
+    
+    if (marcaFrase && translations[lang]["marcaPersonalFrase"]) {
+        marcaFrase.textContent = translations[lang]["marcaPersonalFrase"];
+    }
+    if (marcaAutor && translations[lang]["marcaPersonalAutor"]) {
+        marcaAutor.textContent = translations[lang]["marcaPersonalAutor"];
+    }
+    
+    // 4. Traducir CARRUSEL DE PREMIOS MANUALMENTE (para evitar conflictos)
+    const premioCards = document.querySelectorAll('.premio-card');
+    premioCards.forEach((card, index) => {
+        // Solo actualizar el texto, NO la estructura
+        const titleElement = card.querySelector('[data-i18n]');
+        const descElement = card.querySelector('.premio-desc');
+        
+        if (titleElement && translations[lang][`premio${index+1}Titulo`]) {
+            titleElement.textContent = translations[lang][`premio${index+1}Titulo`];
+        }
+        
+        if (descElement && translations[lang][`premio${index+1}Desc`]) {
+            descElement.textContent = translations[lang][`premio${index+1}Desc`];
+        }
+        
+        // Traducir botón "Ver Diploma Completo" sin perder el ícono
+        const btn = card.querySelector('.ver-diploma-btn');
+        if (btn && translations[lang]["verDiplomaCompleto"]) {
+            // Preservar el icono
+            const icon = btn.querySelector('i');
+            if (icon) {
+                btn.innerHTML = icon.outerHTML + ' ' + translations[lang]["verDiplomaCompleto"];
+            } else {
+                btn.innerHTML = '<i class="fas fa-image"></i> ' + translations[lang]["verDiplomaCompleto"];
+            }
+        }
+    });
+    
+    // 5. Traducir CARRUSEL DE INTERESES
+    const interesCards = document.querySelectorAll('.interes-card');
+    interesCards.forEach((card, index) => {
+        const titleElement = card.querySelector('h3');
+        const descElement = card.querySelector('.interes-desc');
+        
+        if (titleElement && translations[lang][`interes${index+1}Titulo`]) {
+            titleElement.textContent = translations[lang][`interes${index+1}Titulo`];
+        }
+        
+        if (descElement && translations[lang][`interes${index+1}Desc`]) {
+            descElement.textContent = translations[lang][`interes${index+1}Desc`];
+        }
+    });
+    
+    // 6. Traducir CARRUSEL DE TESTIMONIOS
+    const testimonioCards = document.querySelectorAll('.testimonio-card');
+    testimonioCards.forEach((card, index) => {
+        const nameElement = card.querySelector('[data-i18n]');
+        const cargoElement = card.querySelector('.testimonio-cargo');
+        const textoElement = card.querySelector('.testimonio-texto');
+        
+        if (nameElement && translations[lang][`testimonio${index+1}Nombre`]) {
+            nameElement.textContent = translations[lang][`testimonio${index+1}Nombre`];
+        }
+        
+        if (cargoElement && translations[lang][`testimonio${index+1}Cargo`]) {
+            cargoElement.innerHTML = translations[lang][`testimonio${index+1}Cargo`];
+        }
+        
+        if (textoElement && translations[lang][`testimonio${index+1}Texto`]) {
+            textoElement.textContent = translations[lang][`testimonio${index+1}Texto`];
+        }
+    });
+    
+    // 7. Botones "Ver más"
+    const verMasBtns = document.querySelectorAll('.btn-details');
+    verMasBtns.forEach(btn => {
+        if (translations[lang]["verMas"]) {
+            btn.textContent = translations[lang]["verMas"];
+        }
+    });
+    
+    // 8. Modal de proyectos (textos fijos)
+    const modalTexts = {
+        '#modalLenguajes span': translations[lang]["modalLenguajes"],
+        '#modalRol span': translations[lang]["modalRol"],
+        '#modalDescripcion span': translations[lang]["modalDescripcion"],
+        '#modalProblema span': translations[lang]["modalProblema"],
+        '#modalSolucion span': translations[lang]["modalSolucion"],
+        '#modalResultado span': translations[lang]["modalResultado"],
+        '#modalGaleria span': translations[lang]["modalGaleria"]
+    };
+    
+    Object.entries(modalTexts).forEach(([selector, translation]) => {
+        const element = document.querySelector(selector);
+        if (element && translation) {
+            element.textContent = translation;
+        }
+    });
+    
+    // 9. Botón "Ver en GitHub" en el modal
+    const modalGitHubBtn = document.querySelector('#modalGitHubLink span');
+    if (modalGitHubBtn && translations[lang]["modalVerGitHub"]) {
+        modalGitHubBtn.textContent = translations[lang]["modalVerGitHub"];
+    }
+    
+    // 10. Actualizar botón de idioma
+    const langTextSpan = document.querySelector('.lang-text');
+    if (langTextSpan) {
+        langTextSpan.textContent = lang === 'es' ? 'EN' : 'ES';
+    }
+    
+    // 11. Actualizar modo oscuro
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    if (darkModeToggle) {
+        const icon = darkModeToggle.querySelector('i');
+        const textSpan = darkModeToggle.querySelector('.dark-mode-text');
+        
+        if (textSpan) {
+            if (lang === 'en') {
+                textSpan.textContent = icon.classList.contains('fa-moon') ? 'Dark Mode' : 'Light Mode';
+            } else {
+                textSpan.textContent = icon.classList.contains('fa-moon') ? 'Modo Oscuro' : 'Modo Claro';
+            }
         }
     }
-}
-    });
+    
+    // 12. Footer
+    const footer = document.querySelector('footer p');
+    if (footer) {
+        footer.textContent = lang === 'en' 
+            ? "© 2025 Jennifer Baires. All rights reserved." 
+            : "© 2025 Jennifer Baires. Todos los derechos reservados.";
+    }
+    
+    // 13. Búsqueda
+    const searchTitle = document.getElementById('searchResultsTitle');
+    if (searchTitle && translations[lang]["searchResultsTitle"]) {
+        searchTitle.textContent = translations[lang]["searchResultsTitle"];
+    }
+    
+    const closeResultsBtn = document.getElementById('closeSearchResults');
+    if (closeResultsBtn && translations[lang]["closeResults"]) {
+        closeResultsBtn.innerHTML = '<i class="fas fa-times"></i> ' + translations[lang]["closeResults"];
+    }
+    
+    // IMPORTANTE: Forzar redibujado del carrusel de premios después de traducir
+    setTimeout(() => {
+        restoreCarouselPosition();
+    }, 50);
+    
+    console.log(`✅ Traducción completada para ${lang}`);
 }
 
 // ==============================
-// Botón de traducción estilizado
+// Función para restaurar posición del carrusel
 // ==============================
-const translateBtn = document.getElementById('translateBtn');
-
-// Estructura del botón (se mantiene igual siempre)
-translateBtn.innerHTML = `<i class="fa-solid fa-globe"></i> <span class="lang-text">EN</span>`;
-
-// Referencia al texto del botón
-const langTextSpan = translateBtn.querySelector(".lang-text");
-
-// Evento al hacer clic
-translateBtn.addEventListener('click', () => {
-    currentLang = currentLang === 'es' ? 'en' : 'es';
-    translatePage(currentLang);
-
-    // ✅ Actualiza el texto sin cambiar el estilo ni el icono
-    langTextSpan.textContent = currentLang === 'es' ? 'EN' : 'ES';
-
-    // ✅ Mantiene animaciones y clases intactas
-    document.body.classList.add("language-change");
-    setTimeout(() => document.body.classList.remove("language-change"), 400);
-});
+function restoreCarouselPosition() {
+    const carruselTrack = document.querySelector('.carrusel-track');
+    if (!carruselTrack) return;
+    
+    // Obtener el índice actual del carrusel
+    const activeIndicator = document.querySelector('.indicador.active');
+    if (!activeIndicator) return;
+    
+    const currentIndex = parseInt(activeIndicator.getAttribute('data-index')) || 0;
+    
+    // Restaurar posición
+    const translateX = -(currentIndex * 100);
+    carruselTrack.style.transform = `translateX(${translateX}%)`;
+    
+    console.log(`🔄 Carrusel restaurado a posición: ${currentIndex}`);
+}
 
 // ===== FUNCIONES DEL MODAL - VERSIÓN COMPLETA =====
 function openProjectModal(projectCard) {
@@ -397,30 +633,50 @@ function openImageModal(imageSrc) {
     document.body.appendChild(imageModal);
 }
 
-// Event Listeners (agrega esto al final de tu JavaScript)
+// ===== MODO OSCURO =====
 document.addEventListener('DOMContentLoaded', function() {
-    // Cerrar modal al hacer clic en la X
-    const closeBtn = document.querySelector('.close-modal');
-    if (closeBtn) {
-        closeBtn.addEventListener('click', closeProjectModal);
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    const darkModeIcon = darkModeToggle.querySelector('i');
+    const darkModeText = darkModeToggle.querySelector('.dark-mode-text');
+    
+    // Verificar preferencia guardada o del sistema
+    function initDarkMode() {
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            enableDarkMode();
+        } else {
+            disableDarkMode();
+        }
     }
     
-    // Cerrar modal al hacer clic fuera del contenido
-    const modal = document.getElementById('projectModal');
-    if (modal) {
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
-                closeProjectModal();
-            }
-        });
+    function enableDarkMode() {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        darkModeIcon.className = 'fas fa-sun';
+        darkModeText.textContent = 'Modo Claro';
     }
     
-    // Cerrar modal con tecla Escape
-    document.addEventListener('keydown', function(e) {
-        if (e.key === 'Escape') {
-            closeProjectModal();
+    function disableDarkMode() {
+        document.documentElement.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        darkModeIcon.className = 'fas fa-moon';
+        darkModeText.textContent = 'Modo Oscuro';
+    }
+    
+    // Event listener
+    darkModeToggle.addEventListener('click', function() {
+        const currentTheme = document.documentElement.getAttribute('data-theme');
+        if (currentTheme === 'dark') {
+            disableDarkMode();
+        } else {
+            enableDarkMode();
         }
     });
+    
+    // Inicializar
+    initDarkMode();
 });
 
 // ===== INICIALIZACIÓN CORREGIDA =====
@@ -477,52 +733,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
     console.log("✅ Modal completamente inicializado");
-});
-
-// ===== MODO OSCURO =====
-document.addEventListener('DOMContentLoaded', function() {
-    const darkModeToggle = document.getElementById('darkModeToggle');
-    const darkModeIcon = darkModeToggle.querySelector('i');
-    const darkModeText = darkModeToggle.querySelector('.dark-mode-text');
-    
-    // Verificar preferencia guardada o del sistema
-    function initDarkMode() {
-        const savedTheme = localStorage.getItem('theme');
-        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        
-        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
-            enableDarkMode();
-        } else {
-            disableDarkMode();
-        }
-    }
-    
-    function enableDarkMode() {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
-        darkModeIcon.className = 'fas fa-sun';
-        darkModeText.textContent = 'Modo Claro';
-    }
-    
-    function disableDarkMode() {
-        document.documentElement.removeAttribute('data-theme');
-        localStorage.setItem('theme', 'light');
-        darkModeIcon.className = 'fas fa-moon';
-        darkModeText.textContent = 'Modo Oscuro';
-    }
-    
-    // Event listener
-    darkModeToggle.addEventListener('click', function() {
-        const currentTheme = document.documentElement.getAttribute('data-theme');
-        if (currentTheme === 'dark') {
-            disableDarkMode();
-        } else {
-            enableDarkMode();
-        }
-    });
-    
-    // Inicializar
-    initDarkMode();
 });
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -846,31 +1056,31 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(updateInteresesCarrusel, 100);
     });
 
-function updateInteresesCarrusel() {
-    const cardWidth = getCardWidth();
-    const translateX = -(currentInteresIndex * (cardWidth * cardsPerView));
-    interesesTrack.style.transform = `translateX(${translateX}px)`;
+    function updateInteresesCarrusel() {
+        const cardWidth = getCardWidth();
+        const translateX = -(currentInteresIndex * (cardWidth * cardsPerView));
+        interesesTrack.style.transform = `translateX(${translateX}px)`;
 
-    updateActiveInteresCards();  // ← Agregado
-    updateInteresIndicadores();
-    updateInteresButtons();
-}
-    
-// =========================================
-// 🔥 MARCAR TARJETAS ACTIVAS
-// =========================================
-function updateActiveInteresCards() {
-    // Limpiar clases activas
-    interesCards.forEach(card => card.classList.remove('active'));
-
-    // Marcar las tarjetas visibles según el índice y cardsPerView
-    const start = currentInteresIndex * cardsPerView;
-    const end = start + cardsPerView;
-
-    for (let i = start; i < end && i < interesCards.length; i++) {
-        interesCards[i].classList.add('active');
+        updateActiveInteresCards();  // ← Agregado
+        updateInteresIndicadores();
+        updateInteresButtons();
     }
-}
+    
+    // =========================================
+    // 🔥 MARCAR TARJETAS ACTIVAS
+    // =========================================
+    function updateActiveInteresCards() {
+        // Limpiar clases activas
+        interesCards.forEach(card => card.classList.remove('active'));
+
+        // Marcar las tarjetas visibles según el índice y cardsPerView
+        const start = currentInteresIndex * cardsPerView;
+        const end = start + cardsPerView;
+
+        for (let i = start; i < end && i < interesCards.length; i++) {
+            interesCards[i].classList.add('active');
+        }
+    }
 
 });
 
@@ -1743,7 +1953,6 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // ===== SUBMENÚ SIMPLE - NO AFECTA NADA MÁS =====
-
 document.addEventListener('DOMContentLoaded', function() {
     
     // Solo inicializar si existe el submenú
@@ -1883,13 +2092,77 @@ document.addEventListener('DOMContentLoaded', function() {
     updateMoreText();
 });
 
-// Verifica si body tiene la clase dark-mode
-console.log('Body tiene dark-mode?', document.body.classList.contains('dark-mode'));
-
-// Verifica el color computado del dropdown
-const dropdown = document.querySelector('.more-dropdown');
-const computedStyle = window.getComputedStyle(dropdown);
-console.log('Fondo del dropdown:', computedStyle.backgroundColor);
-
-// Aplica dark-mode manualmente
-document.body.classList.add('dark-mode');
+// ==============================
+// BOTÓN DE TRADUCCIÓN CORREGIDO (AGREGADO AL FINAL)
+// ==============================
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("🌍 Inicializando botón de traducción...");
+    
+    const translateBtn = document.getElementById('translateBtn');
+    if (translateBtn) {
+        console.log("✅ Botón de traducción encontrado");
+        
+        // Solo si no tiene contenido, lo inicializamos
+        if (!translateBtn.innerHTML.trim()) {
+            translateBtn.innerHTML = `<i class="fa-solid fa-globe"></i> <span class="lang-text">EN</span>`;
+            console.log("✨ Botón inicializado con HTML");
+        } else {
+            console.log("📝 Botón ya tiene contenido:", translateBtn.innerHTML.substring(0, 50) + "...");
+        }
+        
+        // Referencia al texto del botón
+        const langTextSpan = translateBtn.querySelector(".lang-text");
+        
+        if (langTextSpan) {
+            console.log("✅ Span de texto encontrado en el botón");
+            
+            // Evento al hacer clic
+            translateBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                console.log("🖱️ Botón de traducción clickeado");
+                console.log("🌐 Idioma actual ANTES del cambio:", currentLang);
+                
+                // Cambiar idioma
+                currentLang = currentLang === 'es' ? 'en' : 'es';
+                console.log("🌐 Idioma DESPUÉS del cambio:", currentLang);
+                
+                // Traducir página
+                translatePage(currentLang);
+                
+                // Actualizar texto del botón
+                if (langTextSpan) {
+                    const newText = currentLang === 'es' ? 'EN' : 'ES';
+                    console.log("🔄 Cambiando texto del botón a:", newText);
+                    langTextSpan.textContent = newText;
+                }
+                
+                // Animación
+                document.body.classList.add("language-change");
+                setTimeout(() => document.body.classList.remove("language-change"), 400);
+                
+                console.log("✅ Traducción completada");
+            });
+            
+            // Inicializar con idioma actual
+            const initialText = currentLang === 'es' ? 'EN' : 'ES';
+            langTextSpan.textContent = initialText;
+            console.log("🏁 Botón inicializado con texto:", initialText);
+            
+        } else {
+            console.error("❌ No se encontró el span .lang-text dentro del botón");
+            console.log("🔍 Contenido del botón:", translateBtn.innerHTML);
+        }
+        
+        console.log("🎉 Botón de traducción completamente inicializado");
+        
+    } else {
+        console.error("❌ No se encontró el botón de traducción con id='translateBtn'");
+        console.log("🔍 Elementos con id translateBtn en la página:", document.querySelectorAll('[id*="translate"]').length);
+    }
+    
+    // Inicializar traducción al cargar la página
+    translatePage(currentLang);
+    console.log("🌐 Página traducida al idioma inicial:", currentLang);
+});
