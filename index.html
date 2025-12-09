@@ -791,9 +791,11 @@
     <div class="container">
         <h2 class="section-title" data-i18n="contactoTitulo">Contácta<span>me</span></h2>
         <div class="contact-content">
+            <!-- Columna Izquierda - Información de Contacto -->
             <div class="contact-info">
                 <h3 data-i18n="contactoSubtitulo">Ponte en contacto</h3>
                 <p data-i18n="contactoTexto">Si estás interesado en trabajar conmigo, no dudes en contactarme.</p>
+                
                 <div class="contact-details">
                     <div class="contact-item">
                         <i class="fas fa-envelope"></i>
@@ -804,14 +806,82 @@
                         <p>Usulután - Usulután, El Salvador</p>
                     </div>
                 </div>
+                
                 <div class="social-links">
-                    <a href="https://www.linkedin.com/in/jennifer-yamileth-baires-acosta-83837b381/" target="_blank">
+                    <a href="https://www.linkedin.com/in/jennifer-yamileth-baires-acosta-83837b381/" target="_blank" aria-label="LinkedIn">
                         <i class="fab fa-linkedin"></i>
                     </a>
-                    <a href="https://github.com/Vanitas604" target="_blank">
+                    <a href="https://github.com/Vanitas604" target="_blank" aria-label="GitHub">
                         <i class="fab fa-github"></i>
                     </a>
                 </div>
+            </div>
+            
+            <!-- Columna Derecha - Formulario de Contacto -->
+            <div class="contact-container">
+                <form class="contact-form" id="contactForm"
+                      action="https://formsubmit.co/jennferbaires@gmail.com"
+                      method="POST">
+
+                    <!-- Nombre -->
+                    <div class="input-group">
+                        <label for="name" data-lang="form-nombre">Nombre Completo</label>
+                        <div class="input-icon">
+                            <i class="fa-solid fa-user"></i>
+                            <input type="text" id="name" name="name"
+                                   data-lang="form-nombre-placeholder"
+                                   placeholder="Ingresa tu nombre" required>
+                        </div>
+                    </div>
+
+                    <!-- Correo -->
+                    <div class="input-group">
+                        <label for="email" data-lang="form-email">Correo Electrónico</label>
+                        <div class="input-icon">
+                            <i class="fa-solid fa-envelope"></i>
+                            <input type="email" id="email" name="email"
+                                   data-lang="form-email-placeholder"
+                                   placeholder="ejemplo@correo.com" required>
+                        </div>
+                    </div>
+
+                    <!-- Teléfono -->
+                    <div class="input-group">
+                        <label for="phone" data-lang="form-telefono">Teléfono</label>
+                        <div class="input-icon">
+                            <i class="fa-solid fa-phone"></i>
+                            <input type="tel" id="phone" name="phone"
+                                   data-lang="form-telefono-placeholder"
+                                   placeholder="0000-0000" required>
+                        </div>
+                    </div>
+
+                    <!-- Mensaje -->
+                    <div class="input-group">
+                        <label for="message" data-lang="form-mensaje">Mensaje</label>
+                        <div class="input-icon textarea-icon">
+                            <i class="fa-regular fa-comment"></i>
+                            <textarea id="message" name="message"
+                                      rows="4"
+                                      data-lang="form-mensaje-placeholder"
+                                      placeholder="Escribe tu mensaje..." required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Configuración oculta -->
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" value="https://eportafoliojennifer.moonandsunaccessories.com/">
+
+                    <!-- Botón -->
+                    <button type="submit" class="btn-submit">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span data-lang="form-enviar">Enviar Mensaje</span>
+                    </button>
+
+                    <!-- Mensajes Flash -->
+                    <div id="flash-messages" class="flash-messages"></div>
+                </form>
             </div>
         </div>
     </div>
